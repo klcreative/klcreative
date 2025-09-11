@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KL Creative</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(to right, #7217a3, #e00299);
+      color: white;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+    header img {
+      max-width: 200px;
+    }
+    section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 100px 10%;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .text {
+      flex: 1;
+      padding: 20px;
+    }
+    .image {
+      flex: 1;
+      padding: 20px;
+    }
+    .image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="KL Creative Logo">
+  </header>
+
+  <section>
+    <div class="text">
+      <h2>關於KL Creative</h2>
+      <p>這裡是描述文字，介紹公司的理念與服務。</p>
+    </div>
+    <div class="image">
+      <img src="https://via.placeholder.com/500x300" alt="關於 KL Creative">
+    </div>
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>各式餐飲外燴</h2>
+      <p>這裡是描述文字，提供各式餐飲外燴服務。</p>
+    </div>
+    <div class="image">
+      <img src="https://via.placeholder.com/500x300" alt="各式餐飲外燴">
+    </div>
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>各式活動餐飲整合</h2>
+      <p>這裡是描述文字，專業整合活動餐飲需求。</p>
+    </div>
+    <div class="image">
+      <img src="https://via.placeholder.com/500x300" alt="各式活動餐飲整合">
+    </div>
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>客製化禮品</h2>
+      <p>這裡是描述文字，提供專屬客製化禮品。</p>
+    </div>
+    <div class="image">
+      <img src="https://via.placeholder.com/500x300" alt="客製化禮品">
+    </div>
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>企業機構餐飲規劃</h2>
+      <p>這裡是描述文字，規劃企業餐飲需求。</p>
+    </div>
+    <div class="image">
+      <img src="https://via.placeholder.com/500x300" alt="企業機構餐飲規劃">
+    </div>
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>私廚饗宴</h2>
+      <p>這裡是描述文字，私廚服務打造獨特饗宴。</p>
+    </div>
+    <div class="image">
+      <img src="https://via.placeholder.com/500x300" alt="私廚饗宴">
+    </div>
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>聯繫我</h2>
+      <p>這裡是描述文字，提供聯繫方式與合作洽談。</p>
+    </div>
+    <div class="image">
+      <img src="https://via.placeholder.com/500x300" alt="聯繫我">
+    </div>
+  </section>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+    const options = {
+      threshold: 0.1
+    };
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    }, options);
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
