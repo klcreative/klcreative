@@ -1,0 +1,184 @@
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部 LOGO 區塊樣式 */
+.logo-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.logo-area img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* 內容區塊樣式 */
+.content-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    box-sizing: border-box;
+    position: relative;
+    /* 確保滑出動畫不會造成滾動條出現 */
+    overflow: hidden; 
+}
+
+/* 捲動時出現的 LOGO 區塊專用樣式 */
+.logo-only {
+    min-height: 100vh;
+}
+
+.logo-animation-container {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.visible .logo-animation-container {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.content-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.text-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    flex: 1; 
+    max-width: 1000px; 
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 文字內容樣式 */
+.text-content {
+    flex: 2; 
+    min-width: 300px;
+}
+
+/* 增加電腦版文字大小 */
+.description-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.text-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #fff;
+    padding-left: 15px;
+}
+
+/* 圖片樣式，這一段會限制圖片大小 */
+.image-container {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img {
+    width: 100%; 
+    height: auto;
+    display: block;
+}
+
+/* 動畫起始狀態 */
+.left-slide-in,
+.right-slide-in {
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.left-slide-in {
+    transform: translateX(-15%);
+}
+
+.right-slide-in {
+    transform: translateX(15%);
+}
+
+/* 進入螢幕的動畫效果 */
+.visible .left-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.visible .right-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 新增的離開螢幕的動畫效果 */
+.hidden .left-slide-in {
+    opacity: 0;
+    transform: translateX(-15%);
+}
+
+.hidden .right-slide-in {
+    opacity: 0;
+    transform: translateX(15%);
+}
+
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .text-and-image {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .reverse-layout {
+        flex-direction: column;
+    }
+
+    .logo-area img {
+        max-width: 150px;
+    }
+
+    .text-content {
+        flex: 1;
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .image-container {
+        flex: 1;
+        width: 80%; 
+        min-width: auto;
+    }
+
+    .text-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .description-text {
+        font-size: 1rem;
+    }
+}
