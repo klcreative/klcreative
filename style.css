@@ -1,0 +1,214 @@
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列和LOGO的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header-logo {
+    max-width: 200px;
+    height: auto;
+    /* 這裡定義淡入/淡出動畫的過渡效果 */
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover {
+    color: #ffd700;
+}
+
+/* 內容區塊樣式 - 調整間距 */
+.content-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 縮短垂直間距 */
+    padding: 40px 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* 捲動時出現的 LOGO 區塊專用樣式 */
+.logo-only {
+    min-height: 100vh;
+}
+
+.logo-animation-container {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.visible .logo-animation-container {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.content-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.text-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 縮短圖片與文字間的間距 */
+    gap: 30px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    flex: 1; 
+    max-width: 1200px;
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 文字內容樣式 */
+.text-content {
+    flex: 2; 
+    min-width: auto;
+}
+
+.description-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #fff;
+    padding-left: 15px;
+}
+
+/* 圖片樣式 */
+.image-container {
+    flex: 1.5; 
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img {
+    width: 100%; 
+    height: auto;
+    display: block;
+}
+
+/* 動畫起始狀態 */
+.left-slide-in,
+.right-slide-in {
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.left-slide-in {
+    transform: translateX(-15%);
+}
+
+.right-slide-in {
+    transform: translateX(15%);
+}
+
+/* 進入螢幕的動畫效果 */
+.visible .left-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.visible .right-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 離開螢幕的動畫效果 */
+.hidden .left-slide-in {
+    opacity: 0;
+    transform: translateX(-15%);
+}
+
+.hidden .right-slide-in {
+    opacity: 0;
+    transform: translateX(15%);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    #main-nav {
+        display: none;
+    }
+    
+    .text-and-image {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .reverse-layout {
+        flex-direction: column;
+    }
+
+    .logo-area img {
+        max-width: 150px;
+    }
+
+    .text-content {
+        flex: 1;
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .image-container {
+        flex: 1;
+        width: 80%; 
+        min-width: auto;
+    }
+
+    .text-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .description-text {
+        font-size: 1rem;
+    }
+}
