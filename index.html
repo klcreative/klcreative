@@ -1,0 +1,526 @@
+您的需求非常清楚，頁面太過空曠，區塊間距不一致，希望有一個充滿動態和豐富視覺效果的設計。
+
+這次，我將運用更精緻的動畫和視覺細節，重新設計整個網頁。我將會做出以下調整：
+
+### 1\. 調整整體間距與視覺平衡
+
+  * **縮短內容區塊的垂直間距**，讓不同區塊的過渡更緊湊。
+  * **優化區塊內的留白**，讓文字與圖片更協調。
+
+### 2\. 新增視覺豐富度與動態效果
+
+  * **背景圖片（Background Image）**：我將為每個區塊新增一個**全螢幕的背景圖片**，讓頁面不再單調，並透過\*\*`background-attachment: fixed`**屬性創造出**視差（Parallax）捲動效果\*\*，當您捲動頁面時，圖片會緩慢移動，產生深度感。
+  * **區塊內容的透明效果**：將內容區塊的背景色調整為半透明，讓下方的背景圖片若隱若現，增加視覺層次。
+  * **更流暢的淡入淡出**：我會微調動畫的過渡時間和函數，讓淡入淡出效果更自然、更具美感。
+
+-----
+
+### 更新後的程式碼
+
+以下是您需要的程式碼。我已為您準備好了 `index.html`、`style.css` 和 `script.js` 三個檔案。請將這些檔案替換您原有的檔案，並將背景圖片放在 `images01` 資料夾下。
+
+#### `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KL Creative</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="main-header">
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#about">關於我們</a></li>
+                <li><a href="#catering">餐飲外燴</a></li>
+                <li><a href="#venue">場地規劃</a></li>
+                <li><a href="#event-catering">活動整合</a></li>
+                <li><a href="#custom-gifts">客製禮品</a></li>
+                <li><a href="#corporate-catering">企業服務</a></li>
+                <li><a href="#private-chef">私廚饗宴</a></li>
+                <li><a href="#contact">聯繫我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="logo-section" class="content-section" style="background-image: url('images01/B-ABOUT.jpg');">
+            <div class="content-container">
+                <div class="logo-animation-container">
+                    <img src="images01/A-logo-remove.png" alt="KL Creative Logo">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="content-section" style="background-image: url('images01/B-ABOUT.jpg');">
+            <div class="content-container">
+                <div class="text-and-image">
+                    <div class="text-content left-slide-in">
+                        <h2>關於 KL Creative</h2>
+                        <p class="description-text">
+                            這段是關於 KL Creative 的描述文字。
+                            這裡可以放入您的品牌故事、理念或團隊介紹。
+                            讓訪客更了解您公司的核心價值。
+                        </p>
+                    </div>
+                    <div class="image-container right-slide-in">
+                        <img src="images01/B-ABOUT.jpg" alt="關於 KL Creative">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="catering" class="content-section" style="background-image: url('images01/C-F&B.jpg');">
+            <div class="content-container">
+                <div class="text-and-image reverse-layout">
+                    <div class="text-content left-slide-in">
+                        <h2>各式餐飲外燴</h2>
+                        <p class="description-text">
+                            這段是關於各式餐飲外燴的描述文字。
+                            您可以介紹您的外燴服務種類、特色菜色，
+                            例如雞尾酒會、自助餐或精緻套餐等。
+                        </p>
+                    </div>
+                    <div class="image-container right-slide-in">
+                        <img src="images01/C-F&B.jpg" alt="各式餐飲外燴">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="venue" class="content-section" style="background-image: url('images01/D-PLACE.jpg');">
+            <div class="content-container">
+                <div class="text-and-image">
+                    <div class="text-content left-slide-in">
+                        <h2>場地提供與規劃</h2>
+                        <p class="description-text">
+                            這段是關於場地提供與規劃的描述文字。
+                            說明您可以如何協助客戶尋找、佈置合適的活動場地，
+                            提供一站式的整合服務。
+                        </p>
+                    </div>
+                    <div class="image-container right-slide-in">
+                        <img src="images01/D-PLACE.jpg" alt="場地提供與規劃">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="event-catering" class="content-section" style="background-image: url('images01/E-EVENT.jpg');">
+            <div class="content-container">
+                <div class="text-and-image reverse-layout">
+                    <div class="text-content left-slide-in">
+                        <h2>各式活動餐飲整合</h2>
+                        <p class="description-text">
+                            這段是關於各式活動餐飲整合的描述文字。
+                            說明您可以如何為客戶的活動提供完整的餐飲解決方案，
+                            從規劃到執行，讓活動更加完美。
+                        </p>
+                    </div>
+                    <div class="image-container right-slide-in">
+                        <img src="images01/E-EVENT.jpg" alt="各式活動餐飲整合">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="custom-gifts" class="content-section" style="background-image: url('images01/F-GIFT.jpg');">
+            <div class="content-container">
+                <div class="text-and-image">
+                    <div class="text-content left-slide-in">
+                        <h2>客製化禮品</h2>
+                        <p class="description-text">
+                            這段是關於客製化禮品的描述文字。
+                            介紹您為客戶量身打造的禮品服務，
+                            例如企業贈禮、節慶禮盒等，展現您的獨特創意。
+                        </p>
+                    </div>
+                    <div class="image-container right-slide-in">
+                        <img src="images01/F-GIFT.jpg" alt="客製化禮品">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="corporate-catering" class="content-section" style="background-image: url('images01/G-ENTERPRISE.jpg');">
+            <div class="content-container">
+                <div class="text-and-image reverse-layout">
+                    <div class="text-content left-slide-in">
+                        <h2>企業機構餐飲規劃</h2>
+                        <p class="description-text">
+                            這段是關於企業機構餐飲規劃的描述文字。
+                            說明您可以如何提供長期或定期的餐飲服務，
+                            例如公司茶點、午餐便當或會議餐飲等。
+                        </p>
+                    </div>
+                    <div class="image-container right-slide-in">
+                        <img src="images01/G-ENTERPRISE.jpg" alt="企業機構餐飲規劃">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="private-chef" class="content-section" style="background-image: url('images01/H-KITCHEN.jpg');">
+            <div class="content-container">
+                <div class="text-and-image">
+                    <div class="text-content left-slide-in">
+                        <h2>私廚饗宴</h2>
+                        <p class="description-text">
+                            這段是關於私廚饗宴的描述文字。
+                            介紹您的私廚服務，提供獨特而精緻的用餐體驗，
+                            適合家庭聚會、慶祝活動或私人派對。
+                        </p>
+                    </div>
+                    <div class="image-container right-slide-in">
+                        <img src="images01/H-KITCHEN.jpg" alt="私廚饗宴">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section" style="background-image: url('images01/I-CONTACT.jpg');">
+            <div class="content-container">
+                <div class="text-and-image reverse-layout">
+                    <div class="text-content left-slide-in">
+                        <h2>聯繫我</h2>
+                        <p class="description-text">
+                            這段是聯繫我的描述文字。
+                            提供您的聯絡方式、營業時間或地址，
+                            讓潛在客戶可以輕鬆與您聯繫。
+                        </p>
+                    </div>
+                    <div class="image-container right-slide-in">
+                        <img src="images01/I-CONTACT.jpg" alt="聯繫我">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+#### `style.css`
+
+```css
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover {
+    color: #ffd700;
+}
+
+/* 內容區塊樣式 - 統一間距 */
+.content-section {
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 移除內邊距，交由內部區塊處理 */
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; 
+
+    /* 背景圖片設定 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* 創造視差捲動效果 */
+    background-attachment: fixed;
+}
+
+/* LOGO 區塊的專屬樣式 */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    
+    opacity: 0;
+    transform: none; 
+    transition: opacity 1.5s ease-out;
+}
+
+.logo-animation-container img {
+    max-width: 400px;
+}
+
+/* LOGO 淡入效果 */
+.visible .logo-animation-container {
+    opacity: 1;
+}
+
+/* LOGO 淡出效果 */
+.hidden .logo-animation-container {
+    opacity: 0;
+}
+
+.content-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    /* 統一區塊間距 */
+    padding: 40px;
+}
+
+.text-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+    /* 半透明背景 */
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    flex: 1; 
+    max-width: 1200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 文字內容樣式 */
+.text-content {
+    flex: 2; 
+    min-width: auto;
+}
+
+.description-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #fff;
+    padding-left: 15px;
+}
+
+/* 圖片樣式 */
+.image-container {
+    flex: 1.5; 
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img {
+    width: 100%; 
+    height: auto;
+    display: block;
+}
+
+/* 動畫起始狀態 */
+.left-slide-in,
+.right-slide-in {
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.left-slide-in {
+    transform: translateX(-15%);
+}
+
+.right-slide-in {
+    transform: translateX(15%);
+}
+
+/* 進入螢幕的動畫效果 */
+.visible .left-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.visible .right-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 離開螢幕的動畫效果 */
+.hidden .left-slide-in {
+    opacity: 0;
+    transform: translateX(-15%);
+}
+
+.hidden .right-slide-in {
+    opacity: 0;
+    transform: translateX(15%);
+}
+
+/* ====== 超大螢幕優化設定 (大於 1600px) ====== */
+@media (min-width: 1600px) {
+    .content-container {
+        max-width: 1600px;
+    }
+
+    .text-and-image {
+        max-width: 1400px;
+        gap: 80px;
+        padding: 80px;
+    }
+
+    .text-content h2 {
+        font-size: 4rem;
+    }
+
+    .description-text {
+        font-size: 1.5rem;
+    }
+}
+/* ================================================= */
+
+/* 響應式設計 (手機版) */
+@media (max-width: 768px) {
+    #main-header {
+        display: none;
+    }
+    
+    .text-and-image {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .reverse-layout {
+        flex-direction: column;
+    }
+    
+    .logo-animation-container img {
+        max-width: 250px;
+    }
+
+    .text-content {
+        flex: 1;
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .image-container {
+        flex: 1;
+        width: 80%; 
+        min-width: auto;
+    }
+
+    .text-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .description-text {
+        font-size: 1rem;
+    }
+}
+```
+
+#### `script.js`
+
+```javascript
+document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll('.content-section');
+    const header = document.getElementById('main-header');
+    const logoSection = document.getElementById('logo-section');
+    const navItems = document.querySelectorAll('#main-nav a');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                entry.target.classList.remove('hidden');
+            } else {
+                entry.target.classList.add('hidden');
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        section.classList.add('hidden');
+        observer.observe(section);
+    });
+
+    const headerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                header.style.opacity = 0;
+            } else {
+                header.style.opacity = 1;
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    });
+
+    headerObserver.observe(logoSection);
+
+    navItems.forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+});
+```
+
+-----
+
+您可以將這些檔案上傳到 GitHub，並親自體驗全新的視覺效果。我期待看到您對這次設計的看法。
