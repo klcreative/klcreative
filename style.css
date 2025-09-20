@@ -1,0 +1,262 @@
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover {
+    color: #ffd700;
+}
+
+/* 內容區塊樣式 - 統一間距 */
+.content-section {
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; 
+
+    /* 背景圖片設定 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* 背景模糊化效果的偽元素 */
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit; /* 繼承父元素的背景圖 */
+    z-index: 1; /* 位於前景內容下方 */
+    /* 核心模糊效果 - 降低模糊值以增加清晰度 */
+    filter: blur(3px); 
+    transform: scale(1.05); /* 輕微放大以填補模糊後的邊界 */
+}
+
+/* LOGO 區塊的專屬樣式 */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    
+    opacity: 0;
+    transform: none; 
+    transition: opacity 1.5s ease-out;
+    z-index: 2; /* 確保 LOGO 位於模糊背景上方 */
+}
+
+.logo-animation-container img {
+    max-width: 400px;
+}
+
+/* LOGO 淡入效果 */
+.visible .logo-animation-container {
+    opacity: 1;
+}
+
+/* LOGO 淡出效果 */
+.hidden .logo-animation-container {
+    opacity: 0;
+}
+
+.content-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+}
+
+.text-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    flex: 1; 
+    max-width: 1200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 文字內容樣式 */
+.text-content {
+    flex: 2; 
+    min-width: auto;
+}
+
+.description-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #fff;
+    padding-left: 15px;
+}
+
+/* 圖片樣式 */
+.image-container {
+    flex: 1.5; 
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img {
+    width: 100%; 
+    height: auto;
+    display: block;
+}
+
+/* 動畫起始狀態 */
+.left-slide-in,
+.right-slide-in {
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.left-slide-in {
+    transform: translateX(-15%);
+}
+
+.right-slide-in {
+    transform: translateX(15%);
+}
+
+/* 進入螢幕的動畫效果 */
+.visible .left-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.visible .right-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 離開螢幕的動畫效果 (恢復穿插效果) */
+.hidden .left-slide-in {
+    opacity: 0;
+    transform: translateX(-15%); /* 恢復滑出效果 */
+}
+
+.hidden .right-slide-in {
+    opacity: 0;
+    transform: translateX(15%); /* 恢復滑出效果 */
+}
+
+/* ====== 超大螢幕優化設定 (大於 1600px) ====== */
+@media (min-width: 1600px) {
+    .content-container {
+        max-width: 1600px;
+    }
+
+    .text-and-image {
+        max-width: 1400px;
+        gap: 80px;
+        padding: 80px;
+    }
+
+    .text-content h2 {
+        font-size: 4rem;
+    }
+
+    .description-text {
+        font-size: 1.5rem;
+    }
+}
+/* ================================================= */
+
+/* 響應式設計 (手機版) */
+@media (max-width: 768px) {
+    #main-header {
+        display: none;
+    }
+    
+    .text-and-image {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .reverse-layout {
+        flex-direction: column;
+    }
+    
+    .logo-animation-container img {
+        max-width: 250px;
+    }
+
+    .text-content {
+        flex: 1;
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .image-container {
+        flex: 1;
+        width: 80%; 
+        min-width: auto;
+    }
+
+    .text-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .description-text {
+        font-size: 1rem;
+    }
+}
