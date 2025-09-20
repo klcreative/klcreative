@@ -51,6 +51,10 @@ main {
 .content-section {
     position: relative;
     z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* 每個區塊的背景圖層 */
@@ -58,6 +62,7 @@ main {
     position: sticky;
     top: 0;
     height: 100vh;
+    width: 100%;
     background-size: cover;
     background-position: center;
     filter: blur(2px); /* 保持背景模糊效果 */
@@ -74,10 +79,10 @@ main {
     background: linear-gradient(to right, #7217a3, #e00299);
 }
 
-/* LOGO 區塊在電腦與手機版顯示不同背景 */
+/* LOGO 區塊在手機版移除圖片背景 */
 @media (max-width: 768px) {
     #logo-section .hero-image {
-        display: none; /* 手機版不使用背景圖 */
+        display: none;
     }
 }
 
@@ -92,6 +97,9 @@ main {
     transform: none; 
     transition: opacity 1.5s ease-out;
     z-index: 2; /* 確保 LOGO 位於最上層 */
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .logo-animation-container img {
