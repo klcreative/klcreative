@@ -1,0 +1,325 @@
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover {
+    color: #ffd700;
+}
+
+/* 內容區塊樣式 - 統一間距 */
+.content-section {
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    
+    /* 背景圖片設定 */
+    background-repeat: no-repeat;
+    /* 創造視差捲動效果 */
+    background-attachment: fixed;
+    
+    /* 版本 44: 修正 background-size 屬性，確保背景圖片完全填滿 */
+    background-size: 110% auto; /* 初始狀態：圖片寬度放大 10% */
+    background-position: center;
+    filter: none; /* 移除模糊效果 */
+    transition: background-size 2s ease-out; /* 放大速度 2 秒 */
+}
+
+/* 獨立處理 LOGO 區塊的背景模糊度 */
+#logo-section {
+    filter: none;
+}
+
+/* 當區塊進入螢幕中心時，移除模糊及縮回原始尺寸 */
+.content-section.unblurred {
+    filter: none; /* 保持不模糊 */
+    background-size: 100% auto; /* 縮回原始尺寸 */
+    transition: background-size 1s ease-out; /* 縮小速度 1 秒 */
+}
+
+/* LOGO 區塊的專屬樣式 */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    
+    opacity: 1;
+    transition: none;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: auto;
+}
+
+.logo-animation-container img {
+    max-width: 600px;
+}
+
+/* 內容容器樣式，確保前景內容清晰 */
+.content-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    filter: none;
+}
+
+.text-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    flex: 1; 
+    max-width: 1200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 文字內容樣式 */
+.text-content {
+    flex: 2; 
+    min-width: auto;
+}
+
+.description-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #fff;
+    padding-left: 15px;
+}
+
+/* 圖片樣式 */
+.image-container {
+    flex: 1.5; 
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img {
+    width: 100%; 
+    height: auto;
+    display: block;
+}
+
+/* 動畫起始狀態 */
+.left-slide-in,
+.right-slide-in {
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.left-slide-in {
+    transform: translateX(-15%);
+}
+
+.right-slide-in {
+    transform: translateX(15%);
+}
+
+/* 進入螢幕的動畫效果 */
+.visible .left-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.visible .right-slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 離開螢幕的動畫效果 */
+.hidden .left-slide-in {
+    opacity: 0;
+    transform: translateX(-15%);
+}
+
+.hidden .right-slide-in {
+    opacity: 0;
+    transform: translateX(15%);
+}
+
+/* ====== 超大螢幕優化設定 (大於 1600px) ====== */
+@media (min-width: 1600px) {
+    .content-container {
+        max-width: 1600px;
+    }
+
+    .text-and-image {
+        max-width: 1400px;
+        gap: 80px;
+        padding: 80px;
+    }
+
+    .text-content h2 {
+        font-size: 4rem;
+    }
+
+    .description-text {
+        font-size: 1.5rem;
+    }
+}
+
+/* ====== 手機與平板直式優化 (Portrait) ====== */
+@media (max-width: 1024px) and (orientation: portrait) {
+    /* 修正 1: 隱藏手機版導覽列 */
+    #main-header {
+        display: none;
+    }
+
+    /* 調整 logo 位置 */
+    .logo-animation-container {
+        transform: translateY(-13%);
+    }
+
+    /* 版本 54: 新增偽元素來解決模糊邊緣問題 */
+    .content-section {
+        background: none;
+        background-attachment: scroll;
+        filter: none;
+    }
+
+    /* 創建一個獨立的模糊背景層 */
+    .content-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-image: var(--bg-image); /* 使用變數來動態設定背景圖 */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto 200%;
+        filter: blur(8px);
+        transition: filter 0.5s ease-out, background-size 1.2s ease-out;
+    }
+
+    /* 當區塊進入畫面中心，移除模糊和縮小圖片 */
+    .content-section.unblurred::before {
+        filter: blur(0);
+        background-size: auto 100%;
+    }
+    
+    .left-slide-in,
+    .right-slide-in {
+        transform: none;
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    
+    .text-and-image {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        flex-direction: column; /* 改為直式排列 */
+        padding: 20px;
+        align-items: center;
+        width: 90%;
+        max-width: 700px;
+        gap: 20px;
+    }
+
+    .text-and-image.visible {
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    .reverse-layout {
+        flex-direction: column;
+    }
+    
+    .text-content {
+        flex: 1;
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .image-container {
+        flex: 1;
+        width: 80%; 
+        min-width: auto;
+    }
+
+    .text-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .description-text {
+        font-size: 1rem;
+    }
+
+    /* 這裡不再需要背景圖片位置調整，因為它已經在 JS 中統一處理了 */
+}
+
+/* 手機版橫式畫面 (Landscape) 的專屬樣式 */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .logo-animation-container {
+        transform: translateY(-5%);
+    }
+
+    /* 確保橫式畫面維持並排 */
+    .text-and-image {
+        flex-direction: row;
+    }
+
+    .reverse-layout {
+        flex-direction: row-reverse;
+    }
+}
