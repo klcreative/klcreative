@@ -1,0 +1,302 @@
+/* Version: 38 - 最終修正版本 */
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover {
+    color: #ed1e79; /* 懸停顏色 */
+}
+
+/* 新增：多語言按鈕樣式 */
+.lang-switch-btn {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.lang-switch-btn:hover {
+    color: #ed1e79;
+}
+
+/* 內容區塊樣式 - 通用設定 */
+.content-section {
+    position: relative;
+    padding: 100px 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: filter 1.5s ease;
+    filter: blur(10px) brightness(0.7); /* 初始模糊與變暗 */
+}
+
+.content-section.unblurred {
+    filter: blur(0) brightness(1); /* 進入時解除模糊 */
+}
+
+/* 各內容區塊的圖片背景 */
+#logo-section {
+    background-image: url('images01/LOGO.jpg');
+    background-size: cover;
+}
+#about { background-image: url('images01/A-ABOUT.jpg'); }
+#catering { background-image: url('images01/C-F&B.jpg'); }
+#venue { background-image: url('images01/D-PLACE.jpg'); }
+#event-catering { background-image: url('images01/E-EVENT.jpg'); }
+#custom-gifts { background-image: url('images01/F-GIFT.jpg'); }
+#corporate-catering { background-image: url('images01/G-ENTERPRISE.jpg'); }
+#private-chef { background-image: url('images01/H-KITCHEN.jpg'); }
+#contact-footer-wrapper {
+    background-image: url('images01/I-CONTACT.jpg');
+    background-size: cover;
+}
+
+/* 內文容器樣式 */
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+    gap: 50px;
+    text-align: left;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+.content-container.visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.text-and-image .text-content,
+.text-and-image .image-container {
+    width: 50%;
+}
+
+.text-content {
+    max-width: 500px;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #ed1e79;
+}
+
+.description-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Logo 區塊動畫樣式 */
+#logo-section .logo-animation-container {
+    text-align: center;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+#logo-section.hidden-logo .logo-animation-container {
+    opacity: 0;
+}
+
+#logo-section .logo-animation-container img {
+    max-width: 80%;
+    height: auto;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Social Icons 樣式 */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icons a img {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover img {
+    transform: scale(1.1);
+}
+
+/* 頁尾樣式 */
+#contact-footer-wrapper {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: filter 1.5s ease;
+    filter: blur(10px) brightness(0.7);
+    padding: 0;
+}
+
+#contact-footer-wrapper #contact {
+    min-height: auto;
+    padding: 100px 0;
+}
+
+#contact-footer-wrapper.unblurred {
+    filter: blur(0) brightness(1);
+}
+
+#main-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    z-index: 2;
+    background-color: transparent;
+}
+
+#main-footer p {
+    text-align: center;
+    color: white;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+        text-align: center;
+        width: 85%;
+        padding: 20px;
+    }
+
+    .text-and-image {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .text-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .reverse-layout {
+        flex-direction: column;
+    }
+
+    .image-container img {
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .description-text {
+        font-size: 1rem;
+    }
+
+    /* 確保手機版動畫效果和文字居中 */
+    .animate-left, .animate-right {
+        opacity: 0;
+        transform: translateX(0);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .visible .animate-left, .visible .animate-right {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    .text-content h2, .text-content .description-text {
+        text-align: center;
+    }
+
+    /* 修正手機版 social icons 位置問題 */
+    .social-icons {
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    #main-footer {
+        background: none;
+        position: relative;
+        margin-top: 0;
+        padding: 20px 0;
+        z-index: 2;
+    }
+}
