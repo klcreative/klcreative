@@ -1,0 +1,340 @@
+/* Version: 33 */
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover {
+    color: #ffd700;
+}
+
+/* 內容區塊樣式 - 統一間距 */
+.content-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+
+    /* 背景圖片設定 */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+    /* 修正: 恢復為 100% auto 來確保初始時圖片不會過大 */
+    background-size: 100% auto;
+    filter: none;
+    transition: background-size 1s ease-out;
+}
+
+/* 各個區塊的背景圖片設定（電腦與手機橫式共用） */
+#logo-section {
+    background-image: url('images01/top.jpg');
+}
+#about { background-image: url('images01/B-1-ABOUT.jpg'); }
+#catering { background-image: url('images01/C-1-F&B.jpg'); }
+#venue { background-image: url('images01/D-1-PLACE.jpg'); }
+#event-catering { background-image: url('images01/E-1-EVENT.jpg'); }
+#custom-gifts { background-image: url('images01/F-1-GIFT.jpg'); }
+#corporate-catering { background-image: url('images01/G-1-ENTERPRISE.jpg'); }
+#private-chef { background-image: url('images01/H-1-KITCHEN.jpg'); }
+
+/* 修正: 聯繫我與版權宣告的背景處理，改由父容器處理 */
+#contact {
+    background-image: none;
+}
+#main-footer {
+    background-image: none;
+}
+
+/* 新增的包裹 div，用於共用背景圖片，並移除 flexbox 讓內容垂直排列 */
+#contact-footer-wrapper {
+    background-image: url('images01/I-1-CONTACT.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100% auto; /* 恢復初始大小 */
+    min-height: 100vh;
+    display: block; /* 確保內容垂直堆疊 */
+    position: relative;
+    overflow: hidden;
+    filter: none;
+    transition: background-size 1s ease-out;
+}
+
+
+/* 修正: 當區塊離開焦點時，應用放大效果 */
+.content-section.unblurred,
+#contact-footer-wrapper.unblurred {
+    filter: none;
+    background-size: 130% auto;
+    transition: background-size 1s ease-out;
+}
+
+/* 修正: Logo 離開焦點時的放大效果 - 從小變大 */
+#logo-section.unblurred {
+    background-size: 140% auto;
+}
+
+/* LOGO 區塊的專屬樣式 */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    opacity: 1;
+    transition: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2; /* 修正：將 Logo 的層級調高，使其顯示在毛玻璃之上 */
+}
+
+.logo-animation-container img {
+    max-width: 600px;
+}
+
+/* === 新增: Logo 區塊的毛玻璃遮罩效果 === */
+#logo-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 深色遮罩 */
+    backdrop-filter: blur(10px); /* 毛玻璃效果 */
+    transition: background-color 2s ease-out, backdrop-filter 2s ease-out; /* 過渡動畫 */
+    z-index: 1; /* 確保在背景圖之上，Logo 之下 */
+}
+
+#logo-section.fade-out-overlay::before {
+    background-color: rgba(0, 0, 0, 0); /* 變透明 */
+    backdrop-filter: blur(0px); /* 模糊消失 */
+}
+
+
+/* 內容容器樣式，確保前景內容清晰 */
+.content-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    filter: none;
+}
+
+.text-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    flex: 1;
+    max-width: 1200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 文字內容樣式 */
+.text-content {
+    flex: 2;
+    min-width: auto;
+    text-align: center;
+}
+
+.description-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    border-left: none;
+    padding-left: 0;
+}
+
+/* 聯繫我 icon 向左移動並增加滑動距離 */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: flex-start; /* 改為靠左對齊 */
+    padding-left: 50px; /* 增加左側間距貼近圖片 */
+}
+
+.social-icons img {
+    width: 106px;
+    height: 106px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:nth-child(3) img {
+    width: 132px;
+    height: 132px;
+    transform: translateY(-10%) translateX(-5%);
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* 圖片樣式 */
+.image-container {
+    flex: 1.5;
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* === 動畫起始狀態與對齊方式 === */
+/* 文字從左側滑入，同時保持靠左對齊 */
+.animate-left {
+    opacity: 0;
+    transform: translateX(-120px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    text-align: left; /* 新增：從一開始就設定好對齊方式 */
+}
+
+/* 文字從右側滑入，同時保持靠右對齊 */
+.animate-right {
+    opacity: 0;
+    transform: translateX(120px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    text-align: right; /* 新增：從一開始就設定好對齊方式 */
+}
+
+/* 特別針對「聯絡我」區塊，覆寫為左對齊 */
+#contact .animate-right {
+    text-align: left;
+}
+
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.2s; }
+
+/* === 動畫結束狀態 (電腦版) === */
+.visible .animate-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.visible .animate-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+        text-align: center;
+        width: 85%;
+        padding: 20px;
+    }
+
+    .text-and-image {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .text-content {
+        max-width: 100%;
+        text-align: center; /* 確保手機版所有文字居中 */
+    }
+
+    .reverse-layout {
+        flex-direction: column;
+    }
+
+    .image-container img {
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .description-text {
+        font-size: 1rem;
+    }
+
+    /* 橫式手機版的動畫效果 */
+    .animate-left {
+        opacity: 0;
+        transform: translateX(-60px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        text-align: center; /* 新增：在手機版也保持居中對齊 */
+    }
+
+    .animate-right {
+        opacity: 0;
+        transform: translateX(60px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        text-align: center; /* 新增：在手機版也保持居中對齊 */
+    }
+
+    /* 確保手機版的內容可見時，動畫結束，不再額外改變對齊 */
+    .visible .animate-left {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    .visible .animate-right {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
