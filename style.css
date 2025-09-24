@@ -1,0 +1,394 @@
+/* Version: 32 */
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover {
+    color: #ffd700;
+}
+
+/* 內容區塊樣式 - 包含全螢幕背景和內容對齊 */
+.content-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 50px 0;
+}
+
+/* 為了讓背景圖可以填滿整個區塊，需要加上 overflow: hidden */
+.content-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Logo 區塊的背景動畫 */
+#logo-section {
+    background-image: url('images01/A-logo-blur.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 固定背景，營造視差效果 */
+    position: relative;
+    z-index: 100;
+    transition: transform 2s ease-out; /* 變更為縮放轉場 */
+}
+
+/* Logo 區塊的縮放效果 */
+#logo-section.unblurred {
+    transform: scale(1.1); /* 放大效果 */
+}
+
+/* 讓背景圖與內容分開，用一個 ::after 偽元素作為固定背景層 */
+.content-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transform: scale(1.0); /* 預設縮小 */
+    transition: transform 2s ease-out; /* 新增縮放轉場 */
+}
+
+/* 每個內容區塊的背景圖片設定 */
+#about::after {
+    background-image: url('images01/I-ABOUT-blur.jpg');
+}
+
+#catering::after {
+    background-image: url('images01/I-CATERING-blur.jpg');
+}
+
+#venue::after {
+    background-image: url('images01/I-VENUE-blur.jpg');
+}
+
+#event-catering::after {
+    background-image: url('images01/I-EVENT-CATERING-blur.jpg');
+}
+
+#custom-gifts::after {
+    background-image: url('images01/I-CUSTOM-GIFTS-blur.jpg');
+}
+
+#corporate-catering::after {
+    background-image: url('images01/I-CORPORATE-CATERING-blur.jpg');
+}
+
+#private-chef::after {
+    background-image: url('images01/I-PRIVATE-CHEF-blur.jpg');
+}
+
+/* 離開可視區域時放大 */
+.content-section.unblurred::after {
+    transform: scale(1.1);
+}
+
+/* 聯繫與版權宣告共用一個背景 */
+#contact::after,
+#main-footer {
+    background: none;
+    position: relative;
+}
+
+/* 修正: 聯繫與版權宣告使用共用背景容器 */
+#contact-footer-wrapper {
+    position: relative;
+    z-index: 100; /* 確保內容顯示在背景上方 */
+    background-image: url('images01/I-CONTACT-blur.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transform: scale(1.0); /* 預設縮小 */
+    transition: transform 2s ease-out;
+}
+
+#contact-footer-wrapper.unblurred {
+    transform: scale(1.1); /* 放大效果 */
+}
+
+/* 聯繫與版權宣告的整體佈局 */
+#contact {
+    min-height: auto;
+    padding-bottom: 0;
+}
+
+/* 調整聯繫區塊佈局以適應新的 wrapper */
+#contact .content-container,
+#main-footer p {
+    background: none;
+}
+
+/* 內容容器 - 限制寬度並居中 */
+.content-container {
+    max-width: 1200px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 40px;
+    padding: 60px 0;
+}
+
+.text-and-image {
+    opacity: 0;
+    transition: opacity 1.5s ease-out;
+}
+
+.text-and-image.visible {
+    opacity: 1;
+}
+
+.text-content {
+    flex: 1;
+    max-width: 50%;
+}
+
+.image-container {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo 區塊的動畫容器 */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 60%;
+}
+
+/* Logo 圖片縮放效果 */
+.logo-animation-container img {
+    width: 100%;
+    height: auto;
+    transition: transform 1.5s ease-in-out;
+    transform: scale(0.9); /* 初始狀態縮小 */
+}
+
+.logo-animation-container img.scaled {
+    transform: scale(1.0); /* 載入後放大 */
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 圖片在右邊的佈局 */
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 文字標題與段落樣式 */
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.description-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* 社交媒體圖示 */
+.social-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-icons img {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* 頁尾樣式 */
+#main-footer {
+    text-align: center;
+    padding: 40px 0;
+    background: none;
+    position: relative;
+    margin-top: 0;
+    z-index: 100;
+}
+
+#main-footer p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    background: none;
+}
+
+/* 動畫效果 - 元素進入畫面時的初始狀態 */
+.animate-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* 延遲動畫效果 */
+.delay-1 {
+    transition-delay: 0.1s;
+}
+
+.delay-2 {
+    transition-delay: 0.2s;
+}
+
+/* 內容可見時的最終狀態 */
+.visible .animate-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.visible .animate-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+        text-align: center;
+        width: 85%;
+    }
+
+    .text-content, .image-container {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .reverse-layout {
+        flex-direction: column;
+    }
+
+    .image-container img {
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    /* 橫式手機版圖片在文字上方 */
+    .image-container-mobile {
+        display: block;
+        margin-top: 20px;
+    }
+    .image-container-mobile img {
+        max-width: 100%;
+        height: auto;
+    }
+    .image-container {
+        display: none;
+    }
+    
+    .text-and-image:not(.visible) .animate-left {
+        opacity: 0 !important;
+        transform: translateX(-60px) !important;
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out !important;
+    }
+    .text-and-image:not(.visible) .animate-right {
+        opacity: 0 !important;
+        transform: translateX(60px) !important;
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out !important;
+    }
+
+    /* 橫式手機版的 social icons 靠左貼近圖片 */
+    .social-icons {
+        justify-content: flex-start;
+        padding-left: 50px;
+    }
+    
+    .social-icons a:nth-child(3) img {
+        width: 132px;
+        height: 132px;
+        transform: translateY(-10%) translateX(-5%);
+    }
+
+    /* 修正: 橫式版權宣告使用contact的延伸背景 */
+    #contact::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh + 200px); /* 延伸覆蓋到footer */
+        background-image: url('images01/I-CONTACT-blur.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        transform: scale(1.0); /* 預設縮小 */
+        transition: transform 2s ease-out;
+        z-index: -2;
+    }
+
+    #contact.unblurred::after {
+        transform: scale(1.1); /* 放大效果 */
+    }
+
+    #main-footer {
+        background: none;
+        position: relative;
+        margin-top: 0;
+        padding: 20px 0;
+        z-index: 100;
+    }
+}
