@@ -1,0 +1,129 @@
+/* Version: 69 */
+/* 設定全域字體和盒模型 */
+/* ... (保留所有未修改的通用樣式) ... */
+
+/* 聯絡我 icon 樣式 */
+.social-icons {
+    /* ... (保留所有未修改的通用樣式) ... */
+}
+
+.social-icons a img {
+    /* ... (保留所有未修改的通用樣式) ... */
+    width: 106px;
+    height: 106px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:nth-child(3) img {
+    width: 132px;
+    height: 132px;
+    transform: translateY(-10%) translateX(-5%);
+}
+
+/* ... (保留所有未修改的通用樣式) ... */
+
+/* 聯絡我的文字與圖示要靠左對齊 */
+#contact .text-content, #contact h2, #contact .social-icons {
+    text-align: left;
+}
+
+/* 手機橫式 (769px - 932px) */
+@media (min-width: 769px) and (max-width: 932px) and (orientation: landscape) {
+    /* 隱藏電腦版導覽列 */
+    #main-header {
+        display: none;
+    }
+    
+    /* 顯示手機版導覽按鈕 */
+    #mobile-nav-toggle {
+        display: flex;
+    }
+    
+    /* 隱藏Google地圖 */
+    .desktop-only {
+        display: none;
+    }
+
+    /* 1. 導覽列內容排版修改: 使用 Grid 實現三列垂直排列 */
+    #mobile-nav-menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 三欄平均分佈 */
+        grid-auto-flow: column; /* 讓元素垂直填充 (1,4,7 在 Col 1; 2,5,8 在 Col 2; 3,6,9 在 Col 3) */
+        grid-template-rows: repeat(3, auto); /* 確保有三行 */
+        gap: 10px 10px; /* 行間距 10px，列間距 10px */
+        width: 90%;
+        max-width: 700px; /* 限制最大寬度 */
+        margin: 0 auto;
+        padding: 20px 0;
+        text-align: center; 
+        align-items: center;
+    }
+    #mobile-nav-menu a {
+        text-align: center; /* 連結文字居中 */
+        font-size: 1.1rem;
+        padding: 5px 0;
+        white-space: nowrap;
+    }
+    
+    /* 手機橫式：活動餐飲整合標題修改 (保留原樣式) */
+    #event-catering h2 {
+        font-size: 3rem;
+    }
+    
+    #event-catering h2 .highlight {
+        color: #ed1e79;
+    }
+
+    /* 3, 4, 5. 各區域的灰色底框上下留白/照片不貼邊緣/聯絡我居中 */
+    .content-container {
+        padding: 30px 20px; /* 增加上下留白並確保左右不貼邊 */
+        width: 95%; /* 確保內容容器不貼邊 */
+        margin: 40px auto; /* 確保灰色底框上下居中且有外邊距 */
+        max-width: 900px; /* 限制橫式下的最大寬度 */
+    }
+    
+    .text-and-image {
+        padding: 20px 20px; /* 縮小灰框內的上下留白 */
+        gap: 20px; /* 縮小間距 */
+        flex-direction: row; /* 確保圖片和文字是並排 */
+    }
+    
+    /* 確保圖片和文字的順序 */
+    .reverse-layout {
+        flex-direction: row-reverse;
+    }
+
+    /* 3. 縮小照片尺寸 */
+    .image-container img {
+        max-width: 70%; /* MODIFIED: 縮小照片尺寸 */
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* 6. 聯絡我區域圖片設定 */
+    #contact .image-container img {
+         max-width: 100%; /* 讓 I-CONTACT.jpg 佔滿其容器空間 */
+    }
+
+    /* 聯絡我的文字與圖示要靠左對齊 (保留原設定) */
+    #contact .text-content, #contact h2, #contact .social-icons {
+        text-align: left;
+    }
+    
+    /* 7 & 8. 聯絡我區域的三個icon縮小 20% 並統一大小 (132px * 0.8 = 105.6px) */
+    #contact .social-icons a img {
+        width: 105.6px; 
+        height: 105.6px;
+        transform: none; /* 移除原本的位移 */
+    }
+    
+    /* 覆蓋原本對第三個 icon 的特殊樣式，確保大小統一 */
+    #contact .social-icons a:nth-child(3) img {
+        width: 105.6px; 
+        height: 105.6px;
+        transform: none;
+    }
+}
+
+/* ... (保留所有未修改的後續樣式和 Media Query) ... */
