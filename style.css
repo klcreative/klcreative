@@ -1,0 +1,417 @@
+/* 2025-09-27-2300 */
+/* Version: 70 */
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover, #mobile-nav-menu a:hover {
+    color: #ed1e79;
+}
+
+/* 手機版導覽按鈕 */
+#mobile-nav-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#mobile-nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #ed1e79;
+    transition: all 0.3s ease;
+}
+
+/* 手機版全畫面導覽選單 */
+#mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2500;
+    justify-content: center;
+    align-items: center;
+}
+
+#mobile-nav-menu {
+    display: flex;
+    text-align: center;
+}
+
+.mobile-portrait-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-landscape-nav {
+    display: none; /* 預設隱藏 */
+}
+
+#mobile-nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+#mobile-nav-menu .lang-switch,
+#mobile-nav-menu .lang-switch-btn {
+    color: #ed1e79;
+}
+
+/* 多語言按鈕樣式 */
+.lang-switch-btn {
+    text-decoration: none;
+    color: #ed1e79;
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+/* Google 地圖樣式 */
+#google-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+#google-map iframe {
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.desktop-only {
+    display: block;
+}
+
+/* 內容區塊樣式 */
+.content-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100% auto;
+    transition: background-size 1s ease-out;
+}
+
+/* 背景圖片設定 */
+#logo-section { background-image: url('images01/top.jpg'); background-size: 180% auto; }
+#about { background-image: url('images01/B-1-ABOUT.jpg'); }
+#catering { background-image: url('images01/C-1-F&B.jpg'); }
+#venue { background-image: url('images01/D-1-PLACE.jpg'); }
+#event-catering { background-image: url('images01/E-1-EVENT.jpg'); }
+#custom-gifts { background-image: url('images01/F-1-GIFT.jpg'); }
+#corporate-catering { background-image: url('images01/G-1-ENTERPRISE.jpg'); }
+#private-chef { background-image: url('images01/H-1-KITCHEN.jpg'); }
+#contact { background-image: none; }
+#main-footer { background-image: none; }
+
+#contact-footer-wrapper {
+    background-image: url('images01/I-1-CONTACT.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100% auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background-size 1s ease-out;
+}
+
+#logo-section.loaded {
+    background-size: 100% auto;
+    transition: background-size 2s ease-out;
+}
+
+/* LOGO 區塊 */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.logo-animation-container img {
+    max-width: 600px;
+}
+
+#logo-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    transition: background-color 2s ease-out, backdrop-filter 2s ease-out;
+    z-index: 1;
+}
+
+#logo-section.fade-out-overlay::before {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+}
+
+/* 內容容器 */
+.content-container {
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+}
+
+.text-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    max-width: 1500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+.text-content {
+    flex: 1;
+    text-align: center;
+}
+
+.description-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #ed1e79;
+}
+
+.image-container {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 聯絡我 icon */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.social-icons a img {
+    width: 106px;
+    height: 106px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.1);
+}
+
+/* 頁尾 */
+#main-footer {
+    padding: 20px 0;
+    text-align: center;
+    background-color: transparent;
+    flex-shrink: 0;
+}
+
+#main-footer p {
+    color: #ed1e79;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* 動畫效果 */
+.animate-left, .animate-right {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate-left { transform: translateX(-60px); }
+.animate-right { transform: translateX(60px); }
+.delay-1 { transition-delay: 0.2s; }
+
+.visible .animate-left, .visible .animate-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 聯絡我 */
+#contact .text-and-image {
+    flex-direction: row;
+}
+#contact .contact-image-container {
+    flex: 1;
+}
+#contact .text-content {
+    flex: 1;
+}
+
+/* 手機橫式 (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    #main-header, .desktop-only { display: none; }
+    #mobile-nav-toggle { display: flex; }
+
+    #mobile-nav-menu .mobile-portrait-nav { display: none; }
+    #mobile-nav-menu .mobile-landscape-nav { display: flex; flex-direction: row; gap: 40px; }
+    .nav-column { display: flex; flex-direction: column; gap: 15px; text-align: left; }
+    
+    #contact .text-and-image { flex-direction: column; }
+    #contact .contact-image-container img { max-width: 70%; margin-bottom: 20px; }
+    .social-icons a img { width: 80px; height: 80px; }
+}
+
+/* 平板直式 (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    #main-header, .desktop-only { display: none; }
+    #mobile-nav-toggle { display: flex; }
+    .logo-animation-container { transform: translateX(10%); }
+
+    .content-section, #contact-footer-wrapper { background: none !important; }
+    .content-section::before, #contact-footer-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: -1;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover !important;
+        background-attachment: fixed;
+        transition: transform 1.5s ease-out, filter 1.5s ease-out;
+    }
+    
+    #logo-section.initial-blur::before {
+        filter: blur(30px) !important;
+        transition: filter 3.5s ease-out !important;
+    }
+    #contact .contact-image-container img { max-width: 70%; }
+    .social-icons a img { width: 80px; height: 80px; }
+}
+
+/* 手機直式 (最大 768px) */
+@media (max-width: 768px) {
+    #main-header, .desktop-only { display: none; }
+    #mobile-nav-toggle { display: flex; }
+    #mobile-nav-menu .mobile-landscape-nav { display: none; }
+
+    .logo-animation-container { transform: translateX(10%); }
+    
+    .content-section, #contact-footer-wrapper { background: none !important; }
+    .content-section::before, #contact-footer-wrapper::before {
+        content: ""; position: absolute; top: 0; left: 0;
+        width: 100%; height: 100%; z-index: -1;
+        background-repeat: no-repeat; background-position: center;
+        background-size: cover !important; background-attachment: fixed;
+        transition: transform 1.5s ease-out, filter 1.5s ease-out;
+    }
+
+    #logo-section.initial-blur::before {
+        filter: blur(30px) !important;
+        transition: filter 3.5s ease-out !important; /* 延長模糊效果 */
+    }
+    .content-container { width: 95%; }
+    .text-and-image { flex-direction: column; width: 100%; box-sizing: border-box; }
+    .reverse-layout { flex-direction: column; }
+    h2 { font-size: 1.2rem; white-space: nowrap; }
+    .description-text { font-size: 1rem; }
+
+    #contact .text-and-image { flex-direction: column-reverse; }
+    #contact .contact-image-container img { max-width: 70%; }
+    .social-icons a img { width: 60px; height: 60px; }
+}
+
+/* 電腦版 (最小 1025px) */
+@media (min-width: 1025px) {
+    #contact .contact-image-container { display: block; } /* 顯示照片 */
+}
