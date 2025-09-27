@@ -1,0 +1,566 @@
+/* Version: 2025-09-27-0835 */
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover {
+    color: #ed1e79;
+}
+
+/* 手機版導覽按鈕 */
+#mobile-nav-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#mobile-nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #ed1e79;
+    transition: all 0.3s ease;
+}
+
+/* 手機版全畫面導覽選單 */
+#mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2500;
+    justify-content: center;
+    align-items: center;
+}
+
+#mobile-nav-menu {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px; /* 縮排文字間距 */
+}
+
+#mobile-nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 5px; /* 減少padding */
+    transition: color 0.3s ease;
+}
+
+#mobile-nav-menu a:hover {
+    color: #ed1e79;
+}
+
+/* 多語言按鈕樣式 */
+.lang-switch-btn {
+    text-decoration: none;
+    color: #ed1e79; /* MODIFIED: 確認 ENG 顏色為 #ed1e79 */
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.lang-switch-btn:hover {
+    color: #ed1e79;
+}
+
+/* 區塊連結樣式 */
+.section-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+}
+
+/* Google 地圖樣式 */
+#google-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+#google-map iframe {
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.desktop-only {
+    display: block;
+}
+
+/* 內容區塊樣式 - 統一間距 */
+.content-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+
+    /* 背景圖片設定 (電腦/手機橫式) */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100% auto;
+    filter: none;
+    transition: background-size 1s ease-out;
+}
+
+/* 各個區塊的背景圖片設定（電腦與手機橫式共用） */
+#logo-section {
+    background-image: url('images01/top.jpg');
+    background-size: 180% auto;
+}
+#about { background-image: url('images01/B-1-ABOUT.jpg'); }
+#catering { background-image: url('images01/C-1-F&B.jpg'); }
+#venue { background-image: url('images01/D-1-PLACE.jpg'); }
+#event-catering { background-image: url('images01/E-1-EVENT.jpg'); }
+#custom-gifts { background-image: url('images01/F-1-GIFT.jpg'); }
+#corporate-catering { background-image: url('images01/G-1-ENTERPRISE.jpg'); }
+#private-chef { background-image: url('images01/H-1-KITCHEN.jpg'); }
+
+/* 聯絡我與版權宣告的背景處理，改由父容器處理 */
+#contact {
+    background-image: none;
+}
+#main-footer {
+    background-image: none;
+}
+
+/* 新增的包裹 div，用於共用背景圖片，並使用 flexbox 讓內容垂直對齊並將 footer 推至底部 */
+#contact-footer-wrapper {
+    background-image: url('images01/I-1-CONTACT.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100% auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+    filter: none;
+    transition: background-size 1s ease-out;
+}
+
+/* 電腦版Logo區塊縮放效果 */
+#logo-section.loaded {
+    background-size: 100% auto;
+    transition: background-size 2s ease-out;
+}
+
+/* 電腦版Logo進入/離開可視區域縮放效果 */
+#logo-section.unblurred {
+    background-size: 140% auto;
+}
+
+/* 當區塊離開焦點時，應用放大效果 */
+.content-section.unblurred,
+#contact-footer-wrapper.unblurred {
+    filter: none;
+    background-size: 130% auto;
+    transition: background-size 1s ease-out;
+}
+
+/* 電腦版特定區域留白效果與最大寬度調整 (Removed section-specific overrides)*/
+#about .content-container,
+#catering .content-container,
+#custom-gifts .content-container {
+    margin: 60px auto;
+    max-width: 1500px; /* MODIFIED: 確認最大寬度為 1500px */
+}
+
+/* 電腦版灰色底框懸浮放大效果 */
+@media (min-width: 1025px) {
+    .text-and-image {
+        transition: transform 0.3s ease;
+    }
+    
+    .text-and-image:hover {
+        transform: scale(1.2);
+    }
+    /* MODIFIED: 針對'關於 KL Creative'的圖片進行調整 */
+    #about .image-container img {
+        max-width: 70%; /* 設定'關於 KL Creative'圖片大小不同於其他區域 (70% vs 80%) */
+    }
+}
+
+/* LOGO 區塊的專屬樣式 */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    opacity: 1;
+    transition: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.logo-animation-container img {
+    max-width: 600px;
+}
+
+/* === Logo 區塊的毛玻璃遮罩效果 === */
+#logo-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    transition: background-color 2s ease-out, backdrop-filter 2s ease-out;
+    z-index: 1;
+}
+
+#logo-section.fade-out-overlay::before {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+}
+
+/* 內容容器樣式，確保前景內容清晰 */
+.content-container {
+    max-width: 1500px; /* MODIFIED: 確認最大寬度為 1500px */
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    filter: none;
+}
+
+.text-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 80px 40px; /* MODIFIED: 增加上下留白 */
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    flex: 1;
+    max-width: 1500px; /* MODIFIED: 確認最大寬度為 1500px */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 文字內容樣式 */
+.text-content {
+    flex: 1;
+    min-width: auto;
+    text-align: center;
+}
+
+.description-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    border-left: none;
+    padding-left: 0;
+}
+
+.highlight {
+    color: #ed1e79;
+}
+
+/* 圖片容器樣式 */
+.image-container {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 80%; /* 企業餐飲規劃 (G-ENTERPRISE.jpg) 的大小：max-width: 80% */
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 聯絡我 icon 樣式 */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center; /* MODIFIED: 居中對齊 */
+    padding-left: 0; /* MODIFIED: 移除左邊距 */
+}
+
+.social-icons a img {
+    width: 132px; /* MODIFIED: 統一大小為 132px */
+    height: 132px; /* MODIFIED: 統一大小為 132px */
+    transition: transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.1); /* 懸停放大 10% */
+}
+
+/* 頁尾樣式 */
+#main-footer {
+    position: relative;
+    padding: 20px 0;
+    text-align: center;
+    background-color: transparent;
+    flex-shrink: 0;
+}
+
+#main-footer p {
+    text-align: center;
+    color: #ed1e79;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* 動畫效果樣式 */
+.animate-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.visible .animate-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.visible .animate-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 聯絡我的文字與圖示對齊調整 (確保聯絡我區域文字居中) */
+#contact .text-content, #contact h2, #contact .social-icons {
+    text-align: center; /* MODIFIED: 居中對齊 */
+}
+
+/* 手機橫式 (769px - 932px) */
+@media (min-width: 769px) and (max-width: 932px) and (orientation: landscape) {
+    /* 隱藏電腦版導覽列 */
+    #main-header {
+        display: none;
+    }
+    
+    /* 顯示手機版導覽按鈕 */
+    #mobile-nav-toggle {
+        display: flex;
+    }
+    
+    /* 隱藏Google地圖 */
+    .desktop-only {
+        display: none;
+    }
+
+    /* 1. 導覽列內容排版修改: 使用 Grid 實現三列垂直排列 */
+    #mobile-nav-menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 三欄平均分佈 */
+        grid-auto-flow: column; /* 讓元素垂直填充 (1,4,7 在 Col 1; 2,5,8 在 Col 2; 3,6,9 在 Col 3) */
+        grid-template-rows: repeat(3, auto); /* 確保有三行 */
+        gap: 10px 10px; /* 行間距 10px，列間距 10px */
+        width: 90%;
+        max-width: 700px; /* 限制最大寬度 */
+        margin: 0 auto;
+        padding: 20px 0;
+        text-align: center; 
+        align-items: center;
+    }
+    #mobile-nav-menu a {
+        text-align: center; /* 連結文字居中 */
+        font-size: 1.1rem;
+        padding: 5px 0;
+        white-space: nowrap;
+    }
+    
+    /* 3, 4, 5. 各區域的灰色底框上下留白/照片不貼邊緣/聯絡我居中 */
+    .content-container {
+        padding: 30px 20px; /* 增加上下留白並確保左右不貼邊 */
+        width: 95%; /* 確保內容容器不貼邊 */
+        margin: 40px auto; /* 確保灰色底框上下居中且有外邊距 */
+        max-width: 900px; /* 限制橫式下的最大寬度 */
+    }
+    
+    .text-and-image {
+        padding: 20px 20px; /* 縮小灰框內的上下留白 */
+        gap: 20px; /* 縮小間距 */
+        flex-direction: row; /* 確保圖片和文字是並排 */
+    }
+    
+    /* 確保圖片和文字的順序 */
+    .reverse-layout {
+        flex-direction: row-reverse;
+    }
+
+    /* 3. 縮小照片尺寸 */
+    .image-container img {
+        max-width: 70%; /* MODIFIED: 縮小照片尺寸 */
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* 6. 聯絡我區域圖片設定 */
+    #contact .image-container img {
+         max-width: 100%; /* 讓 I-CONTACT.jpg 佔滿其容器空間 */
+    }
+
+    /* 7 & 8. 聯絡我區域的三個icon縮小 20% 並統一大小 (132px * 0.8 = 105.6px) */
+    #contact .social-icons a img {
+        width: 105.6px; 
+        height: 105.6px;
+        transform: none; /* 移除原本的位移 */
+    }
+    
+    /* 覆蓋原本對第三個 icon 的特殊樣式，確保大小統一 */
+    #contact .social-icons a:nth-child(3) img {
+        width: 105.6px; 
+        height: 105.6px;
+        transform: none;
+    }
+}
+
+/* 平板直式 (768px - 1024px, portrait) */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    /* ... (Keep existing code) ... */
+
+    /* Logo 背景縮放效果 - MODIFIED: 移除固定 transform 覆寫，讓它使用 var(--bg-scale) 實現連續縮放 */
+    #logo-section::before { 
+        background-image: url('images01/top.jpg'); 
+        backdrop-filter: none !important;
+        /* REMOVED: transform: scale(1.8) !important; */
+        filter: blur(0px) !important;
+        background-color: rgba(0, 0, 0, 0.3) !important;
+    }
+
+    #logo-section.loaded::before {
+        /* REMOVED: transform: scale(1.0) !important; */
+    }
+
+    #logo-section.unblurred::before {
+        /* REMOVED: transform: scale(1.4) !important; */
+        filter: none;
+    }
+
+    /* ... (Keep existing code) ... */
+    
+    /* MODIFIED: 聯絡我區域的三個icon縮小 20% 並統一大小 (132px * 0.8 = 105.6px) */
+    #contact .social-icons a img {
+        width: 105.6px; 
+        height: 105.6px;
+        transform: none;
+    }
+    
+    /* ... (Keep existing code) ... */
+}
+
+/* 手機直式 (最大寬度 768px) */
+@media (max-width: 768px) {
+    /* ... (Keep existing code) ... */
+
+    /* Logo 背景圖片：動態縮放邏輯 - MODIFIED: 移除固定 transform 覆寫，讓它使用 var(--bg-scale) 實現連續縮放 */
+    #logo-section::before { 
+        background-image: url('images01/top.jpg'); 
+        backdrop-filter: none !important; 
+        /* REMOVED: transform: scale(1.8) !important; */
+        filter: blur(0px) !important; 
+        background-color: rgba(0, 0, 0, 0.3) !important; 
+    }
+
+    /* Logo載入完成後的縮放效果 */
+    #logo-section.loaded::before {
+        /* REMOVED: transform: scale(1.0) !important; */
+    }
+
+    /* Logo進入/離開可視區域的縮放效果 */
+    #logo-section.unblurred::before {
+        /* REMOVED: transform: scale(1.4) !important; */
+        filter: none;
+    }
+    
+    /* ... (Keep existing code) ... */
+    
+    /* MODIFIED: 聯絡我區域的三個icon縮小 20% 並統一大小 (132px * 0.8 = 105.6px) */
+    .social-icons a img {
+        width: 105.6px; 
+        height: 105.6px;
+        transform: none;
+    }
+
+    /* ... (Keep existing code) ... */
+}
