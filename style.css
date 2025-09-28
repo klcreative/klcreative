@@ -1,0 +1,677 @@
+/* 2025-09-27-2300 */
+/* Version: modified for 2025-09-27-2300 */
+/* 設定全域字體和盒模型 */
+body {
+    font-family: 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #7217a3, #e00299);
+}
+
+/* 頂部導覽列的容器 */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.5s ease-out;
+}
+
+/* 導覽列樣式 */
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#main-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+#main-nav a:hover {
+    color: #ed1e79;
+}
+
+/* 手機版導覽按鈕 */
+#mobile-nav-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#mobile-nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #ed1e79;
+    transition: all 0.3s ease;
+}
+
+/* 手機版全畫面導覽選單 */
+#mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2500;
+    justify-content: center;
+    align-items: center;
+}
+
+#mobile-nav-menu {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px; /* 縮排文字間距 */
+}
+
+#mobile-nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 5px; /* 減少padding */
+    transition: color 0.3s ease;
+}
+
+#mobile-nav-menu a:hover {
+    color: #ed1e79;
+}
+
+/* 多語言按鈕（維持最初風格） */
+.lang-switch-btn {
+    text-decoration: none;
+    color: #ed1e79; /* (保留原設定；desktop 也會套用) */
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.lang-switch-btn:hover {
+    color: #ffffff;
+}
+
+/* 手機橫式專用三欄選單初始隱藏（會在特定 media query 顯示） */
+#mobile-nav-menu-landscape {
+    display: none;
+}
+
+/* 區塊連結樣式 */
+.section-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+}
+
+/* Google 地圖樣式 */
+#google-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+#google-map iframe {
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.desktop-only {
+    display: block;
+}
+
+/* 內容區塊樣式 - 統一間距 */
+.content-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+
+    /* 背景圖片設定 (電腦/手機橫式) */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100% auto;
+    filter: none;
+    transition: background-size 1s ease-out;
+}
+
+/* 各個區塊的背景圖片設定（電腦與手機橫式共用） */
+#logo-section {
+    background-image: url('images01/top.jpg');
+    background-size: 180% auto;
+}
+#about { background-image: url('images01/B-1-ABOUT.jpg'); }
+#catering { background-image: url('images01/C-1-F&B.jpg'); }
+#venue { background-image: url('images01/D-1-PLACE.jpg'); }
+#event-catering { background-image: url('images01/E-1-EVENT.jpg'); }
+#custom-gifts { background-image: url('images01/F-1-GIFT.jpg'); }
+#corporate-catering { background-image: url('images01/G-1-ENTERPRISE.jpg'); }
+#private-chef { background-image: url('images01/H-1-KITCHEN.jpg'); }
+
+/* 聯絡我與版權宣告的背景處理，改由父容器處理 */
+#contact {
+    background-image: none;
+}
+#main-footer {
+    background-image: none;
+}
+
+/* 新增的包裹 div，用於共用背景圖片 */
+#contact-footer-wrapper {
+    background-image: url('images01/I-1-CONTACT.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100% auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* 確保內容水平置中 */
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+    filter: none;
+    transition: background-size 1s ease-out;
+}
+
+/* 電腦版Logo區塊縮放效果 */
+#logo-section.loaded {
+    background-size: 100% auto;
+    transition: background-size 2s ease-out;
+}
+
+/* LOGO 區塊的專屬樣式 */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    opacity: 1;
+    transition: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.logo-animation-container img {
+    max-width: 600px;
+}
+
+/* === Logo 區塊的毛玻璃遮罩效果（會在不同 breakpoint 調整） === */
+#logo-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    transition: background-color 2s ease-out, backdrop-filter 2s ease-out;
+    z-index: 1;
+}
+
+#logo-section.fade-out-overlay::before {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+}
+
+/* 內容容器樣式，確保前景內容清晰 */
+.content-container {
+    max-width: 1500px; /* 電腦版最大寬度調整 */
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    filter: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    flex: 1;
+    max-width: 1500px; /* 電腦版最大寬度調整 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+/* 文字內容樣式 */
+.text-content {
+    flex: 1;
+    min-width: auto;
+    text-align: center;
+}
+
+.description-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+.text-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    border-left: none;
+    padding-left: 0;
+}
+
+.highlight {
+    color: #ed1e79;
+}
+
+/* 圖片容器樣式 */
+.image-container {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 聯絡我 icon 樣式（預設桌機值） */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+    padding-left: 0;
+}
+
+/* 預設（桌機）圖示大小 */
+.social-icons a img {
+    width: 106px;
+    height: 106px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.1);
+}
+
+/* 頁尾樣式 */
+#main-footer {
+    position: relative;
+    padding: 20px 0;
+    text-align: center;
+    background-color: transparent;
+    flex-shrink: 0;
+}
+
+#main-footer p {
+    text-align: center;
+    color: #ed1e79;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* =========== 動畫樣式（改為觸發播放） =========== */
+/* 初始狀態：微位移 + 透明，用 will-change 並延長 transition 使效果柔順 */
+.animate-left, .animate-right {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: transform 0.75s cubic-bezier(.2,.9,.2,1), opacity 0.6s ease;
+}
+
+.animate-left {
+    transform: translateX(-30px);
+}
+
+.animate-right {
+    transform: translateX(30px);
+}
+
+/* delay class（小幅延遲） */
+.delay-1 {
+    transition-delay: .12s;
+}
+
+/* 進入可視區域後的 class（淡入並回到原位） */
+.in-view {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+/* 聯絡我的文字與圖示要靠左對齊（在桌機之後調整） */
+#contact .text-content, #contact h2, #contact .social-icons {
+    text-align: center;
+    justify-content: center; /* 確保flex容器內容置中 */
+}
+
+/* 桌機專屬：contact 標題左側小圖（預設隱藏，在 desktop media 顯示） */
+.contact-title-img { display: none; }
+
+/* 手機橫式 (769px - 932px) */
+@media (min-width: 769px) and (max-width: 932px) and (orientation: landscape) {
+    /* 隱藏電腦版導覽列 */
+    #main-header {
+        display: none;
+    }
+    
+    /* 顯示手機版導覽按鈕 */
+    #mobile-nav-toggle {
+        display: flex;
+    }
+    
+    /* 隱藏Google地圖 */
+    .desktop-only {
+        display: none;
+    }
+    
+    /* 手機橫式：活動餐飲整合標題修改（維持原有樣式） */
+    #event-catering h2 {
+        font-size: 3rem;
+    }
+    
+    #event-catering h2 .highlight {
+        color: #ed1e79;
+    }
+    
+    .text-and-image {
+        padding: 60px 40px; /* 增加上下留白 */
+        margin: 30px auto; /* 確保與邊緣的距離 */
+    }
+
+    .image-container img {
+        max-width: 85%; /* 照片縮小15% */
+        height: auto;
+    }
+
+    /* === 手機橫式專屬：三欄選單樣式（顯示） === */
+    #mobile-nav-menu { display: none; } /* 隱藏單欄版本 */
+    #mobile-nav-menu-landscape {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        width: 92%;
+        max-width: 980px;
+        background: rgba(255,255,255,0.05);
+        padding: 20px;
+        border-radius: 12px;
+        justify-content: space-between;
+    }
+    .mobile-landscape-col {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 33%;
+        align-items: flex-start;
+    }
+    .mobile-landscape-col a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 6px 8px;
+        display: block;
+        width: 100%;
+    }
+    .mobile-landscape-col a:hover {
+        color: #ed1e79;
+    }
+
+    /* landscape：ENG 顏色 */
+    .lang-switch-landscape { color: #ed1e79; }
+
+    /* landscape：聯絡下方圖片 */
+    .mobile-landscape-contact-img-wrapper { margin-top: 8px; width: 100%; display:flex; justify-content:center; }
+    .mobile-landscape-contact-img { max-width: 90%; border-radius:8px; }
+
+    /* landscape：social icons 在 overlay 下的大小（與 line 相同） */
+    .mobile-landscape .social-icons a img { width: 56px; height: 56px; }
+}
+
+/* 手機直式和平板直式的偽元素縮放變數支援 */
+@media (max-width: 768px), (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    .content-section::before, #contact-footer-wrapper::before {
+        transform: scale(var(--bg-scale, 1.0)) !important;
+        transition: transform 0.3s ease-out !important;
+    }
+}
+
+/* 平板、桌機間的樣式（保留原有設定） */
+@media (min-width: 1025px) and (max-width: 1366px) and (orientation: landscape) {
+    .text-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .description-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .image-container img {
+        max-width: 90%;
+    }
+    
+    .text-and-image {
+        gap: 20px;
+        padding: 30px;
+        max-width: 1100px;
+    }
+}
+
+/* 平板直式 (769px - 1024px, portrait) */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    #main-header {
+        display: none;
+    }
+    #mobile-nav-toggle {
+        display: flex;
+    }
+    .desktop-only {
+        display: none;
+    }
+    .logo-animation-container {
+        transform: translateX(20px);
+    }
+    .content-section, #contact-footer-wrapper {
+        background: none !important;
+        position: relative;
+    }
+    .content-section::before, #contact-footer-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover !important;
+        background-attachment: fixed;
+        transform: scale(1.0);
+        transition: transform 1.5s ease-out, filter 1.5s ease-out, background-color 1.5s ease-out !important;
+    }
+}
+
+/* 手機直式 (最大寬度 768px) */
+@media (max-width: 768px) {
+    #main-header {
+        display: none;
+    }
+    #mobile-nav-toggle {
+        display: flex;
+    }
+    .desktop-only {
+        display: none;
+    }
+
+    /* logo 左移 5%（按你的要求） */
+    .logo-animation-container {
+        transform: translateX(-5%);
+    }
+
+    /* 延長模糊 fade 與縮放配合（讓 logo 進場更柔順） */
+    #logo-section::before { 
+        background-image: url('images01/top.jpg'); 
+        backdrop-filter: none !important; 
+        transform: scale(1.8) !important; 
+        filter: blur(30px) !important; 
+        background-color: rgba(0, 0, 0, 0.3) !important; 
+        transition: transform 2.5s ease-out, filter 3.5s ease-out, background-color 2.5s ease-out !important;
+    }
+
+    #logo-section.loaded::before {
+        transform: scale(1.0) !important;
+        transition: transform 2.5s ease-out !important;
+    }
+
+    #logo-section.initial-blur::before {
+        filter: blur(40px) !important;
+        transition: filter 4s ease-out !important; /* 放慢模糊效果（延長） */
+    }
+
+    .content-section, #contact-footer-wrapper {
+        background: none !important; 
+        position: relative;
+    }
+
+    .content-section::before, #contact-footer-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover !important; 
+        background-attachment: fixed;
+        transform: scale(1.0); 
+        transition: transform 1.5s ease-out, filter 1.5s ease-out, background-color 1.5s ease-out !important;
+    }
+
+    .content-container {
+        width: 95%; 
+    }
+    
+    .text-and-image {
+        flex-direction: column;
+        padding: 25px; 
+        gap: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .text-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .reverse-layout {
+        flex-direction: column;
+    }
+
+    .image-container img {
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 1.2rem; 
+        white-space: nowrap; 
+    }
+
+    .description-text {
+        font-size: 1rem;
+    }
+
+    /* 聯絡我區照片縮小 30%（手機直式） */
+    #contact .image-container img {
+        width: 70%;
+        height: auto;
+        transform: none;
+    }
+
+    /* 手機直式：將 Instagram / Facebook 圖示大小與 Line 一致 */
+    .social-icons a img {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+/* 電腦版修改（≥1025px） */
+@media (min-width: 1025px) {
+    .text-and-image {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 40px; /* 增加上下留白 */
+        margin: 60px auto; /* 確保灰色底框與背景邊緣的距離 */
+    }
+
+    .reverse-layout {
+        flex-direction: row-reverse;
+    }
+
+    .image-container img {
+        max-width: 80%; /* 照片縮小20% */
+    }
+    
+    /* 確保主導覽列的 ENG 顯示為 #ed1e79（桌機） */
+    #main-nav .lang-switch-btn {
+        color: #ed1e79;
+    }
+
+    /* 桌機：聯絡標題左側小圖顯示與排版（只在桌機） */
+    .contact-title-img { display: inline-block; width: 96px; height: auto; border-radius: 8px; margin-right: 14px; vertical-align: middle; }
+    #contact .text-content { display:flex; align-items:center; gap:12px; text-align:left; justify-content:flex-start; }
+
+    /* 桌機：確保社群圖示大小一致（Instagram & Facebook 與 Line 同大小） */
+    #contact .social-icons a img { width: 106px; height: 106px; }
+
+    .lang-switch-btn {
+        color: #ed1e79;
+    }
+}
