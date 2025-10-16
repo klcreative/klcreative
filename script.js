@@ -1,5 +1,5 @@
-/* Version: 2025-1016-1730 */
-// Intersection Observer API - 用於偵測元素何時進入或離開可視區域,以觸發動畫效果
+/* Version: 2025-0930-0100 */
+// Intersection Observer API - 用於偵測元素何時進入或離開可視區域，以觸發動畫效果
 
 document.addEventListener('DOMContentLoaded', () => {
     // 選擇所有內容區塊
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileLandscapeNavOverlay = document.getElementById('mobile-landscape-nav-overlay');
     const mobileLandscapeNavLinks = document.querySelectorAll('#mobile-landscape-nav-menu a');
 
-    // 新的背景縮放觀察器 - 更精細的三等份控制 (電腦版修改:雙向觸發)
+    // 新的背景縮放觀察器 - 更精細的三等份控制 (電腦版修改：雙向觸發)
     const backgroundScaleObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let scale = 1.0; // 預設縮放
                 
                 if (sectionTop > windowHeight * 0.3) {
-                    // 區塊在下方,尚未進入焦點區域 - 放大狀態
+                    // 區塊在下方，尚未進入焦點區域 - 放大狀態
                     scale = 1.4;
                 } else if (sectionBottom < windowHeight * 0.7) {
-                    // 區塊在上方,已離開焦點區域 - 放大狀態
+                    // 區塊在上方，已離開焦點區域 - 放大狀態
                     scale = 1.4;
                 } else {
                     // 區塊在焦點區域內 - 正常大小
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (section.classList.contains('loaded')) {
                         section.style.backgroundSize = `${scale * 100}% auto`;
                         
-                        // 手機直式:logo區域背景圖片縮放效果隨可視區域變化 (放大180%)
+                        // 手機直式：logo區域背景圖片縮放效果隨可視區域變化 (放大180%)
                         if (window.innerWidth <= 768) {
-                            // 手機直式logo縮放邏輯:從1.8放大/縮小,並確保離開和進入時都有效果
+                            // 手機直式logo縮放邏輯：從1.8放大/縮小，並確保離開和進入時都有效果
                             let mobileScale = 1.8;
                             if (sectionTop > windowHeight * 0.3) {
                                 // 區塊在下方 - 放大狀態
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     );
 
-    // 電腦版內容動畫觀察器 - 提早滑入,往下沉動提早滑出
+    // 電腦版內容動畫觀察器 - 提早滑入，往下沉動提早滑出
     const contentObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         contentContainer.classList.remove('fade-out');
                     }
                 } else {
-                    // 電腦版、手機橫式、手機直式:雙向觸發滑出與淡出效果
+                    // 電腦版、手機橫式、手機直式：雙向觸發滑出與淡出效果
                     if (contentContainer) {
                         contentContainer.classList.remove('visible');
                         contentContainer.classList.add('fade-out');
@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             root: null,
-            threshold: 0.35, // 電腦版:提早觸發滑入
-            rootMargin: '15% 0px -50% 0px' // 電腦版:往下沉動提早滑出
+            threshold: 0.35, // 電腦版：提早觸發滑入
+            rootMargin: '15% 0px -50% 0px' // 電腦版：往下沉動提早滑出
         }
     );
 
@@ -137,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             root: null,
-            threshold: 0.25, // 手機直式:提早觸發
-            rootMargin: '20% 0px -55% 0px' // 手機直式:調整觸發範圍
+            threshold: 0.25, // 手機直式：提早觸發
+            rootMargin: '20% 0px -55% 0px' // 手機直式：調整觸發範圍
         }
     );
 
@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             root: null,
-            threshold: 0.3, // 手機橫式:提早觸發
-            rootMargin: '15% 0px -55% 0px' // 手機橫式:調整觸發範圍
+            threshold: 0.3, // 手機橫式：提早觸發
+            rootMargin: '15% 0px -55% 0px' // 手機橫式：調整觸發範圍
         }
     );
 
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         headerObserver.observe(logoSection);
     }
     
-    // 平滑滾動功能(針對導覽列連結)
+    // 平滑滾動功能（針對導覽列連結）
     const navLinks = document.querySelectorAll('#main-nav a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
-            // 跳過非錨點連結(如ENG語言切換)
+            // 跳過非錨點連結（如ENG語言切換）
             if (!href.startsWith('#')) {
                 return;
             }
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
-            // 跳過非錨點連結(如ENG語言切換)
+            // 跳過非錨點連結（如ENG語言切換）
             if (!href.startsWith('#')) {
                 return;
             }
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 點開網頁時的單次模糊漸變效果
         logoSection.classList.add('initial-blur'); 
 
-        // 延遲後移除模糊,觸發過渡到清晰,並啟動縮放效果
+        // 延遲後移除模糊，觸發過渡到清晰，並啟動縮放效果
         setTimeout(() => {
             logoSection.classList.remove('initial-blur'); 
             logoSection.classList.add('fade-out-overlay');
@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
 
-    // 滾動時更新背景縮放(額外的滾動監聽)
+    // 滾動時更新背景縮放（額外的滾動監聽）
     let ticking = false;
     function updateBackgroundScale() {
         if (!ticking) {
