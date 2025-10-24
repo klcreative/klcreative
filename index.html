@@ -1,0 +1,262 @@
+<!-- Version: GPT1.0 - 2025-10-24 -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="KL Creative - 創意餐飲外燴、場地租借、活動餐飲整合、客製禮品、企業餐飲規劃、私廚饗宴" />
+  <title>KL Creative 官方網站 — 創意餐飲外燴</title>
+
+  <!-- 样式 -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- SEO / Social (範例，可依需求補充 og:image、twitter:card 等) -->
+  <meta property="og:title" content="KL Creative 官方網站" />
+  <meta property="og:description" content="專業創意餐飲與活動餐飲整合服務（台灣）" />
+
+  <!-- favicon 可加 -->
+</head>
+<body>
+  <!-- 跳過連結（無障礙） -->
+  <a class="skip-link" href="#main-content">跳至主要內容</a>
+
+  <header id="main-header" role="banner" aria-label="網站主要標頭">
+    <div class="container header-inner">
+      <a class="brand" href="#logo-section" aria-label="回到首頁 - KL Creative">
+        <img src="images01/A-logo-remove.png" alt="KL Creative Logo" width="160" height="40" />
+      </a>
+
+      <nav id="main-nav" role="navigation" aria-label="主要導覽">
+        <ul>
+          <li><a href="#about">關於我們</a></li>
+          <li><a href="#catering">餐飲外燴</a></li>
+          <li><a href="#venue">場地租借</a></li>
+          <li><a href="#event-catering">活動餐飲</a></li>
+          <li><a href="#custom-gifts">客製禮品</a></li>
+          <li><a href="#corporate-catering">企業餐飲</a></li>
+          <li><a href="#private-chef">私廚饗宴</a></li>
+          <li><a href="#contact">聯絡我們</a></li>
+        </ul>
+      </nav>
+
+      <!-- 漢堡按鈕（手機/小螢幕） -->
+      <button id="mobile-nav-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="開啟導覽選單">
+        <span class="sr-only">開啟導覽選單</span>
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 手機全螢幕選單（aria 管理在 script） -->
+  <div id="mobile-nav" role="dialog" aria-modal="true" aria-hidden="true" aria-label="手機選單">
+    <div class="mobile-nav-inner" role="document">
+      <button id="mobile-nav-close" aria-label="關閉選單">關閉</button>
+      <nav role="navigation" aria-label="手機導覽">
+        <ul>
+          <li><a href="#about">關於我們</a></li>
+          <li><a href="#catering">餐飲外燴</a></li>
+          <li><a href="#venue">場地租借</a></li>
+          <li><a href="#event-catering">活動餐飲</a></li>
+          <li><a href="#custom-gifts">客製禮品</a></li>
+          <li><a href="#corporate-catering">企業餐飲</a></li>
+          <li><a href="#private-chef">私廚饗宴</a></li>
+          <li><a href="#contact">聯絡我們</a></li>
+          <li><a class="lang-switch" href="#" aria-label="切換至英文版本">ENG</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main-content" tabindex="-1">
+    <!-- Logo / Hero -->
+    <section id="logo-section" class="content-section hero" aria-label="KL Creative 首頁">
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="logo-wrap">
+          <img src="images01/A-logo-remove.png" alt="KL Creative" width="600" height="auto" />
+        </div>
+        <div class="hero-cta">
+          <p class="lead">創意餐飲 • 私廚 • 活動餐飲整合</p>
+          <a href="#contact" class="btn btn-primary">立即聯絡</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="content-section" aria-labelledby="about-heading">
+      <div class="container content-inner">
+        <div class="card text-and-image">
+          <div class="text-content">
+            <h2 id="about-heading">關於 <span class="highlight">KL Creative</span></h2>
+            <p class="description-text">
+              成立於 <time datetime="2018">2018</time> 年，台灣在地團隊。<br />
+              從餐飲外燴到私廚饗宴，我們將創意與細節融合，提供專屬的美味體驗。
+            </p>
+          </div>
+
+          <figure class="image-container">
+            <img
+              src="images01/B-ABOUT.jpg"
+              srcset="images01/B-ABOUT.jpg 1x, images01/B-ABOUT@2x.jpg 2x"
+              alt="KL Creative 團隊準備餐點"
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catering -->
+    <section id="catering" class="content-section" aria-labelledby="catering-heading">
+      <div class="container content-inner">
+        <a class="card section-link" href="https://www.facebook.com/KLcreativeTW" target="_blank" rel="noopener noreferrer">
+          <div class="text-content">
+            <h2 id="catering-heading">各式 <span class="highlight">餐飲外燴</span></h2>
+            <p class="description-text">
+              從家庭聚會到百人宴會，從遊艇到精品發表會，我們提供客製化菜單與專業執行。
+            </p>
+          </div>
+          <figure class="image-container">
+            <img src="images01/C-F&B.jpg" alt="餐飲外燴範例" loading="lazy" width="800" height="600"
+              srcset="images01/C-F&B.jpg 1x, images01/C-F&B@2x.jpg 2x" />
+          </figure>
+        </a>
+      </div>
+    </section>
+
+    <!-- Venue -->
+    <section id="venue" class="content-section" aria-labelledby="venue-heading">
+      <div class="container content-inner">
+        <div class="card text-and-image reverse-layout">
+          <div class="text-content">
+            <h2 id="venue-heading"><span class="highlight">場地</span>提供與規劃</h2>
+            <p class="description-text">依需求打造場地佈置，適合會議、晚宴與私人聚會。</p>
+          </div>
+          <figure class="image-container">
+            <img src="images01/D-PLACE.jpg" alt="場地佈置範例" loading="lazy" width="800" height="600" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Catering -->
+    <section id="event-catering" class="content-section" aria-labelledby="event-catering-heading">
+      <div class="container content-inner">
+        <div class="card text-and-image">
+          <div class="text-content">
+            <h2 id="event-catering-heading"><span class="highlight">活動餐飲</span>整合</h2>
+            <p class="description-text">新品發表、快閃活動，整合餐飲、場地與執行窗口，提供一條龍服務。</p>
+          </div>
+          <figure class="image-container">
+            <img src="images01/E-EVENT.jpg" alt="活動餐飲整合" loading="lazy" width="800" height="600" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom Gifts -->
+    <section id="custom-gifts" class="content-section" aria-labelledby="custom-gifts-heading">
+      <div class="container content-inner">
+        <div class="card text-and-image reverse-layout">
+          <div class="text-content">
+            <h2 id="custom-gifts-heading">客製化 <span class="highlight">禮品</span></h2>
+            <p class="description-text">伴手禮、節慶小點，結合美感與品質，為活動加分。</p>
+          </div>
+          <figure class="image-container">
+            <img src="images01/F-GIFT.jpg" alt="客製化禮品" loading="lazy" width="800" height="600" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Corporate Catering -->
+    <section id="corporate-catering" class="content-section" aria-labelledby="corporate-catering-heading">
+      <div class="container content-inner">
+        <div class="card text-and-image">
+          <div class="text-content">
+            <h2 id="corporate-catering-heading">企業 <span class="highlight">餐飲規劃</span></h2>
+            <p class="description-text">多文化餐飲開發，提供健康、可口且具國際性的菜單。</p>
+          </div>
+          <figure class="image-container">
+            <img src="images01/G-ENTERPRISE.jpg" alt="企業餐飲企劃" loading="lazy" width="800" height="600" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Private Chef -->
+    <section id="private-chef" class="content-section" aria-labelledby="private-chef-heading">
+      <div class="container content-inner">
+        <div class="card text-and-image reverse-layout">
+          <div class="text-content">
+            <h2 id="private-chef-heading"><span class="highlight">私廚</span>饗宴</h2>
+            <p class="description-text">最多容納 <strong>24</strong> 人的專屬用餐空間，提供客製化菜單。</p>
+          </div>
+          <figure class="image-container">
+            <img src="images01/H-KITCHEN.jpg" alt="私廚空間" loading="lazy" width="800" height="600" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Footer wrapper -->
+    <section id="contact-footer-wrapper" class="content-section" aria-labelledby="contact-heading">
+      <div class="container content-inner contact-card">
+        <div class="card text-and-image">
+          <div class="text-content">
+            <h2 id="contact-heading"><span class="highlight">聯絡</span>我們</h2>
+            <p class="description-text">想了解報價或討論活動細節？歡迎透過下列聯絡方式或社群與我們連絡。</p>
+
+            <div class="social-icons" role="navigation" aria-label="社群連結">
+              <a href="https://reurl.cc/9nYaej" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <img src="images01/icon-instagram.png" alt="Instagram" width="56" height="56" />
+              </a>
+              <a href="https://www.facebook.com/KLcreativeTW" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <img src="images01/icon-facebook.png" alt="Facebook" width="56" height="56" />
+              </a>
+              <a href="https://reurl.cc/9nYaej" target="_blank" rel="noopener noreferrer" aria-label="Line">
+                <img src="images01/icon-line.png" alt="Line" width="56" height="56" />
+              </a>
+            </div>
+
+            <p class="contact-info">
+              <a class="email-link" href="mailto:klcreative.tw@gmail.com">klcreative.tw@gmail.com</a><br />
+              <span>106 台北市大安區大安路一段31巷21號B1</span>
+            </p>
+          </div>
+
+          <figure class="image-container contact-image">
+            <img src="images01/I-CONTACT.jpg" alt="聯絡視覺圖" loading="lazy" width="800" height="600" />
+          </figure>
+        </div>
+
+        <div id="google-map" class="map-frame" role="region" aria-label="公司位置">
+          <iframe
+            src="https://www.google.com/maps/d/u/1/embed?mid=1VeUzV5c_nHtG7a4vlg_dYNs6MZWG9EA&ehbc=2E312F"
+            title="KL Creative 公司位置"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            aria-hidden="false"
+          ></iframe>
+        </div>
+
+        <footer id="main-footer" role="contentinfo">
+          <p>
+            <span class="address">106 台北市大安區大安路一段31巷21號B1</span><br />
+            <a href="mailto:klcreative.tw@gmail.com" class="email-link">klcreative.tw@gmail.com</a><br />
+            <span>Copyright &copy; <time datetime="2025">2025</time> 元翔有限公司</span>
+          </p>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- 回到頂端按鈕 -->
+  <button id="back-to-top" aria-label="回到頁面頂端" title="回到頂端">Top</button>
+
+  <!-- 腳本 -->
+  <script src="script.js" defer></script>
+</body>
+</html>
