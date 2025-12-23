@@ -1,0 +1,218 @@
+/* Version: 2025-1223-1630 */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft JhengHei', 'Lexend', sans-serif;
+    background: linear-gradient(to right, #7217a3, #e00299);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   背景視差層 - 與首頁一致的動態縮放效果
+   ========================================= */
+.parallax-background {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 140%;
+    background-image: url('../images01/B-1-ABOUT.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    will-change: transform;
+    transform: scale(1.0) translateY(0);
+    transform-origin: center center;
+    transition: transform 0.1s ease-out;
+}
+
+/* =========================================
+   Hero Section - Scroll Effect
+   ========================================= */
+section,
+.content {
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.hero {
+    position: relative;
+    background: transparent;
+}
+
+.images {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.images img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: var(--index);
+    will-change: mask-image;
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    color: #fff;
+}
+
+.content .center {
+    width: 100%;
+    max-width: clamp(300px, 80vw, 1000px);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .center .title-center {
+    text-align: center;
+}
+
+.content .center .title-center h1 {
+    font-size: clamp(60px, 15vw, 150px);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+}
+
+/* =========================================
+   Last Section - Create Together
+   ========================================= */
+.last-section {
+    width: 100%;
+    min-height: 100svh;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.last-section-content {
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.last-section-content h2 {
+    font-size: clamp(50px, 10vw, 120px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.last-section-content .highlight {
+    color: #ed1e79;
+}
+
+.last-section-content .description-text {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+}
+
+/* =========================================
+   響應式設計 - 手機直式
+   ========================================= */
+@media (max-width: 834px) and (orientation: portrait) {
+    .parallax-background {
+        background-position: 40% center;
+    }
+
+    .content .center .title-center h1 {
+        font-size: clamp(50px, 12vw, 100px);
+    }
+
+    .last-section-content h2 {
+        font-size: clamp(40px, 9vw, 80px);
+    }
+
+    .last-section-content .description-text {
+        font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+    }
+
+    .last-section {
+        padding: 40px 20px;
+    }
+}
+
+/* =========================================
+   響應式設計 - 手機橫式
+   ========================================= */
+@media (orientation: landscape) and (max-height: 500px) {
+    .content .center .title-center h1 {
+        font-size: clamp(40px, 10vw, 80px);
+    }
+
+    .last-section-content h2 {
+        font-size: clamp(35px, 8vw, 70px);
+    }
+
+    .last-section-content .description-text {
+        font-size: clamp(0.9rem, 2vw, 1rem);
+        line-height: 1.6;
+    }
+
+    .last-section-content {
+        gap: 25px;
+    }
+
+    .last-section {
+        padding: 30px 20px;
+    }
+}
+
+/* =========================================
+   確保所有裝置都不露底色
+   ========================================= */
+@media (min-aspect-ratio: 16/9) {
+    .parallax-background {
+        background-size: cover;
+        width: 130%;
+        height: 150%;
+        top: -15%;
+        left: -15%;
+    }
+}
+
+@media (max-aspect-ratio: 9/16) {
+    .parallax-background {
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .images img {
+        object-fit: cover;
+    }
+}
