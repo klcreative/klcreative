@@ -1,0 +1,467 @@
+/* Version: 2025-1223-2230 */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    overflow-x: hidden;
+    /* 移除 scroll-behavior: smooth 避免與 Lenis 衝突 */
+}
+
+body {
+    font-family: 'Microsoft JhengHei', 'Lexend', sans-serif;
+    background: #000;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100%;
+    position: relative;
+}
+
+/* =========================================
+   無障礙功能
+   ========================================= */
+
+/* 跳過導航連結 */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #ed1e79;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 9999;
+    border-radius: 0 0 4px 0;
+    font-weight: bold;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* 視覺隱藏但保留給螢幕閱讀器 */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 焦點可見性指示 - 優化避免影響性能 */
+*:focus-visible {
+    outline: 3px solid #ed1e79;
+    outline-offset: 2px;
+}
+
+a:focus-visible, button:focus-visible {
+    outline: 3px solid #ed1e79;
+    outline-offset: 3px;
+}
+
+/* 移除所有元素的預設 focus 樣式，只保留 focus-visible */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* 減少動畫偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================================
+   漢堡選單樣式
+   ========================================= */
+
+/* 漢堡按鈕 */
+#hamburger-nav-toggle {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    width: 35px;
+    height: 30px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    background: transparent;
+    border: none;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger-line {
+    display: block;
+    height: 3px;
+    background-color: #ed1e79;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger-line-top { width: 100%; }
+.hamburger-line-middle { width: 70%; margin: 0 auto; }
+.hamburger-line-bottom { width: 100%; }
+
+#hamburger-nav-toggle:hover .hamburger-line-middle { width: 100%; }
+
+#hamburger-nav-toggle.active .hamburger-line-top { 
+    transform: translateY(10px) rotate(45deg); 
+    width: 100%; 
+}
+#hamburger-nav-toggle.active .hamburger-line-middle { 
+    opacity: 0; 
+    width: 100%; 
+}
+#hamburger-nav-toggle.active .hamburger-line-bottom { 
+    transform: translateY(-10px) rotate(-45deg); 
+    width: 100%; 
+}
+
+/* 導覽選單覆蓋層 */
+#hamburger-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 2500;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 直向裝置 - 選單為單欄 */
+#hamburger-nav-menu {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 90vw;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+#hamburger-nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    transition: color 0.3s ease;
+    word-wrap: break-word;
+    border: none;
+}
+
+#hamburger-nav-menu a:hover,
+#hamburger-nav-menu a:focus {
+    color: #ed1e79;
+}
+
+#hamburger-nav-menu .lang-switch {
+    color: #ed1e79 !important;
+}
+
+/* 橫向裝置 - 選單為三欄網格 */
+@media (orientation: landscape) {
+    #hamburger-nav-menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 30px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 15px;
+        max-width: 90vw;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    #hamburger-nav-menu a {
+        font-size: 1.1rem;
+        padding: 15px 10px;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    #hamburger-nav-menu a:nth-child(1) { order: 1; }
+    #hamburger-nav-menu a:nth-child(2) { order: 4; }
+    #hamburger-nav-menu a:nth-child(3) { order: 7; }
+    #hamburger-nav-menu a:nth-child(4) { order: 2; }
+    #hamburger-nav-menu a:nth-child(5) { order: 5; }
+    #hamburger-nav-menu a:nth-child(6) { order: 8; }
+    #hamburger-nav-menu a:nth-child(7) { order: 3; }
+    #hamburger-nav-menu a:nth-child(8) { order: 6; }
+    #hamburger-nav-menu a:nth-child(9) { order: 9; }
+}
+
+/* =========================================
+   背景視差層 - 確保所有裝置都顯示
+   ========================================= */
+.parallax-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images01/B-1-ABOUT.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    will-change: transform;
+    transform: scale(1.2);
+    transform-origin: center center;
+}
+
+/* =========================================
+   Hero Section - Scroll Effect 全螢幕適應
+   ========================================= */
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: transparent;
+}
+
+.images {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.images img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: var(--index);
+    will-change: mask-image;
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 10;
+    color: #fff;
+    padding-bottom: 0;
+}
+
+.content .center {
+    width: 100%;
+    max-width: clamp(300px, 80vw, 1000px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.content .center .title-bottom {
+    text-align: center;
+}
+
+.content .center .title-bottom .hero-title {
+    font-size: clamp(80px, 15vw, 150px);
+    font-weight: 700;
+    margin: 0;
+    line-height: 0.95;
+    padding-bottom: 0;
+}
+
+/* =========================================
+   Last Section - Create Together 緊密銜接
+   ========================================= */
+.last-section {
+    width: 100vw;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+.last-section-content {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 0;
+}
+
+.last-section-content .title-create {
+    font-size: clamp(60px, 10vw, 120px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+    padding-top: 0;
+    align-self: stretch;
+    text-align: center;
+}
+
+.last-section-content .highlight {
+    color: #ed1e79;
+}
+
+.last-section-content .description-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    text-align: center;
+}
+
+/* =========================================
+   響應式設計 - 手機直式
+   ========================================= */
+@media (max-width: 834px) and (orientation: portrait) {
+    .parallax-background {
+        background-position: 40% center;
+        transform: scale(1.3);
+    }
+
+    .content {
+        padding-bottom: 0;
+    }
+
+    .content .center .title-bottom .hero-title {
+        font-size: clamp(90px, 20vw, 140px);
+    }
+
+    .last-section-content .title-create {
+        font-size: clamp(70px, 15vw, 110px);
+    }
+
+    .last-section-content .description-text {
+        font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+    }
+
+    .last-section {
+        padding: 0 20px 40px 20px;
+    }
+    
+    #hamburger-nav-menu a {
+        font-size: 1.2rem;
+    }
+}
+
+/* =========================================
+   響應式設計 - 手機橫式
+   ========================================= */
+@media (orientation: landscape) and (max-height: 500px) {
+    .parallax-background {
+        transform: scale(1.4);
+    }
+
+    .content {
+        padding-bottom: 0;
+    }
+
+    .content .center .title-bottom .hero-title {
+        font-size: clamp(50px, 12vw, 90px);
+    }
+
+    .last-section-content .title-create {
+        font-size: clamp(45px, 10vw, 80px);
+    }
+
+    .last-section-content .description-text {
+        font-size: clamp(1rem, 2.2vw, 1.1rem);
+        line-height: 1.6;
+    }
+
+    .last-section-content {
+        gap: 25px;
+    }
+
+    .last-section {
+        padding: 0 20px 30px 20px;
+    }
+}
+
+/* =========================================
+   平板尺寸調整
+   ========================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .parallax-background {
+        transform: scale(1.25);
+    }
+}
+
+/* =========================================
+   桌面尺寸調整
+   ========================================= */
+@media (min-width: 1025px) {
+    .parallax-background {
+        transform: scale(1.2);
+    }
+}
+
+/* =========================================
+   確保超寬螢幕也不露底色
+   ========================================= */
+@media (min-aspect-ratio: 21/9) {
+    .parallax-background {
+        background-size: cover;
+        transform: scale(1.5);
+    }
+}
+
+/* =========================================
+   確保超高螢幕也不露底色
+   ========================================= */
+@media (max-aspect-ratio: 9/16) {
+    .parallax-background {
+        background-size: cover;
+        background-position: center;
+        transform: scale(1.4);
+    }
+}
+
+/* =========================================
+   高對比度模式支持
+   ========================================= */
+@media (prefers-contrast: high) {
+    .highlight {
+        color: #ff2d7f;
+        font-weight: 900;
+    }
+    
+    #hamburger-nav-toggle:focus-visible {
+        outline: 4px solid #ff2d7f;
+    }
+}
