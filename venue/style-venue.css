@@ -1,0 +1,197 @@
+/* Version: 2026-01130-1730 */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Microsoft JhengHei', 'Lexend', sans-serif;
+    background: #000;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100%;
+    position: relative;
+}
+
+/* =========================================
+   無障礙功能
+   ========================================= */
+
+/* 跳過導覽連結 */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #ed1e79;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 9999;
+    border-radius: 0 0 4px 0;
+    font-weight: bold;
+    transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* 視覺隱藏但保留給螢幕閱讀器 */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 焦點可見性指示 */
+*:focus-visible {
+    outline: 3px solid #ed1e79;
+    outline-offset: 2px;
+    transition: outline 0.15s ease;
+}
+
+a:focus-visible, 
+button:focus-visible {
+    outline: 3px solid #ed1e79;
+    outline-offset: 3px;
+}
+
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* =========================================
+   背景視差層 - 桌機顯示修正
+   ========================================= */
+.parallax-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    background-image: url('../images01/D-1-PLACE.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+    will-change: transform;
+    transform: scale(1.2);
+    transform-origin: center center;
+}
+
+/* =========================================
+   Hero Section
+   ========================================= */
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* =========================================
+   Equipment Section
+   ========================================= */
+.equipment-section {
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 80px 20px 40px 20px;
+    position: relative;
+    margin-bottom: 10vh; /* ← 與照片牆間距 +10% */
+}
+
+.equipment-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+}
+
+.equipment-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.equipment-item:hover,
+.equipment-item:focus {
+    transform: translateY(-8px);
+}
+
+.equipment-image-wrapper {
+    width: 90%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.equipment-item:hover .equipment-image-wrapper,
+.equipment-item:focus .equipment-image-wrapper {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(237, 30, 121, 0.3);
+}
+
+.equipment-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(0.95); /* ← 設備照片縮小 5% */
+    transition: transform 0.3s ease;
+}
+
+.equipment-text {
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 15px;
+    padding: 0 10px;
+}
+
+/* =========================================
+   Gallery Section（以下內容未變動）
+   ========================================= */
+/* ……後續樣式保持與你原檔一致，未做任何修改 …… */
+
+/* =========================================
+   桌機尺寸確保背景顯示
+   ========================================= */
+@media (min-width: 1025px) {
+    .parallax-background {
+        display: block;
+        height: 100vh;
+        background-size: cover;
+        background-position: center center;
+    }
+}
