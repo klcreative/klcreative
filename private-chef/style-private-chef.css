@@ -242,7 +242,7 @@ button:focus-visible {
     height: 100vh;
     background-image: url('../images01/H-1-KITCHEN.webp');
     background-size: cover;
-    background-position: 40% center;
+    background-position: 50% center;
     background-repeat: no-repeat;
     z-index: -1;
     will-change: transform;
@@ -587,7 +587,7 @@ button:focus-visible {
    ========================================= */
 @media (max-width: 834px) and (orientation: portrait) {
     .parallax-background {
-        background-position: 50% center;
+        background-position: 30% center;
         transform: scale(1.3);
     }
 
