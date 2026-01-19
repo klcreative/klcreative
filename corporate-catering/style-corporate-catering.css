@@ -729,7 +729,7 @@ button:focus-visible {
     }
 
     .content .center .title-bottom .hero-title {
-        font-size: clamp(54px, 12vw, 94px);
+        font-size: clamp(52px, 12vw, 94px);
     }
 
     .last-section-content .title-reimagined {
