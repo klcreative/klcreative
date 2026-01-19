@@ -1,0 +1,23 @@
+# KL Creative - robots.txt
+# Version: 2026-0119-1600
+
+# 允許所有搜尋引擎檢索
+User-agent: *
+Allow: /
+
+# 不允許檢索的路徑（如果有隱私頁面或測試頁面）
+# Disallow: /private/
+# Disallow: /test/
+
+# Sitemap 位置
+Sitemap: https://klcreative.github.io/klcreative/sitemap.xml
+
+# 針對特定搜尋引擎的設定
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# 爬蟲延遲（避免過度負載）
+Crawl-delay: 1
