@@ -684,7 +684,7 @@ button:focus-visible {
     }
     
     .content .center .title-top .hero-title-top {
-        font-size: clamp(60px, 12vw, 100px);
+        font-size: clamp(50px, 12vw, 100px);
     }
     
     .title-section {
