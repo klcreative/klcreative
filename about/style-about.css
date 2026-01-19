@@ -691,7 +691,7 @@ button:focus-visible {
 
     /* Create Together 標題縮小 6px */
     .last-section-content .title-create {
-        font-size: clamp(64px, 15vw, 104px);
+        font-size: clamp(58px, 15vw, 104px);
     }
 
     .last-section-content .description-text {
