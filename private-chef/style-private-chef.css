@@ -587,7 +587,7 @@ button:focus-visible {
    ========================================= */
 @media (max-width: 834px) and (orientation: portrait) {
     .parallax-background {
-        background-position: 10% center;
+        background-position: 50% center;
         transform: scale(1.3);
     }
 
