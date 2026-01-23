@@ -452,21 +452,21 @@ button:focus-visible {
 }
 
 /* 第二組圖片(彈性+信賴)- 兩張底部對齊,都有底部隱藏增強視差 */
-/* 圖片3靠右,放大140%,底部藏25%,視差速度慢 */
+/* 圖片3靠右,放大140%,底部藏5%,視差速度慢 */
 .parallax-img-3 {
     right: -10%;
     z-index: 1;
     width: 98%; /* 70% × 1.4 */
-    bottom: -25%; /* 初始藏25%,視差移動-30px後仍在隱藏區 */
+    bottom: 20%; /* 位置在文字中間,底部藏5% */
     top: auto;
 }
 
-/* 圖片4靠左在前,放大120%,底部藏25%,視差速度快 */
+/* 圖片4靠左在前,放大120%,底部藏5%,視差速度快 */
 .parallax-img-4 {
     left: 5%; /* 往右移10% */
     z-index: 2;
     width: 84%; /* 70% × 1.2 */
-    bottom: -25%; /* 底部對齊圖片3 */
+    bottom: 20%; /* 底部對齊圖片3,位置在文字中間 */
     top: auto;
 }
 
@@ -733,21 +733,21 @@ button:focus-visible {
         top: 20px;
     }
 
-    /* 手機直式:圖片3調整 - 放大30%,確保視差效果時底部不露出 */
+    /* 手機直式:圖片3調整 - 放大30%,確保可見 */
     .parallax-img-3 {
-        right: -10%; /* 負值讓放大後的圖片中心可見 */
+        right: 0%; /* 調整讓圖片可見 */
         z-index: 1;
         width: 97.5%; /* 75% × 1.3 = 放大30% */
-        bottom: -30%; /* 藏30%,視差移動後仍不露出 */
+        bottom: 15%; /* 位置在文字中間,底部藏5% */
         top: auto;
     }
 
     /* 手機直式:圖片4調整 - 放大50%,底部對齊圖片3 */
     .parallax-img-4 {
-        left: -10%; /* 負值讓放大後的圖片中心可見 */
+        left: 0%; /* 調整讓圖片可見 */
         z-index: 2;
         width: 112.5%; /* 75% × 1.5 = 放大50% */
-        bottom: -30%; /* 底部對齊圖片3 */
+        bottom: 15%; /* 底部對齊圖片3 */
         top: auto;
     }
 
@@ -858,16 +858,16 @@ button:focus-visible {
         overflow: hidden;
     }
 
-    /* 手機橫式:保持圖片3和4的調整 */
+    /* 手機橫式:圖片3和4位置在文字中間 */
     .parallax-img-3 {
         width: 98%;
-        bottom: -25%;
+        bottom: 20%;
         top: auto;
     }
 
     .parallax-img-4 {
         width: 84%;
-        bottom: -25%;
+        bottom: 20%;
         top: auto;
     }
 
@@ -938,16 +938,16 @@ button:focus-visible {
         overflow: hidden;
     }
 
-    /* 平板:保持圖片3和4的調整 */
+    /* 平板:圖片3和4位置在文字中間 */
     .parallax-img-3 {
         width: 98%;
-        bottom: -25%;
+        bottom: 20%;
         top: auto;
     }
 
     .parallax-img-4 {
         width: 84%;
-        bottom: -25%;
+        bottom: 20%;
         top: auto;
     }
 
