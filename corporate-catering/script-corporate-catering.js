@@ -358,9 +358,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 【需求3修改】第二組圖片(彈性+信賴) - 添加視差效果,在CSS初始-30px的基礎上再移動-5%
+        // 【需求3修改】第二組圖片(彈性+信賴) - 添加視差效果,提高30px
         if (img3 && img4) {
-            // 圖片3視差效果 - CSS已設定-30px,這裡再加上視差-5%
+            // 圖片3視差效果 - 提高30px,最多向上移動5%
             gsap.to(img3, {
                 scrollTrigger: {
                     trigger: section,
@@ -368,11 +368,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     end: 'bottom top',
                     scrub: 2
                 },
-                y: '-5%', // 在CSS的-30px基礎上,再向上移動5%
+                y: -30, // 提高30px
                 ease: 'none'
             });
 
-            // 圖片4視差效果 - CSS已設定-30px,這裡再加上視差-5%
+            // 圖片4視差效果 - 提高30px,最多向上移動5%
             gsap.to(img4, {
                 scrollTrigger: {
                     trigger: section,
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     end: 'bottom top',
                     scrub: 1.5
                 },
-                y: '-5%', // 在CSS的-30px基礎上,再向上移動5%
+                y: -30, // 提高30px
                 ease: 'none'
             });
         }

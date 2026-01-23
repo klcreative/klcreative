@@ -411,10 +411,10 @@ button:focus-visible {
     justify-content: center;
 }
 
-/* 【需求2修改】第二組圖片容器 - 寬度700px(避免陰影被裁切),高度560px(增加60px避免裁切),整體上移45px */
+/* 【需求2修改】第二組圖片容器 - 寬度800px,高度500px,整體上移45px */
 .parallax-section:nth-of-type(2) .parallax-images-container {
-    width: 700px;
-    height: 560px;
+    width: 800px;
+    height: 500px;
     transform: translateY(-45px);
 }
 
@@ -427,11 +427,11 @@ button:focus-visible {
     will-change: transform;
 }
 
-/* 【需求1修改】第一組圖片 (圖1+2) - 2在前面,圖1縮小10%並往左移25% */
+/* 【需求1修改】第一組圖片 (圖1+2) - 2在前面,圖1縮小10%並往右移80% */
 .parallax-img-1 {
     width: 252px; /* 280 × 0.9 = 252px,縮小10% */
     height: 389px; /* 432 × 0.9 = 389px,縮小10% */
-    right: 65%; /* -40% - 25% = -65%,也就是right: 65%,往左移25% */
+    right: -80%; /* 起始位置為-80% */
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
@@ -446,21 +446,21 @@ button:focus-visible {
     z-index: 2;
 }
 
-/* 【需求3修改】第二組圖片 (圖3+4) - 4在前面,底部對齊,水平置中,初始位置上移30px */
+/* 【需求2修改】第二組圖片 (圖3+4) - 4在前面,底部對齊,水平置中,寬度改為500px */
 .parallax-img-3 {
-    width: 300px;
-    height: 480px;
+    width: 500px;
+    height: 800px;
     left: 50%;
-    transform: translateX(-50%) translateY(-30px);
+    transform: translateX(-50%);
     bottom: 0;
     z-index: 1;
 }
 
 .parallax-img-4 {
-    width: 272px; /* 340 × 0.8 = 272px,縮小20% */
-    height: 416px; /* 520 × 0.8 = 416px,縮小20% */
+    width: 500px;
+    height: 765px;
     left: 50%;
-    transform: translateX(-50%) translateY(-30px);
+    transform: translateX(-50%);
     bottom: 0;
     z-index: 2;
 }
@@ -701,11 +701,11 @@ button:focus-visible {
         height: 480px;
     }
 
-    /* 【需求1修改】第一組圖片 - 手機直式,圖1縮小10%並往左移25% */
+    /* 【需求1修改】第一組圖片 - 手機直式,圖1縮小10%並往右移80% */
     .parallax-img-1 {
         width: 180px; /* 200 × 0.9 = 180px */
         height: 277px; /* 308 × 0.9 = 277px */
-        right: 80%; /* 原本-30%,往左移25%後變成-55%,但因為響應式基準不同,這裡應該是80% */
+        right: 50%; /* -30% + 80% = 50% */
         top: 50%;
     }
 
@@ -803,11 +803,11 @@ button:focus-visible {
         height: 540px;
     }
 
-    /* 【需求1修改】第一組圖片 - 平板直式,圖1縮小10%並往左移25% */
+    /* 【需求1修改】第一組圖片 - 平板直式,圖1縮小10%並往右移80% */
     .parallax-img-1 {
         width: 216px; /* 240 × 0.9 = 216px */
         height: 333px; /* 370 × 0.9 = 333px */
-        right: 65%; /* -40% - 25% = -65%,也就是right: 65% */
+        right: 40%; /* -40% + 80% = 40% */
     }
 
     .parallax-img-2 {
@@ -882,11 +882,11 @@ button:focus-visible {
         height: 400px;
     }
 
-    /* 【需求1修改】第一組圖片 - 手機橫式,圖1縮小10%並往左移25% */
+    /* 【需求1修改】第一組圖片 - 手機橫式,圖1縮小10%並往右移80% */
     .parallax-img-1 {
         width: 162px; /* 180 × 0.9 = 162px */
         height: 250px; /* 278 × 0.9 = 250px */
-        right: 65%; /* -40% - 25% = -65%,也就是right: 65% */
+        right: 40%; /* -40% + 80% = 40% */
     }
 
     .parallax-img-2 {
