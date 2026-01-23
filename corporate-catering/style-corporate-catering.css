@@ -459,7 +459,7 @@ button:focus-visible {
     width: 98%; /* 70% × 1.4 */
     bottom: -5%; /* 底部隱藏5% */
     top: auto;
-    transform: translateY(-80px); /* 往上移50px */
+    transform: translateY(-50px); /* 往上移50px */
 }
 
 /* 圖片4遠左在前,放大120%,底部5%隱藏,往上50px */
@@ -469,7 +469,7 @@ button:focus-visible {
     width: 84%; /* 70% × 1.2 */
     bottom: -5%; /* 底部隱藏5% */
     top: auto;
-    transform: translateY(-70px); /* 往上移50px */
+    transform: translateY(-50px); /* 往上移50px */
 }
 
 /* 文字容器 - 佔右側約2/3空間,往上移50px */
