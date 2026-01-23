@@ -426,13 +426,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // 圖片視差效果 - 圖片3移動慢(-30px),圖片4移動快(-70px)
+            // 圖片視差效果 - 圖片3移動慢(-30px),圖片4移動快(-80px)
             gsap.to(img3, {
                 scrollTrigger: {
                     trigger: section,
                     start: 'top bottom',
                     end: 'bottom top',
-                    scrub: 2.5 // 更慢的視差速度
+                    scrub: 3 // 更慢的視差速度
                 },
                 y: -30,
                 ease: 'none'
@@ -443,9 +443,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     trigger: section,
                     start: 'top bottom',
                     end: 'bottom top',
-                    scrub: 1.2 // 更快的視差速度
+                    scrub: 1 // 更快的視差速度
                 },
-                y: -70,
+                y: -80,
                 ease: 'none'
             });
         }
