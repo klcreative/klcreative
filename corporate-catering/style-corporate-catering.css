@@ -411,6 +411,13 @@ button:focus-visible {
     justify-content: center;
 }
 
+/* 【需求2&4修改】第二組圖片容器 - 寬度600px，高度500px，整體上移15px */
+.parallax-section:nth-of-type(2) .parallax-images-container {
+    width: 600px;
+    height: 500px;
+    transform: translateY(-15px);
+}
+
 /* 圖片基礎樣式 */
 .parallax-img {
     position: absolute;
@@ -420,11 +427,11 @@ button:focus-visible {
     will-change: transform;
 }
 
-/* 第一組圖片 (圖1+2) - 2在前面 */
+/* 【需求1修改】第一組圖片 (圖1+2) - 2在前面，圖1縮小10%並往左移40% */
 .parallax-img-1 {
-    width: 280px;
-    height: 432px;
-    right: 0;
+    width: 252px; /* 280 × 0.9 = 252px，縮小10% */
+    height: 389px; /* 432 × 0.9 = 389px，縮小10% */
+    right: -40%; /* 往左移40% */
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
@@ -439,7 +446,7 @@ button:focus-visible {
     z-index: 2;
 }
 
-/* 第二組圖片 (圖3+4) - 4在前面，底部對齊 */
+/* 【需求2&3&4修改】第二組圖片 (圖3+4) - 4在前面，底部對齊，容器上移15px，圖4縮小20% */
 .parallax-img-3 {
     width: 300px;
     height: 480px;
@@ -449,8 +456,8 @@ button:focus-visible {
 }
 
 .parallax-img-4 {
-    width: 340px;
-    height: 520px;
+    width: 272px; /* 340 × 0.8 = 272px，縮小20% */
+    height: 416px; /* 520 × 0.8 = 416px，縮小20% */
     left: 0;
     bottom: 0;
     z-index: 2;
@@ -692,11 +699,11 @@ button:focus-visible {
         height: 480px;
     }
 
-    /* 第一組圖片 - 手機直式 */
+    /* 【需求1修改】第一組圖片 - 手機直式，圖1縮小10%並往左移40% */
     .parallax-img-1 {
-        width: 200px;
-        height: 308px;
-        right: 10%;
+        width: 180px; /* 200 × 0.9 = 180px */
+        height: 277px; /* 308 × 0.9 = 277px */
+        right: -30%; /* 10% - 40% = -30% */
         top: 50%;
     }
 
@@ -707,7 +714,7 @@ button:focus-visible {
         top: 50%;
     }
 
-    /* 第二組圖片 - 手機直式 */
+    /* 【需求2&3&4修改】第二組圖片 - 手機直式，圖4縮小20%，容器上移15px */
     .parallax-img-3 {
         width: 220px;
         height: 352px;
@@ -715,9 +722,16 @@ button:focus-visible {
     }
 
     .parallax-img-4 {
-        width: 260px;
-        height: 398px;
+        width: 208px; /* 260 × 0.8 = 208px */
+        height: 318px; /* 398 × 0.8 = 318px */
         left: 10%;
+    }
+
+    /* 【需求2&4修改】第二組圖片容器 - 手機直式，寬度100%，高度380px，上移15px */
+    .parallax-section:nth-of-type(2) .parallax-images-container {
+        width: 100%;
+        height: 380px;
+        transform: translateY(-15px);
     }
 
     .parallax-text-container {
@@ -785,9 +799,11 @@ button:focus-visible {
         height: 540px;
     }
 
+    /* 【需求1修改】第一組圖片 - 平板直式，圖1縮小10%並往左移40% */
     .parallax-img-1 {
-        width: 240px;
-        height: 370px;
+        width: 216px; /* 240 × 0.9 = 216px */
+        height: 333px; /* 370 × 0.9 = 333px */
+        right: -40%;
     }
 
     .parallax-img-2 {
@@ -795,14 +811,22 @@ button:focus-visible {
         height: 497px;
     }
 
+    /* 【需求2&3&4修改】第二組圖片 - 平板直式，圖4縮小20%，容器上移15px */
     .parallax-img-3 {
         width: 260px;
         height: 416px;
     }
 
     .parallax-img-4 {
-        width: 300px;
-        height: 459px;
+        width: 240px; /* 300 × 0.8 = 240px */
+        height: 367px; /* 459 × 0.8 = 367px */
+    }
+
+    /* 【需求2&4修改】第二組圖片容器 - 平板直式，寬度520px，高度450px，上移15px */
+    .parallax-section:nth-of-type(2) .parallax-images-container {
+        width: 520px;
+        height: 450px;
+        transform: translateY(-15px);
     }
 
     .gallery-container {
@@ -850,9 +874,11 @@ button:focus-visible {
         height: 400px;
     }
 
+    /* 【需求1修改】第一組圖片 - 手機橫式，圖1縮小10%並往左移40% */
     .parallax-img-1 {
-        width: 180px;
-        height: 278px;
+        width: 162px; /* 180 × 0.9 = 162px */
+        height: 250px; /* 278 × 0.9 = 250px */
+        right: -40%;
     }
 
     .parallax-img-2 {
@@ -860,14 +886,22 @@ button:focus-visible {
         height: 373px;
     }
 
+    /* 【需求2&3&4修改】第二組圖片 - 手機橫式，圖4縮小20%，容器上移15px */
     .parallax-img-3 {
         width: 200px;
         height: 320px;
     }
 
     .parallax-img-4 {
-        width: 230px;
-        height: 352px;
+        width: 184px; /* 230 × 0.8 = 184px */
+        height: 282px; /* 352 × 0.8 = 282px */
+    }
+
+    /* 【需求2&4修改】第二組圖片容器 - 手機橫式，寬度480px，高度340px，上移15px */
+    .parallax-section:nth-of-type(2) .parallax-images-container {
+        width: 480px;
+        height: 340px;
+        transform: translateY(-15px);
     }
 
     .text-title {
