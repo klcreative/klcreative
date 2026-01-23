@@ -1,551 +1,998 @@
-/* Version: 2026-0123-UPDATED */
-document.addEventListener('DOMContentLoaded', () => {
-    // =========================================
-    // 初始化 GSAP 與 Lenis 平滑滾動
-    // =========================================
-    gsap.registerPlugin(ScrollTrigger);
+/* Version: 2026-0120-0200 */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Microsoft JhengHei', 'Lexend', sans-serif;
+    background: #000;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100%;
+    position: relative;
+}
+
+/* ========================================= 無障礙功能 ========================================= */
+
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #ed1e79;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 9999;
+    border-radius: 0 0 4px 0;
+    font-weight: bold;
+    transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+*:focus-visible {
+    outline: 3px solid #ed1e79;
+    outline-offset: 2px;
+    transition: outline 0.15s ease;
+}
+
+a:focus-visible, 
+button:focus-visible {
+    outline: 3px solid #ed1e79;
+    outline-offset: 3px;
+}
+
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
     
-    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    html {
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ========================================= 漢堡選單樣式 ========================================= */
+
+#hamburger-nav-toggle {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    width: 35px;
+    height: 30px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    background: transparent;
+    border: none;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+#hamburger-nav-toggle::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+}
+
+.hamburger-line {
+    display: block;
+    height: 3px;
+    background-color: #ed1e79;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger-line-top { width: 100%; }
+.hamburger-line-middle { width: 70%; margin: 0 auto; }
+.hamburger-line-bottom { width: 100%; }
+
+#hamburger-nav-toggle:hover .hamburger-line-middle,
+#hamburger-nav-toggle:focus-visible .hamburger-line-middle { 
+    width: 100%; 
+}
+
+#hamburger-nav-toggle.active .hamburger-line-top { 
+    transform: translateY(10px) rotate(45deg); 
+    width: 100%; 
+}
+#hamburger-nav-toggle.active .hamburger-line-middle { 
+    opacity: 0; 
+    width: 100%; 
+}
+#hamburger-nav-toggle.active .hamburger-line-bottom { 
+    transform: translateY(-10px) rotate(-45deg); 
+    width: 100%; 
+}
+
+#hamburger-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 2500;
+    justify-content: center;
+    align-items: center;
+}
+
+#hamburger-nav-menu {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 90vw;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+#hamburger-nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    transition: color 0.3s ease, transform 0.2s ease;
+    word-wrap: break-word;
+    border: none;
+    border-radius: 4px;
+}
+
+#hamburger-nav-menu a:hover,
+#hamburger-nav-menu a:focus {
+    color: #ed1e79;
+    transform: translateX(5px);
+}
+
+#hamburger-nav-menu .lang-switch {
+    color: #ed1e79 !important;
+    font-weight: 600;
+}
+
+#hamburger-nav-menu .lang-switch:hover,
+#hamburger-nav-menu .lang-switch:focus {
+    color: #ff4d94 !important;
+}
+
+@media (orientation: landscape) and (min-width: 768px) {
+    #hamburger-nav-menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 30px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 15px;
+        max-width: 90vw;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    #hamburger-nav-menu a {
+        font-size: 1.1rem;
+        padding: 15px 10px;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    #hamburger-nav-menu a:nth-child(1) { order: 1; }
+    #hamburger-nav-menu a:nth-child(2) { order: 4; }
+    #hamburger-nav-menu a:nth-child(3) { order: 7; }
+    #hamburger-nav-menu a:nth-child(4) { order: 2; }
+    #hamburger-nav-menu a:nth-child(5) { order: 5; }
+    #hamburger-nav-menu a:nth-child(6) { order: 8; }
+    #hamburger-nav-menu a:nth-child(7) { order: 3; }
+    #hamburger-nav-menu a:nth-child(8) { order: 6; }
+    #hamburger-nav-menu a:nth-child(9) { order: 9; }
+}
+
+/* ========================================= 背景視差層 ========================================= */
+.parallax-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images01/C-1-F&B.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    will-change: transform;
+    transform: scale(1.2);
+    transform-origin: center center;
+}
+
+/* ========================================= Hero Section ========================================= */
+.hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.images {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.images img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    object-position: center;
+    z-index: var(--index);
+    will-change: mask-image;
+    display: block;
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 10;
+    color: #fff;
+    padding-bottom: 5px;
+}
+
+.content .center {
+    width: 100%;
+    max-width: clamp(300px, 80vw, 1000px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.content .center .title-bottom {
+    text-align: center;
+}
+
+.content .center .title-bottom .hero-title {
+    font-size: clamp(80px, 15vw, 150px);
+    font-weight: 700;
+    margin: 0;
+    line-height: 0.95;
+    padding-bottom: 0;
+    color: #ffffff;
+}
+
+/* ========================================= Last Section ========================================= */
+.last-section {
+    width: 100vw;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px 40px 20px;
+    position: relative;
+}
+
+.last-section-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 0;
+}
+
+/* Reimagined 標題 - 桃紅色,與上方接近 */
+.last-section-content .title-reimagined {
+    font-size: clamp(80px, 15vw, 150px);
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    padding-top: 0;
+    align-self: stretch;
+    text-align: center;
+}
+
+.last-section-content .highlight {
+    color: #ed1e79;
+}
+
+/* 敘述文字 */
+.last-section-content .description-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    text-align: center;
+    margin-top: 0;
+}
+
+/* ========================================= Bars 區域標題 ========================================= */
+.bars-title-container {
+    position: relative;
+    width: 100%;
+    margin: 120px 0 0 0;
+    text-align: center;
+}
+
+.bars-title-top {
+    font-family: 'Lexend', sans-serif;
+    font-size: 65px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 60px;
+}
+
+.bars-title-top .pink {
+    color: #ed1e79;
+    display: block;
+}
+
+.bars-title-top .white {
+    color: white;
+    display: block;
+}
+
+/* ========================================= 新視差效果區域 ========================================= */
+
+.parallax-section {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    margin: 100px 0;
+    padding: 40px 20px;
+    position: relative;
+}
+
+/* 圖片容器 - 佔左側約1/3空間,添加 overflow hidden確保底部被裁切 */
+.parallax-images-container {
+    flex: 0 0 40%;
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* 圖片樣式基礎設定 */
+.parallax-img {
+    position: absolute;
+    width: 70%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    will-change: transform;
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+/* 去除前景圖片的 halo 邊緣效果 */
+.parallax-img-2,
+.parallax-img-4 {
+    filter: contrast(1.02) saturate(1.01);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* 第一組圖片(新鮮+技藝)*/
+/* 圖片1在後,縮小10%,往左9%,往上5%,底部5%隱藏 */
+.parallax-img-1 {
+    right: 9%;
+    z-index: 1;
+    width: 63%; /* 70% × 0.9 = 縮小10% */
+    bottom: -5%;
+    top: -5%; /* 往上5% */
+}
+
+/* 圖片2在前,放大130%,無底部隱藏 */
+.parallax-img-2 {
+    left: 0;
+    z-index: 2;
+    width: 91%; /* 70% × 1.3 */
+}
+
+/* 第二組圖片(彈性+信賴)- 兩張底部對齊,都有底部隱藏增強視差 */
+/* 圖片3靠右,放大140%,底部20%隱藏,視差速度慢 */
+.parallax-img-3 {
+    right: -10%;
+    z-index: 1;
+    width: 98%; /* 70% × 1.4 */
+    top: 30%; /* 調整與圖片4底部對齊 */
+    bottom: auto;
+}
+
+/* 圖片4靠左在前,放大120%,底部20%隱藏,視差速度快 */
+.parallax-img-4 {
+    left: -5%; /* 往右移5% */
+    z-index: 2;
+    width: 84%; /* 70% × 1.2 */
+    top: 25%; /* 往下移5% */
+    bottom: auto;
+}
+
+/* 文字容器 - 佔右側約2/3空間 */
+.parallax-text-container {
+    flex: 0 0 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding-left: 40px;
+}
+
+/* 文字區塊 */
+.text-block {
+    opacity: 0;
+    transform: translateY(80px);
+    will-change: transform, opacity;
+}
+
+/* 標題樣式 */
+.text-title {
+    font-family: 'Lexend', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: #ed1e79;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* 敘述文字 */
+.text-description {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+/* ========================================= 相片牆 Gallery ========================================= */
+.gallery-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 120px;
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 100%;
+    padding: 0;
+}
+
+.gallery-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover,
+.gallery-item:focus {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(237, 30, 121, 0.4);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ========================================= 相片燈箱 ========================================= */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 4000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    display: block;
+    opacity: 1;
+}
+
+.lightbox-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-image-wrapper {
+    position: relative;
+    max-width: 85vw;
+    max-height: 85vh;
+    padding: 40px;
+    background: rgba(50, 50, 50, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-image-wrapper img {
+    max-width: 100%;
+    max-height: calc(85vh - 80px);
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(237, 30, 121, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    background: rgba(237, 30, 121, 1);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.lightbox-close svg {
+    pointer-events: none;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-nav:hover,
+.lightbox-nav:focus {
+    background: rgba(237, 30, 121, 0.8);
+    border-color: rgba(237, 30, 121, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+    left: 30px;
+}
+
+.lightbox-next {
+    right: 30px;
+}
+
+.lightbox-nav svg {
+    pointer-events: none;
+}
+
+/* ========================================= 響應式設計 - 手機直式 ========================================= */
+@media (max-width: 834px) and (orientation: portrait) {
+    .parallax-background {
+        background-position: 40% center;
+        transform: scale(1.3);
+        background-size: cover;
+    }
+
+    .content {
+        padding-bottom: 5px;
+    }
+
+    .content .center .title-bottom .hero-title {
+        font-size: clamp(52px, 12vw, 94px);
+    }
+
+    .last-section-content .title-reimagined {
+        font-size: clamp(41px, 12vw, 80px);
+    }
+
+    .last-section-content .description-text {
+        font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+    }
+
+    .bars-title-top {
+        font-size: 45px;
+        margin-bottom: 40px;
+    }
+
+    /* 視差區域 - 改為垂直排列 */
+    .parallax-section {
+        flex-direction: column;
+        gap: 20px;
+        min-height: auto;
+        margin: 60px 0;
+        padding: 20px;
+    }
+
+    .parallax-images-container {
+        flex: none;
+        width: 100%;
+        min-height: 350px;
+        margin-bottom: 0;
+        overflow: hidden;
+    }
+
+    /* 手機直式:圖片1往左20%並往下40% */
+    .parallax-img-1 {
+        right: 23%; /* 原3% + 20% = 23% */
+        z-index: 1;
+        width: 63%;
+        top: 35%; /* 原-5% + 40% = 35% */
+        bottom: auto;
+    }
+
+    /* 手機直式:圖片2調整 */
+    .parallax-img-2 {
+        left: -5%;
+        z-index: 2;
+        width: 91%;
+        top: 20px;
+    }
+
+    /* 手機直式:圖片3調整 - 確保可見,放大30% */
+    .parallax-img-3 {
+        right: 5%; /* 調整讓圖片進入視野 */
+        z-index: 1;
+        width: 97.5%; /* 75% × 1.3 = 放大30% */
+        top: 5%; /* 調整與圖片4底部對齊 */
+        bottom: auto;
+    }
+
+    /* 手機直式:圖片4調整 - 確保可見,放大50% */
+    .parallax-img-4 {
+        left: 5%; /* 調整讓圖片進入視野 */
+        z-index: 2;
+        width: 112.5%; /* 75% × 1.5 = 放大50% */
+        top: 10%; /* 調整垂直位置 */
+        bottom: auto;
+    }
+
+    .parallax-text-container {
+        flex: none;
+        width: 100%;
+        padding-left: 0;
+        gap: 20px;
+        margin-top: -15px;
+    }
+
+    .text-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+        align-items: center;
+        text-align: center;
+    }
+
+    .text-description {
+        text-align: center;
+    }
+
+    .last-section {
+        padding: 0 20px 40px 20px;
+    }
     
-    const lenis = new Lenis({
-        duration: isMac ? 0.6 : 1.0,
-        easing: (t) => 1 - Math.pow(1 - t, 3),
-        smooth: true,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        wheelMultiplier: isMac ? 2 : 1,
-        infinite: false,
-        normalizeWheel: true
-    });
-
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-
-    // =========================================
-    // 漢堡選單功能
-    // =========================================
-    const hamburgerNavToggle = document.getElementById('hamburger-nav-toggle');
-    const hamburgerNavOverlay = document.getElementById('hamburger-nav-overlay');
-    const hamburgerNavMenu = document.getElementById('hamburger-nav-menu');
-    const hamburgerNavLinks = document.querySelectorAll('#hamburger-nav-menu a');
-    const menuStatus = document.getElementById('menu-status');
-
-    function announceMenuState(isOpen) {
-        if (menuStatus) {
-            const lang = document.documentElement.lang;
-            const message = isOpen 
-                ? (lang === 'zh-Hant' ? '選單已開啟' : 'Menu opened')
-                : (lang === 'zh-Hant' ? '選單已關閉' : 'Menu closed');
-            menuStatus.textContent = message;
-            setTimeout(() => { menuStatus.textContent = ''; }, 1000);
-        }
+    #hamburger-nav-menu {
+        gap: 10px;
     }
-
-    if (hamburgerNavToggle && hamburgerNavOverlay) {
-        hamburgerNavToggle.addEventListener('click', function() {
-            const isOpen = hamburgerNavOverlay.style.display === 'flex';
-            hamburgerNavOverlay.style.display = isOpen ? 'none' : 'flex';
-            hamburgerNavToggle.setAttribute('aria-expanded', !isOpen);
-            
-            const lang = document.documentElement.lang;
-            const newLabel = isOpen 
-                ? (lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu')
-                : (lang === 'zh-Hant' ? '關閉導覽選單' : 'Close navigation menu');
-            hamburgerNavToggle.setAttribute('aria-label', newLabel);
-            
-            if (isOpen) {
-                hamburgerNavToggle.classList.remove('active');
-                hamburgerNavToggle.blur();
-                announceMenuState(false);
-            } else {
-                hamburgerNavToggle.classList.add('active');
-                announceMenuState(true);
-                const firstLink = hamburgerNavMenu.querySelector('a');
-                if (firstLink) {
-                    setTimeout(() => firstLink.focus(), 100);
-                }
-            }
-        });
-
-        hamburgerNavOverlay.addEventListener('click', function(e) {
-            if (e.target === hamburgerNavOverlay) {
-                hamburgerNavOverlay.style.display = 'none';
-                hamburgerNavToggle.classList.remove('active');
-                hamburgerNavToggle.setAttribute('aria-expanded', 'false');
-                const lang = document.documentElement.lang;
-                hamburgerNavToggle.setAttribute('aria-label', 
-                    lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu'
-                );
-                hamburgerNavToggle.focus();
-                announceMenuState(false);
-            }
-        });
-    }
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && hamburgerNavOverlay && hamburgerNavOverlay.style.display === 'flex') {
-            hamburgerNavOverlay.style.display = 'none';
-            hamburgerNavToggle.classList.remove('active');
-            hamburgerNavToggle.setAttribute('aria-expanded', 'false');
-            const lang = document.documentElement.lang;
-            hamburgerNavToggle.setAttribute('aria-label', 
-                lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu'
-            );
-            hamburgerNavToggle.focus();
-            announceMenuState(false);
-        }
-    });
-
-    hamburgerNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    if (hamburgerNavOverlay) {
-                        hamburgerNavOverlay.style.display = 'none';
-                        hamburgerNavToggle.classList.remove('active');
-                        hamburgerNavToggle.setAttribute('aria-expanded', 'false');
-                        const lang = document.documentElement.lang;
-                        hamburgerNavToggle.setAttribute('aria-label', 
-                            lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu'
-                        );
-                        announceMenuState(false);
-                    }
-                    lenis.scrollTo(targetElement, { offset: 0, duration: 1 });
-                }
-            } else {
-                if (hamburgerNavOverlay) {
-                    hamburgerNavOverlay.style.display = 'none';
-                    hamburgerNavToggle.classList.remove('active');
-                    hamburgerNavToggle.setAttribute('aria-expanded', 'false');
-                    const lang = document.documentElement.lang;
-                    hamburgerNavToggle.setAttribute('aria-label', 
-                        lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu'
-                    );
-                }
-            }
-        });
-    });
-
-    if (hamburgerNavMenu) {
-        const focusableElements = hamburgerNavMenu.querySelectorAll('a');
-        const firstFocusable = focusableElements[0];
-        const lastFocusable = focusableElements[focusableElements.length - 1];
-
-        hamburgerNavMenu.addEventListener('keydown', function(e) {
-            if (e.key === 'Tab') {
-                if (e.shiftKey) {
-                    if (document.activeElement === firstFocusable) {
-                        e.preventDefault();
-                        lastFocusable.focus();
-                    }
-                } else {
-                    if (document.activeElement === lastFocusable) {
-                        e.preventDefault();
-                        firstFocusable.focus();
-                    }
-                }
-            }
-        });
-    }
-
-    // =========================================
-    // 背景視差動態效果
-    // =========================================
-    const parallaxBg = document.querySelector('.parallax-background');
-    let lastScrollY = 0;
-    let ticking = false;
-
-    function updateBackgroundParallax() {
-        const scrollY = window.pageYOffset;
-        
-        if (Math.abs(scrollY - lastScrollY) < 2) {
-            ticking = false;
-            return;
-        }
-        
-        lastScrollY = scrollY;
-        
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const scrollProgress = scrollY / (documentHeight - windowHeight);
-        
-        let baseScale = 1.2;
-        if (window.innerWidth <= 834 && window.matchMedia("(orientation: portrait)").matches) {
-            baseScale = 1.3;
-        } else if (window.matchMedia("(orientation: landscape)").matches && window.innerHeight <= 500) {
-            baseScale = 1.4;
-        } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
-            baseScale = 1.25;
-        }
-        
-        const scale = baseScale + (scrollProgress * 0.3);
-        const translateY = (scrollProgress - 0.5) * 20;
-        
-        parallaxBg.style.transform = `scale(${scale}) translateY(${translateY}%)`;
-        
-        ticking = false;
-    }
-
-    function requestParallaxUpdate() {
-        if (!ticking) {
-            requestAnimationFrame(updateBackgroundParallax);
-            ticking = true;
-        }
-    }
-
-    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
-    window.addEventListener('resize', requestParallaxUpdate, { passive: true });
-    updateBackgroundParallax();
-
-    // =========================================
-    // Hero Section 圖片遮罩滾動效果
-    // =========================================
-    const maskImages = gsap.utils.toArray('.images .mask-img');
-
-    ScrollTrigger.create({
-        trigger: '.hero',
-        start: 'top top',
-        end: `+=${window.innerHeight * 5}px`,
-        pin: true,
-        pinSpacing: true,
-        scrub: 1,
-        onUpdate: (self) => {
-            const progress = self.progress;
-            const totalImages = maskImages.length;
-            const segmentSize = 1 / totalImages;
-
-            maskImages.forEach((img, index) => {
-                const imageStart = index * segmentSize;
-                const imageEnd = (index + 1) * segmentSize;
-                let imageProgress = 0;
-
-                if (progress >= imageStart && progress <= imageEnd) {
-                    imageProgress = (progress - imageStart) / segmentSize;
-                } else if (progress > imageEnd) {
-                    imageProgress = 1;
-                }
-
-                const leftgradie = 50 - (imageProgress * 50);
-                const rightgradie = 50 + (imageProgress * 50);
-                const deg = 90 + (imageProgress * 40);
-
-                gsap.set(img, {
-                    maskImage: `linear-gradient(${deg}deg, black ${leftgradie}%, transparent ${leftgradie}%, transparent ${rightgradie}%, black ${rightgradie}%)`
-                });
-            });
-        }
-    });
-
-    // =========================================
-    // 標題文字淡入動畫
-    // =========================================
-    gsap.from('.content .center .title-bottom .hero-title', {
-        scrollTrigger: {
-            trigger: '.hero',
-            start: 'top center',
-            end: 'center center',
-            scrub: 1
-        },
-        opacity: 0,
-        y: 50,
-        scale: 0.9
-    });
-
-    // =========================================
-    // Last Section 內容淡入動畫
-    // =========================================
-    gsap.from('.last-section-content .title-reimagined', {
-        scrollTrigger: {
-            trigger: '.last-section',
-            start: 'top 80%',
-            end: 'top 50%',
-            scrub: 1
-        },
-        opacity: 0,
-        y: 60,
-        scale: 0.95
-    });
-
-    gsap.from('.last-section-content .description-text', {
-        scrollTrigger: {
-            trigger: '.last-section',
-            start: 'top 75%',
-            end: 'top 45%',
-            scrub: 1
-        },
-        opacity: 0,
-        y: 40
-    });
-
-    gsap.from('.bars-title-container', {
-        scrollTrigger: {
-            trigger: '.bars-title-container',
-            start: 'top 85%',
-            end: 'top 55%',
-            scrub: 1
-        },
-        opacity: 0,
-        y: 50
-    });
-
-    // =========================================
-    // 【需求1】圖片1~4 輕微左右搖晃效果
-    // =========================================
-    const parallaxImages = document.querySelectorAll('.parallax-img-1, .parallax-img-2, .parallax-img-3, .parallax-img-4');
     
-    parallaxImages.forEach((img, index) => {
-        // 為每個圖片創建不同的搖晃參數,讓效果更自然
-        const swayAmount = 8; // 左右搖晃幅度 8px
-        const duration = 4 + (index * 0.5); // 每個圖片不同速度,更自然
-        const delay = index * 0.3; // 錯開開始時間
-        
-        gsap.to(img, {
-            x: `+=${swayAmount}`,
-            duration: duration,
-            ease: 'sine.inOut',
-            yoyo: true,
-            repeat: -1,
-            delay: delay
-        });
-    });
+    #hamburger-nav-menu a {
+        font-size: 1.0rem;
+    }
 
-    // =========================================
-    // 新視差區域動畫效果
-    // =========================================
-    const parallaxSections = document.querySelectorAll('.parallax-section');
+    .photo-gallery {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
 
-    parallaxSections.forEach((section, sectionIndex) => {
-        const img1 = section.querySelector('.parallax-img-1');
-        const img2 = section.querySelector('.parallax-img-2');
-        const img3 = section.querySelector('.parallax-img-3');
-        const img4 = section.querySelector('.parallax-img-4');
-        const textBlock1 = section.querySelector('.text-block-1');
-        const textBlock2 = section.querySelector('.text-block-2');
-
-        // 第一組圖片(新鮮+技藝) - 只保留視差效果
-        if (img1 && img2) {
-            // 圖片1視差效果 - 移動快(-50px)
-            gsap.to(img1, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1.5
-                },
-                y: -50,
-                ease: 'none'
-            });
-
-            // 圖片2視差效果 - 移動慢(-20px)
-            gsap.to(img2, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 2
-                },
-                y: -20,
-                ease: 'none'
-            });
-        }
-
-        // 【需求3修改】第二組圖片(彈性+信賴) - 添加視差效果,提高30px
-        if (img3 && img4) {
-            // 圖片3視差效果 - 提高30px,最多向上移動5%
-            gsap.to(img3, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 2
-                },
-                y: -30, // 提高30px
-                ease: 'none'
-            });
-
-            // 圖片4視差效果 - 提高30px,最多向上移動5%
-            gsap.to(img4, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1.5
-                },
-                y: -30, // 提高30px
-                ease: 'none'
-            });
-        }
-
-        // 文字區塊動畫 - 提早開始,與圖片同步
-        if (textBlock1) {
-            gsap.to(textBlock1, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    end: 'top 40%',
-                    scrub: 1
-                },
-                y: 0,
-                opacity: 1,
-                ease: 'back.out(1.4)'
-            });
-        }
-
-        if (textBlock2) {
-            gsap.to(textBlock2, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    end: 'top 40%',
-                    scrub: 1
-                },
-                y: 0,
-                opacity: 1,
-                ease: 'back.out(1.4)'
-            });
-        }
-    });
-
-    gsap.from('.gallery-container', {
-        scrollTrigger: {
-            trigger: '.gallery-container',
-            start: 'top 85%',
-            end: 'top 55%',
-            scrub: 1
-        },
-        opacity: 0,
-        y: 50
-    });
-
-    // =========================================
-    // 照片牆預載入優化
-    // =========================================
-    const galleryItems = document.querySelectorAll('.gallery-item img');
-    let loadedCount = 0;
-
-    galleryItems.forEach((img, index) => {
-        if (index < 4) {
-            const preloadImg = new Image();
-            preloadImg.src = img.src;
-            preloadImg.onload = () => {
-                loadedCount++;
-                if (loadedCount === 4) {
-                    console.log('First 4 gallery images preloaded');
-                }
-            };
-        }
-    });
-
-    // =========================================
-    // 相片燈箱功能
-    // =========================================
-    const lightbox = document.getElementById('photo-lightbox');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const lightboxPrev = document.querySelector('.lightbox-prev');
-    const lightboxNext = document.querySelector('.lightbox-next');
-    const galleryButtons = document.querySelectorAll('.gallery-item');
+    .lightbox-image-wrapper {
+        max-width: 92vw;
+        max-height: 80vh;
+        padding: 25px;
+    }
     
-    let currentImageIndex = 0;
-    const totalImages = 16;
+    .lightbox-close {
+        top: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+    }
     
-    const currentPath = window.location.pathname;
-    const isEnglishVersion = currentPath.includes('/en/');
+    .lightbox-nav {
+        width: 50px;
+        height: 50px;
+    }
     
-    const imageBasePath = isEnglishVersion 
-        ? '../../corporate-catering/image07/'
-        : 'image07/';
-
-    function openLightbox(index) {
-        currentImageIndex = index;
-        updateLightboxImage();
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        setTimeout(() => lightboxClose.focus(), 100);
+    .lightbox-prev {
+        left: 15px;
+    }
+    
+    .lightbox-next {
+        right: 15px;
     }
 
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-        const triggerButton = galleryButtons[currentImageIndex];
-        if (triggerButton) {
-            triggerButton.focus();
-        }
+    .gallery-container {
+        margin-top: 60px;
+    }
+}
+
+/* ========================================= 響應式設計 - 手機橫式 ========================================= */
+@media (orientation: landscape) and (max-height: 500px) {
+    .parallax-background {
+        transform: scale(1.4);
+        background-size: cover;
     }
 
-    function updateLightboxImage() {
-        const imageNum = currentImageIndex + 1;
-        lightboxImage.src = `${imageBasePath}${imageNum}.webp`;
-        const lang = document.documentElement.lang;
-        lightboxImage.alt = lang === 'zh-Hant' 
-            ? `企業餐飲作品 ${imageNum}` 
-            : `Corporate catering work ${imageNum}`;
+    .content {
+        padding-bottom: 5px;
     }
 
-    function showPrevImage() {
-        currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
-        updateLightboxImage();
+    .content .center .title-bottom .hero-title {
+        font-size: clamp(50px, 12vw, 90px);
     }
 
-    function showNextImage() {
-        currentImageIndex = (currentImageIndex + 1) % totalImages;
-        updateLightboxImage();
+    .last-section-content .title-reimagined {
+        font-size: clamp(50px, 12vw, 90px);
     }
 
-    galleryButtons.forEach((item, index) => {
-        item.addEventListener('click', () => openLightbox(index));
-        item.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openLightbox(index);
-            }
-        });
-    });
-
-    if (lightboxClose) {
-        lightboxClose.addEventListener('click', closeLightbox);
+    .last-section-content .description-text {
+        font-size: clamp(1rem, 2.2vw, 1.1rem);
+        line-height: 1.6;
     }
 
-    if (lightboxPrev) {
-        lightboxPrev.addEventListener('click', showPrevImage);
+    .bars-title-top {
+        font-size: 40px;
+        margin-bottom: 25px;
     }
 
-    if (lightboxNext) {
-        lightboxNext.addEventListener('click', showNextImage);
+    .parallax-section {
+        min-height: 60vh;
+        gap: 40px;
+        margin: 60px 0;
+        padding: 30px 15px;
     }
 
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox || e.target.classList.contains('lightbox-backdrop')) {
-            closeLightbox();
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (lightbox.classList.contains('active')) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            } else if (e.key === 'ArrowLeft') {
-                showPrevImage();
-            } else if (e.key === 'ArrowRight') {
-                showNextImage();
-            }
-        }
-    });
-
-    // =========================================
-    // 無障礙:確保主要內容區域正確標記
-    // =========================================
-    const mainContent = document.getElementById('main-content');
-    if (mainContent && !mainContent.hasAttribute('role')) {
-        mainContent.setAttribute('role', 'main');
+    .parallax-images-container {
+        min-height: 350px;
+        overflow: hidden;
     }
-});
+
+    /* 手機橫式:保持圖片3和4的調整 */
+    .parallax-img-3 {
+        width: 98%;
+        top: 30%;
+        bottom: auto;
+    }
+
+    .parallax-img-4 {
+        width: 84%;
+        top: 25%;
+        bottom: auto;
+    }
+
+    .parallax-text-container {
+        padding-left: 0;
+    }
+
+    .text-title,
+    .text-description {
+        text-align: center;
+    }
+
+    .text-title {
+        align-items: center;
+    }
+}
+        top: 20%;
+        bottom: auto;
+    }
+
+    .text-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .last-section-content {
+        gap: 20px;
+    }
+
+    .last-section {
+        padding: 0 15px 30px 15px;
+    }
+
+    .photo-gallery {
+        gap: 10px;
+    }
+
+    .gallery-container {
+        margin-top: 60px;
+    }
+}
+
+/* ========================================= 平板尺寸調整 ========================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .parallax-background {
+        transform: scale(1.25);
+        background-size: cover;
+    }
+    
+    .content {
+        padding-bottom: 5px;
+    }
+    
+    .photo-gallery {
+        gap: 12px;
+    }
+
+    .bars-title-top {
+        font-size: 55px;
+    }
+
+    .parallax-section {
+        gap: 40px;
+        padding: 30px 20px;
+    }
+
+    .parallax-images-container {
+        flex: 0 0 45%;
+        overflow: hidden;
+    }
+
+    /* 平板:保持圖片3和4的調整 */
+    .parallax-img-3 {
+        width: 98%;
+        top: 30%;
+        bottom: auto;
+    }
+
+    .parallax-img-4 {
+        width: 84%;
+        top: 25%;
+        bottom: auto;
+    }
+
+    .parallax-text-container {
+        flex: 0 0 50%;
+        padding-left: 20px;
+    }
+
+    .last-section {
+        padding: 0 20px 40px 20px;
+    }
+
+    .gallery-container {
+        margin-top: 80px;
+    }
+}
+
+/* 平板直式 - 照片牆往上移 */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .gallery-container {
+        margin-top: 60px;
+    }
+
+    .parallax-section {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .parallax-images-container,
+    .parallax-text-container {
+        flex: none;
+        width: 100%;
+    }
+
+    .parallax-images-container {
+        min-height: 400px;
+        overflow: hidden;
+    }
+
+    /* 平板直式:保持圖片3和4的調整 */
+    .parallax-img-3 {
+        width: 98%;
+        top: 25%;
+        bottom: auto;
+    }
+
+    .parallax-img-4 {
+        width: 84%;
