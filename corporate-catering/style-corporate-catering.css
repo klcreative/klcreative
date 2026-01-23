@@ -1,4 +1,4 @@
-/* Version: 2026-0124-REDESIGN */
+/* Version: 2026-0123-UPDATED */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
 * {
@@ -337,6 +337,7 @@ button:focus-visible {
     padding-top: 0;
 }
 
+/* Reimagined 標題 - 桃紅色,與上方接近 */
 .last-section-content .title-reimagined {
     font-size: clamp(80px, 15vw, 150px);
     font-weight: 700;
@@ -351,6 +352,7 @@ button:focus-visible {
     color: #ed1e79;
 }
 
+/* 敘述文字 */
 .last-section-content .description-text {
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     line-height: 1.8;
@@ -386,12 +388,12 @@ button:focus-visible {
     display: block;
 }
 
-/* ========================================= 新視差效果區域 - 重新設計 ========================================= */
+/* ========================================= 新視差效果區域 ========================================= */
 
 .parallax-section {
     width: 100%;
     max-width: 1200px;
-    min-height: 75vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -401,77 +403,88 @@ button:focus-visible {
     position: relative;
 }
 
-/* 圖片容器 - 佔左側45% */
+/* 圖片容器 - 佔左側約1/3空間,添加 overflow hidden確保底部被裁切 */
 .parallax-images-container {
-    flex: 0 0 45%;
+    flex: 0 0 40%;
     position: relative;
-    min-height: 550px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
-/* 圖片基礎樣式 */
+/* 圖片樣式基礎設定 - 移除初始transform和opacity,避免淡入動畫 */
 .parallax-img {
     position: absolute;
+    width: 70%;
     height: auto;
     border-radius: 12px;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     will-change: transform;
+    /* 移除淡入效果,圖片直接顯示 */
     opacity: 1;
+    transform: translateY(0);
 }
 
+/* 去除前景圖片的 halo 邊緣效果 */
 .parallax-img-2,
 .parallax-img-4 {
-    filter: contrast(1.02) saturate(1.05) brightness(1.02);
-    box-shadow: 0 30px 80px rgba(237, 30, 121, 0.15);
+    filter: contrast(1.02) saturate(1.01);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
-/* ===== 第一組圖片(新鮮+技藝) ===== */
+/* 第一組圖片(新鮮+技藝)- 保持原樣不動 */
+/* 圖片1在後,縮小10%,往左9%,往上5%,底部5%隱藏 */
 .parallax-img-1 {
-    right: 5%;
-    top: 15%;
+    right: 9%;
     z-index: 1;
-    width: 60%;
+    width: 63%; /* 70% × 0.9 = 縮小10% */
+    bottom: -5%;
+    top: -5%; /* 往上5% */
 }
 
+/* 圖片2在前,放大130%,無底部隱藏 - 保持原樣不動 */
 .parallax-img-2 {
     left: 0;
-    top: 8%;
     z-index: 2;
-    width: 85%;
+    width: 91%; /* 70% × 1.3 */
 }
 
-/* ===== 第二組圖片(彈性+信賴) - 全新設計 ===== */
-/* 圖片3 - 背景層，縮小，偏右下 */
+/* 【需求2修改】第二組圖片(彈性+信賴) - 圖片3底部對齊圖片4 */
+/* 圖片3 - 放大32%,底部5%隱藏,初始位置在bottom: -5% */
 .parallax-img-3 {
-    right: 0;
-    bottom: 8%;
+    right: 9%;
     z-index: 1;
-    width: 65%;
+    width: 92.4%; /* 70% × 1.2 × 1.1 = 放大32% */
+    bottom: -5%; /* 底部5%隱藏 */
+    top: auto;
 }
 
-/* 圖片4 - 前景層，放大，偏左，主視覺 */
+/* 圖片4 - 放大69%,底部5%隱藏,往左移3%,初始位置在bottom: -5% */
 .parallax-img-4 {
-    left: 0;
-    top: 12%;
+    left: -3%; /* 【需求2】: 往左移3% */
     z-index: 2;
-    width: 95%;
+    width: 118.3%; /* 70% × 1.3 × 1.3 = 放大69% */
+    bottom: -5%; /* 底部5%隱藏 */
+    top: auto;
 }
 
-/* 文字容器 - 佔右側50% */
+/* 文字容器 - 佔右側約2/3空間,往上移50px */
 .parallax-text-container {
-    flex: 0 0 50%;
+    flex: 0 0 55%;
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    padding-left: 30px;
+    gap: 60px;
+    padding-left: 40px;
+    transform: translateY(-50px); /* 往上移50px */
 }
 
 /* 文字區塊 */
 .text-block {
     opacity: 0;
-    transform: translateY(60px);
+    transform: translateY(80px);
     will-change: transform, opacity;
 }
 
@@ -659,87 +672,16 @@ button:focus-visible {
     pointer-events: none;
 }
 
-/* ========================================= 平板直式 768px-1024px ========================================= */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-    .parallax-section {
-        flex-direction: column;
-        gap: 30px;
-        min-height: auto;
-        margin: 80px 0;
-        padding: 30px 20px;
-    }
-
-    .parallax-images-container {
-        flex: none;
-        width: 100%;
-        min-height: 380px;
-        display: flex;
-        flex-direction: row;
-        gap: 3%;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* 第一組：保持原設計 */
-    .parallax-img-1 {
-        right: 5%;
-        top: 15%;
-        width: 60%;
-    }
-
-    .parallax-img-2 {
-        left: 0;
-        top: 8%;
-        width: 85%;
-    }
-
-    /* 第二組：並排顯示 */
-    .parallax-img-3 {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        top: auto;
-        left: auto;
-        width: 48%;
-        margin: 0;
-    }
-
-    .parallax-img-4 {
-        position: relative;
-        right: auto;
-        top: auto;
-        left: auto;
-        width: 48%;
-        margin: 0;
-    }
-
-    .parallax-text-container {
-        flex: none;
-        width: 100%;
-        padding-left: 0;
-        gap: 35px;
-    }
-
-    .text-title {
-        align-items: center;
-        text-align: center;
-        font-size: clamp(2.2rem, 6vw, 3.5rem);
-    }
-
-    .text-description {
-        text-align: center;
-    }
-
-    .gallery-container {
-        margin-top: 80px;
-    }
-}
-
-/* ========================================= 手機直式 max-width: 767px ========================================= */
-@media (max-width: 767px) and (orientation: portrait) {
+/* ========================================= 響應式設計 - 手機直式 ========================================= */
+@media (max-width: 834px) and (orientation: portrait) {
     .parallax-background {
         background-position: 40% center;
         transform: scale(1.3);
+        background-size: cover;
+    }
+
+    .content {
+        padding-bottom: 5px;
     }
 
     .content .center .title-bottom .hero-title {
@@ -756,72 +698,79 @@ button:focus-visible {
 
     .bars-title-top {
         font-size: 45px;
-        margin-bottom: 30px;
+        margin-bottom: 20px; /* 【需求5】: 從40px改為20px,讓下方區塊更靠近 */
     }
 
+    /* 視差區域 - 改為垂直排列 */
     .parallax-section {
         flex-direction: column;
-        gap: 25px;
+        gap: 20px;
         min-height: auto;
         margin: 60px 0;
-        padding: 20px 15px;
+        padding: 20px;
     }
 
-    /* 第二組區塊往上移，靠近標題 */
+    /* 【需求5】: 第二組區塊(彈性+信賴)往上移,更靠近標題 */
     .parallax-section:nth-of-type(2) {
-        margin-top: 40px;
+        margin-top: -20px; /* 往上移20px,更靠近"打破味蕾邊界"文字 */
     }
 
     .parallax-images-container {
         flex: none;
         width: 100%;
-        min-height: 280px;
-        display: flex;
-        flex-direction: row;
-        gap: 4%;
-        align-items: flex-start;
-        justify-content: center;
+        min-height: 350px;
+        margin-bottom: 0;
+        overflow: hidden;
     }
 
-    /* 第一組：保持原設計 */
+    /* 手機直式:圖片1往左20%並往下40% - 保持原樣不動 */
     .parallax-img-1 {
-        right: 8%;
-        top: 25%;
-        width: 58%;
-    }
-
-    .parallax-img-2 {
-        left: 0;
-        top: 15%;
-        width: 80%;
-    }
-
-    /* 第二組：並排縮小顯示 */
-    .parallax-img-3 {
-        position: relative;
-        right: auto;
+        right: 23%; /* 原3% + 20% = 23% */
+        z-index: 1;
+        width: 63%;
+        top: 35%; /* 原-5% + 40% = 35% */
         bottom: auto;
-        top: auto;
-        left: auto;
-        width: 48%;
-        margin: 0;
     }
 
-    .parallax-img-4 {
-        position: relative;
-        right: auto;
+    /* 手機直式:圖片2調整 - 保持原樣不動 */
+    .parallax-img-2 {
+        left: -5%;
+        z-index: 2;
+        width: 91%;
+        top: 20px;
+        bottom: auto;
+    }
+
+    /* 【需求4】手機直式:圖片3 - 放大32%,底部5%隱藏,初始位置在bottom: -5% */
+    .parallax-img-3 {
+        right: 9%;
+        z-index: 1;
+        width: 92.4%; /* 70% × 1.2 × 1.1 */
+        bottom: -5%; /* 底部5%隱藏 */
         top: auto;
-        left: auto;
-        width: 48%;
-        margin: 0;
+    }
+
+    /* 【需求4】手機直式:圖片4 - 放大69%,底部5%隱藏,往左移3%,初始位置在bottom: -5% */
+    .parallax-img-4 {
+        left: -3%; /* 往左移3% */
+        z-index: 2;
+        width: 118.3%; /* 70% × 1.3 × 1.3 */
+        bottom: -5%; /* 底部5%隱藏 */
+        top: auto;
     }
 
     .parallax-text-container {
         flex: none;
         width: 100%;
         padding-left: 0;
-        gap: 25px;
-        margin-top: 10px;
+        gap: 20px;
+        margin-top: -5px;
+        transform: translateY(-50px); /* 往上移50px */
+    }
+
+    /* 第一組文字區塊(新鮮+技藝)往下移10px */
+    .parallax-section:first-of-type .parallax-text-container {
+        margin-top: 10px; /* 往下移10px */
     }
 
     .text-title {
@@ -832,11 +781,14 @@ button:focus-visible {
 
     .text-description {
         text-align: center;
-        font-size: clamp(0.95rem, 4vw, 1.15rem);
+    }
+
+    .last-section {
+        padding: 0 20px 40px 20px;
     }
 
     .gallery-container {
-        margin-top: 70px;
+        margin-top: 80px;
     }
 
     .photo-gallery {
@@ -871,10 +823,83 @@ button:focus-visible {
     }
 }
 
-/* ========================================= 手機橫式 landscape + max-height: 500px ========================================= */
+/* 平板直式 - 照片牆往上移 */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .gallery-container {
+        margin-top: 60px;
+    }
+
+    .parallax-section {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .parallax-images-container,
+    .parallax-text-container {
+        flex: none;
+        width: 100%;
+    }
+
+    .parallax-images-container {
+        min-height: 400px;
+        overflow: hidden;
+    }
+
+    /* 平板直式:圖片1 - 保持原樣 */
+    .parallax-img-1 {
+        right: 9%;
+        width: 63%;
+        bottom: -5%;
+        top: -5%;
+    }
+
+    /* 平板直式:圖片2 - 保持原樣 */
+    .parallax-img-2 {
+        left: 0;
+        width: 91%;
+        bottom: auto;
+    }
+
+    /* 平板直式:圖片3 - 放大32%,底部5%隱藏,初始位置在bottom: -5% */
+    .parallax-img-3 {
+        right: 9%;
+        width: 92.4%; /* 70% × 1.2 × 1.1 */
+        bottom: -5%; /* 底部5%隱藏 */
+        top: auto;
+    }
+
+    /* 平板直式:圖片4 - 放大69%,底部5%隱藏,往左移3%,初始位置在bottom: -5% */
+    .parallax-img-4 {
+        left: -3%; /* 往左移3% */
+        width: 118.3%; /* 70% × 1.3 × 1.3 */
+        bottom: -5%; /* 底部5%隱藏 */
+        top: auto;
+    }
+
+    .parallax-text-container {
+        padding-left: 0;
+        transform: translateY(-50px);
+    }
+
+    .text-title {
+        align-items: center;
+        text-align: center;
+    }
+
+    .text-description {
+        text-align: center;
+    }
+}
+
+/* ========================================= 響應式設計 - 手機橫式 ========================================= */
 @media (orientation: landscape) and (max-height: 500px) {
     .parallax-background {
         transform: scale(1.4);
+        background-size: cover;
+    }
+
+    .content {
+        padding-bottom: 5px;
     }
 
     .content .center .title-bottom .hero-title {
@@ -896,50 +921,61 @@ button:focus-visible {
     }
 
     .parallax-section {
-        min-height: auto;
-        gap: 35px;
-        margin: 50px 0;
-        padding: 25px 20px;
+        min-height: 60vh;
+        gap: 40px;
+        margin: 60px 0;
+        padding: 30px 15px;
     }
 
     .parallax-images-container {
-        min-height: 300px;
+        min-height: 350px;
+        overflow: hidden;
     }
 
-    .parallax-img-1 {
-        right: 5%;
-        top: 15%;
-        width: 60%;
-    }
-
+    /* 手機橫式:圖片2 - 保持原樣 */
     .parallax-img-2 {
         left: 0;
-        top: 8%;
-        width: 85%;
+        width: 91%;
+        bottom: auto;
     }
 
+    /* 手機橫式:圖片3 - 放大32%,底部5%隱藏,初始位置在bottom: -5% */
     .parallax-img-3 {
-        right: 0;
-        bottom: 8%;
-        width: 65%;
+        right: 9%;
+        width: 92.4%; /* 70% × 1.2 × 1.1 */
+        bottom: -5%; /* 底部5%隱藏 */
+        top: auto;
     }
 
+    /* 手機橫式:圖片4 - 放大69%,底部5%隱藏,往左移3%,初始位置在bottom: -5% */
     .parallax-img-4 {
-        left: 0;
-        top: 12%;
-        width: 95%;
+        left: -3%; /* 往左移3% */
+        width: 118.3%; /* 70% × 1.3 × 1.3 */
+        bottom: -5%; /* 底部5%隱藏 */
+        top: auto;
     }
 
     .parallax-text-container {
-        gap: 30px;
+        padding-left: 0;
+        transform: translateY(-50px);
+    }
+
+    .text-title,
+    .text-description {
+        text-align: center;
     }
 
     .text-title {
-        font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+        align-items: center;
+        font-size: clamp(2rem, 4vw, 3rem);
     }
 
-    .text-description {
-        font-size: clamp(0.9rem, 2vw, 1.1rem);
+    .last-section-content {
+        gap: 20px;
+    }
+
+    .last-section {
+        padding: 0 20px 40px 20px;
     }
 
     .gallery-container {
@@ -947,6 +983,15 @@ button:focus-visible {
     }
 
     .photo-gallery {
+        grid-template-columns: repeat(4, 1fr);
         gap: 10px;
     }
-}
+}:圖片1 - 保持原樣 */
+    .parallax-img-1 {
+        right: 9%;
+        width: 63%;
+        bottom: -5%;
+        top: -5%;
+    }
+
+    /* 手機橫式

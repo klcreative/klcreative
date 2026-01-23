@@ -1,4 +1,4 @@
-/* Version: 2026-0124-REDESIGN */
+/* Version: 2026-0123-UPDATED */
 document.addEventListener('DOMContentLoaded', () => {
     // =========================================
     // 初始化 GSAP 與 Lenis 平滑滾動
@@ -298,14 +298,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // 圖片1~4 輕微左右搖晃效果
+    // 【需求1】圖片1~4 輕微左右搖晃效果
     // =========================================
     const parallaxImages = document.querySelectorAll('.parallax-img-1, .parallax-img-2, .parallax-img-3, .parallax-img-4');
     
     parallaxImages.forEach((img, index) => {
-        const swayAmount = 8;
-        const duration = 4 + (index * 0.5);
-        const delay = index * 0.3;
+        // 為每個圖片創建不同的搖晃參數,讓效果更自然
+        const swayAmount = 8; // 左右搖晃幅度 8px
+        const duration = 4 + (index * 0.5); // 每個圖片不同速度,更自然
+        const delay = index * 0.3; // 錯開開始時間
         
         gsap.to(img, {
             x: `+=${swayAmount}`,
@@ -318,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // 新視差區域動畫效果 - 重新設計
+    // 新視差區域動畫效果
     // =========================================
     const parallaxSections = document.querySelectorAll('.parallax-section');
 
@@ -330,12 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const textBlock1 = section.querySelector('.text-block-1');
         const textBlock2 = section.querySelector('.text-block-2');
 
-        // 檢測螢幕尺寸，決定是否使用視差效果
-        const isMobile = window.innerWidth <= 767;
-        const isTablet = window.innerWidth >= 768 && window.innerWidth <= 1024 && window.matchMedia("(orientation: portrait)").matches;
-
-        // 第一組圖片(新鮮+技藝) - 視差效果
-        if (img1 && img2 && !isMobile && !isTablet) {
+        // 第一組圖片(新鮮+技藝) - 只保留視差效果
+        if (img1 && img2) {
+            // 圖片1視差效果 - 移動快(-50px)
             gsap.to(img1, {
                 scrollTrigger: {
                     trigger: section,
@@ -347,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ease: 'none'
             });
 
+            // 圖片2視差效果 - 移動慢(-20px)
             gsap.to(img2, {
                 scrollTrigger: {
                     trigger: section,
@@ -359,9 +358,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 第二組圖片(彈性+信賴) - 視差效果
-        if (img3 && img4 && !isMobile && !isTablet) {
-            // 圖片3視差 - 移動較慢
+        // 【需求1&3修改】第二組圖片(彈性+信賴) - 添加視差效果,限制最多只能往上移動5%
+        if (img3 && img4) {
+            // 圖片3視差效果 - 移動較慢,最多向上移動5%(露出隱藏的底部)
             gsap.to(img3, {
                 scrollTrigger: {
                     trigger: section,
@@ -369,11 +368,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     end: 'bottom top',
                     scrub: 2
                 },
-                y: -15,
+                y: '-5%', // 最多向上移動5%,剛好露出隱藏的底部
                 ease: 'none'
             });
 
-            // 圖片4視差 - 移動較快
+            // 圖片4視差效果 - 移動稍快,最多向上移動5%(露出隱藏的底部)
             gsap.to(img4, {
                 scrollTrigger: {
                     trigger: section,
@@ -381,12 +380,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     end: 'bottom top',
                     scrub: 1.5
                 },
-                y: -40,
+                y: '-5%', // 最多向上移動5%
                 ease: 'none'
             });
         }
 
-        // 文字區塊動畫
+        // 文字區塊動畫 - 提早開始,與圖片同步
         if (textBlock1) {
             gsap.to(textBlock1, {
                 scrollTrigger: {
