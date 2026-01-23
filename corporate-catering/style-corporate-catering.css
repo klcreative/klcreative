@@ -460,8 +460,8 @@ button:focus-visible {
     width: 500px;
     height: 765px;
     left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
+    transform: translateX(-50%) scale(1.05);
+    bottom: -10%;
     z-index: 2;
 }
 
