@@ -451,25 +451,26 @@ button:focus-visible {
     width: 91%; /* 70% × 1.3 */
 }
 
-/* 第二組圖片(彈性+信賴)- 修改這裡 */
-/* 圖片3遠右,放大140%,底部5%隱藏,往上50px */
+/* ===================== 第二組圖片（彈性 + 信賴） ===================== */
+
+/* 圖片 3：放大 20%，底部固定遮 5%，整體往上 */
 .parallax-img-3 {
     right: -10%;
     z-index: 1;
-    width: 98%; /* 70% × 1.4 */
-    bottom: -5%; /* 底部隱藏5% */
+    width: 84%;              /* 原 70% × 1.2 = 放大 20% */
+    bottom: -5%;             /* 永遠遮住 5% */
     top: auto;
-    transform: translateY(-50px); /* 往上移50px */
+    transform: translateY(-90px); /* 往上，對齊文字中段 */
 }
 
-/* 圖片4遠左在前,放大120%,底部5%隱藏,往上50px */
+/* 圖片 4：放大 40%，底部固定遮 5%，位移稍大一點 */
 .parallax-img-4 {
     left: 5%;
     z-index: 2;
-    width: 84%; /* 70% × 1.2 */
-    bottom: -5%; /* 底部隱藏5% */
+    width: 98%;              /* 原 70% × 1.4 = 放大 40% */
+    bottom: -5%;             /* 永遠遮住 5% */
     top: auto;
-    transform: translateY(-50px); /* 往上移50px */
+    transform: translateY(-120px); /* 比 3 再高一點，看起來較快 */
 }
 
 /* 文字容器 - 佔右側約2/3空間,往上移50px */
@@ -736,25 +737,28 @@ button:focus-visible {
         top: 20px;
     }
 
-    /* 手機直式:圖片3放大120% (70% × 1.4 × 1.2 = 117.6%),底部隱藏5%,往上50px */
+   @media (max-width: 834px) and (orientation: portrait) {
+
+    /* 圖片 3：放大 30%，不要壓到「彈性」 */
     .parallax-img-3 {
         right: 0%;
         z-index: 1;
-        width: 117.6%; /* 70% × 1.4 × 1.2 = 放大20% */
-        bottom: -5%; /* 底部隱藏5% */
+        width: 91%;           /* 原 70% × 1.3 = 放大 30% */
+        bottom: -5%;
         top: auto;
-        transform: translateY(-50px); /* 往上移50px */
+        transform: translateY(-80px); /* 往上，避開「彈性」 */
     }
 
-    /* 手機直式:圖片4放大130% (70% × 1.2 × 1.3 = 109.2%),底部隱藏5%,往上50px */
+    /* 圖片 4：放大 40%，維持視差層次 */
     .parallax-img-4 {
         left: 0%;
         z-index: 2;
-        width: 109.2%; /* 70% × 1.2 × 1.3 = 放大30% */
-        bottom: -5%; /* 底部隱藏5% */
+        width: 98%;           /* 原 70% × 1.4 = 放大 40% */
+        bottom: -5%;
         top: auto;
-        transform: translateY(-50px); /* 往上移50px */
+        transform: translateY(-100px); /* 比 3 再高一點 */
     }
+}
 
     .parallax-text-container {
         flex: none;
