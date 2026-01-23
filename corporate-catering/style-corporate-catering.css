@@ -408,6 +408,7 @@ button:focus-visible {
     flex: 0 0 40%;
     position: relative;
     min-height: 500px;
+    max-width: 40%; /* 限制最大寬度,防止容器變大 */
     display: flex;
     align-items: center;
     justify-content: center;
