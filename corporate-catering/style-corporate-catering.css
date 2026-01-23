@@ -1,0 +1,110 @@
+/* ========================================= 全新視差效果區域設計 ========================================= */
+
+.parallax-section {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    margin: 100px 0;
+    padding: 60px 20px;
+    position: relative;
+}
+
+/* 圖片容器 - 固定寬度 */
+.parallax-images-container {
+    flex: 0 0 45%;
+    position: relative;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 【需求2&3修改】第二組圖片容器 - 寬度700px(避免陰影被裁切),高度560px(增加60px避免裁切),整體上移45px */
+.parallax-section:nth-of-type(2) .parallax-images-container {
+    width: 700px; /* 從600px改為700px,避免左右陰影被裁切 */
+    height: 560px; /* 從500px改為560px */
+    transform: translateY(-45px);
+    overflow: visible; /* 確保陰影不被裁切 */
+}
+
+/* 圖片基礎樣式 */
+.parallax-img {
+    position: absolute;
+    border-radius: 16px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+    object-fit: cover;
+    will-change: transform;
+}
+
+/* 【需求1修改】第一組圖片 (圖1+2) - 2在前面,圖1縮小10%並往左移25% */
+.parallax-img-1 {
+    width: 252px; /* 280 × 0.9 = 252px,縮小10% */
+    height: 389px; /* 432 × 0.9 = 389px,縮小10% */
+    right: 65%; /* -40% - 25% = -65%,也就是right: 65%,往左移25% */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.parallax-img-2 {
+    width: 320px;
+    height: 568px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+/* 【需求2&3修改】第二組圖片 (圖3+4) - 4在前面,底部對齊,水平置中 */
+.parallax-img-3 {
+    width: 300px;
+    height: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0; /* 改回0,移動交給JS的GSAP處理 */
+    z-index: 1;
+}
+
+.parallax-img-4 {
+    width: 272px; /* 340 × 0.8 = 272px,縮小20% */
+    height: 416px; /* 520 × 0.8 = 416px,縮小20% */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0; /* 改回0,移動交給JS的GSAP處理 */
+    z-index: 2;
+}
+
+/* 文字容器 */
+.parallax-text-container {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* 文字區塊 */
+.text-block {
+    opacity: 1;
+}
+
+/* 標題 */
+.text-title {
+    font-family: 'Lexend', sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 700;
+    color: #ed1e79;
+    margin-bottom: 24px;
+    line-height: 1.1;
+}
+
+/* 敘述文字 */
+.text-description {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 16px;
+}
