@@ -1,4 +1,4 @@
-/* Version: 2026-0123-UPDATED-V2 */
+/* Version: 2026-0123-UPDATED-V3 */
 document.addEventListener('DOMContentLoaded', () => {
     // =========================================
     // 初始化 GSAP 與 Lenis 平滑滾動
@@ -318,19 +318,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // 【新設計】視差區域動畫效果
+    // 【新設計】三個獨立區域的視差動畫效果
     // =========================================
-    const parallaxSection = document.querySelector('.parallax-section');
-
-    if (parallaxSection) {
-        // 圖片1+2 視差效果
-        const img1 = parallaxSection.querySelector('.parallax-img-1');
-        const img2 = parallaxSection.querySelector('.parallax-img-2');
+    
+    // 上區：圖片1+2 視差效果
+    const sectionTop = document.querySelector('.parallax-section-top');
+    if (sectionTop) {
+        const img1 = sectionTop.querySelector('.parallax-img-1');
+        const img2 = sectionTop.querySelector('.parallax-img-2');
         
         if (img1) {
             gsap.to(img1, {
                 scrollTrigger: {
-                    trigger: parallaxSection,
+                    trigger: sectionTop,
                     start: 'top bottom',
                     end: 'bottom top',
                     scrub: 1.5
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (img2) {
             gsap.to(img2, {
                 scrollTrigger: {
-                    trigger: parallaxSection,
+                    trigger: sectionTop,
                     start: 'top bottom',
                     end: 'bottom top',
                     scrub: 2
@@ -352,9 +352,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 ease: 'none'
             });
         }
+    }
 
-        // 2×2文字網格 - 淡入淡出與視差效果
-        const textBlocks = parallaxSection.querySelectorAll('.text-block');
+    // 中區：2×2文字網格 - 淡入淡出與視差效果
+    const sectionMiddle = document.querySelector('.parallax-section-middle');
+    if (sectionMiddle) {
+        const textBlocks = sectionMiddle.querySelectorAll('.text-block');
         
         textBlocks.forEach((block, index) => {
             // 視差效果 - 上下移動
@@ -401,15 +404,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 ease: 'power2.in'
             });
         });
+    }
 
-        // 圖片3+4 視差效果
-        const img3 = parallaxSection.querySelector('.parallax-img-3');
-        const img4 = parallaxSection.querySelector('.parallax-img-4');
+    // 下區：圖片3+4 視差效果
+    const sectionBottom = document.querySelector('.parallax-section-bottom');
+    if (sectionBottom) {
+        const img3 = sectionBottom.querySelector('.parallax-img-3');
+        const img4 = sectionBottom.querySelector('.parallax-img-4');
         
         if (img3) {
             gsap.to(img3, {
                 scrollTrigger: {
-                    trigger: parallaxSection,
+                    trigger: sectionBottom,
                     start: 'top bottom',
                     end: 'bottom top',
                     scrub: 2
@@ -422,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (img4) {
             gsap.to(img4, {
                 scrollTrigger: {
-                    trigger: parallaxSection,
+                    trigger: sectionBottom,
                     start: 'top bottom',
                     end: 'bottom top',
                     scrub: 1.5
