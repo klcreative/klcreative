@@ -1,7 +1,7 @@
-/* Version: 2026-0123-UPDATED */
+/* Version: 2026-0123-UPDATED-V3 */
 document.addEventListener('DOMContentLoaded', () => {
     // =========================================
-    // åˆå§‹åŒ– GSAP èˆ‡ Lenis å¹³æ»‘æ»¾å‹•
+    // 初始化 GSAP 與 Lenis 平滑滾動
     // =========================================
     gsap.registerPlugin(ScrollTrigger);
     
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.ticker.lagSmoothing(0);
 
     // =========================================
-    // æ¼¢å ¡é¸å–®åŠŸèƒ½
+    // 漢堡選單功能
     // =========================================
     const hamburgerNavToggle = document.getElementById('hamburger-nav-toggle');
     const hamburgerNavOverlay = document.getElementById('hamburger-nav-overlay');
@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (menuStatus) {
             const lang = document.documentElement.lang;
             const message = isOpen 
-                ? (lang === 'zh-Hant' ? 'é¸å–®å·²é–‹å•Ÿ' : 'Menu opened')
-                : (lang === 'zh-Hant' ? 'é¸å–®å·²é—œé–‰' : 'Menu closed');
+                ? (lang === 'zh-Hant' ? '選單已開啟' : 'Menu opened')
+                : (lang === 'zh-Hant' ? '選單已關閉' : 'Menu closed');
             menuStatus.textContent = message;
             setTimeout(() => { menuStatus.textContent = ''; }, 1000);
         }
@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const lang = document.documentElement.lang;
             const newLabel = isOpen 
-                ? (lang === 'zh-Hant' ? 'é–‹å•Ÿå°Žè¦½é¸å–®' : 'Open navigation menu')
-                : (lang === 'zh-Hant' ? 'é—œé–‰å°Žè¦½é¸å–®' : 'Close navigation menu');
+                ? (lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu')
+                : (lang === 'zh-Hant' ? '關閉導覽選單' : 'Close navigation menu');
             hamburgerNavToggle.setAttribute('aria-label', newLabel);
             
             if (isOpen) {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 hamburgerNavToggle.setAttribute('aria-expanded', 'false');
                 const lang = document.documentElement.lang;
                 hamburgerNavToggle.setAttribute('aria-label', 
-                    lang === 'zh-Hant' ? 'é–‹å•Ÿå°Žè¦½é¸å–®' : 'Open navigation menu'
+                    lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu'
                 );
                 hamburgerNavToggle.focus();
                 announceMenuState(false);
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburgerNavToggle.setAttribute('aria-expanded', 'false');
             const lang = document.documentElement.lang;
             hamburgerNavToggle.setAttribute('aria-label', 
-                lang === 'zh-Hant' ? 'é–‹å•Ÿå°Žè¦½é¸å–®' : 'Open navigation menu'
+                lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu'
             );
             hamburgerNavToggle.focus();
             announceMenuState(false);
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         hamburgerNavToggle.setAttribute('aria-expanded', 'false');
                         const lang = document.documentElement.lang;
                         hamburgerNavToggle.setAttribute('aria-label', 
-                            lang === 'zh-Hant' ? 'é–‹å•Ÿå°Žè¦½é¸å–®' : 'Open navigation menu'
+                            lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu'
                         );
                         announceMenuState(false);
                     }
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     hamburgerNavToggle.setAttribute('aria-expanded', 'false');
                     const lang = document.documentElement.lang;
                     hamburgerNavToggle.setAttribute('aria-label', 
-                        lang === 'zh-Hant' ? 'é–‹å•Ÿå°Žè¦½é¸å–®' : 'Open navigation menu'
+                        lang === 'zh-Hant' ? '開啟導覽選單' : 'Open navigation menu'
                     );
                 }
             }
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // èƒŒæ™¯è¦–å·®å‹•æ…‹æ•ˆæžœ
+    // 背景視差動態效果
     // =========================================
     const parallaxBg = document.querySelector('.parallax-background');
     let lastScrollY = 0;
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBackgroundParallax();
 
     // =========================================
-    // Hero Section åœ–ç‰‡é®ç½©æ»¾å‹•æ•ˆæžœ
+    // Hero Section 圖片遮罩滾動效果
     // =========================================
     const maskImages = gsap.utils.toArray('.images .mask-img');
 
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // æ¨™é¡Œæ–‡å­—æ·¡å…¥å‹•ç•«
+    // 標題文字淡入動畫
     // =========================================
     gsap.from('.content .center .title-bottom .hero-title', {
         scrollTrigger: {
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // Last Section å…§å®¹æ·¡å…¥å‹•ç•«
+    // Last Section 內容淡入動畫
     // =========================================
     gsap.from('.last-section-content .title-reimagined', {
         scrollTrigger: {
@@ -298,15 +298,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // ã€éœ€æ±‚1ã€‘åœ–ç‰‡1~4 è¼•å¾®å·¦å³æ–æ™ƒæ•ˆæžœ
+    // 【需求1】圖片1~4 輕微左右搖晃效果
     // =========================================
     const parallaxImages = document.querySelectorAll('.parallax-img-1, .parallax-img-2, .parallax-img-3, .parallax-img-4');
     
     parallaxImages.forEach((img, index) => {
-        // ç‚ºæ¯å€‹åœ–ç‰‡å‰µå»ºä¸åŒçš„æ–æ™ƒåƒæ•¸,è®“æ•ˆæžœæ›´è‡ªç„¶
-        const swayAmount = 8; // å·¦å³æ–æ™ƒå¹…åº¦ 8px
-        const duration = 4 + (index * 0.5); // æ¯å€‹åœ–ç‰‡ä¸åŒé€Ÿåº¦,æ›´è‡ªç„¶
-        const delay = index * 0.3; // éŒ¯é–‹é–‹å§‹æ™‚é–“
+        const swayAmount = 8;
+        const duration = 4 + (index * 0.5);
+        const delay = index * 0.3;
         
         gsap.to(img, {
             x: `+=${swayAmount}`,
@@ -319,24 +318,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // æ–°è¦–å·®å€åŸŸå‹•ç•«æ•ˆæžœ
+    // 【新設計】三個獨立區域的視差動畫效果
     // =========================================
-    const parallaxSections = document.querySelectorAll('.parallax-section');
-
-    parallaxSections.forEach((section, sectionIndex) => {
-        const img1 = section.querySelector('.parallax-img-1');
-        const img2 = section.querySelector('.parallax-img-2');
-        const img3 = section.querySelector('.parallax-img-3');
-        const img4 = section.querySelector('.parallax-img-4');
-        const textBlock1 = section.querySelector('.text-block-1');
-        const textBlock2 = section.querySelector('.text-block-2');
-
-        // ç¬¬ä¸€çµ„åœ–ç‰‡(æ–°é®®+æŠ€è—) - åªä¿ç•™è¦–å·®æ•ˆæžœ
-        if (img1 && img2) {
-            // åœ–ç‰‡1è¦–å·®æ•ˆæžœ - ç§»å‹•å¿«(-50px)
+    
+    // 上區：圖片1+2 視差效果
+    const sectionTop = document.querySelector('.parallax-section-top');
+    if (sectionTop) {
+        const img1 = sectionTop.querySelector('.parallax-img-1');
+        const img2 = sectionTop.querySelector('.parallax-img-2');
+        
+        if (img1) {
             gsap.to(img1, {
                 scrollTrigger: {
-                    trigger: section,
+                    trigger: sectionTop,
                     start: 'top bottom',
                     end: 'bottom top',
                     scrub: 1.5
@@ -344,11 +338,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 y: -50,
                 ease: 'none'
             });
+        }
 
-            // åœ–ç‰‡2è¦–å·®æ•ˆæžœ - ç§»å‹•æ…¢(-20px)
+        if (img2) {
             gsap.to(img2, {
                 scrollTrigger: {
-                    trigger: section,
+                    trigger: sectionTop,
                     start: 'top bottom',
                     end: 'bottom top',
                     scrub: 2
@@ -357,63 +352,92 @@ document.addEventListener('DOMContentLoaded', () => {
                 ease: 'none'
             });
         }
+    }
 
-        // ã€éœ€æ±‚3ä¿®æ”¹ã€‘ç¬¬äºŒçµ„åœ–ç‰‡(å½ˆæ€§+ä¿¡è³´) - æ·»åŠ è¦–å·®æ•ˆæžœ,æé«˜30px
-        if (img3 && img4) {
-            // åœ–ç‰‡3è¦–å·®æ•ˆæžœ - æé«˜30px,æœ€å¤šå‘ä¸Šç§»å‹•5%
-            gsap.to(img3, {
+    // 中區：2×2文字網格 - 淡入淡出與視差效果
+    const sectionMiddle = document.querySelector('.parallax-section-middle');
+    if (sectionMiddle) {
+        const textBlocks = sectionMiddle.querySelectorAll('.text-block');
+        
+        textBlocks.forEach((block, index) => {
+            // 視差效果 - 上下移動
+            gsap.to(block, {
                 scrollTrigger: {
-                    trigger: section,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 2
-                },
-                y: -30, // æé«˜30px
-                ease: 'none'
-            });
-
-            // åœ–ç‰‡4è¦–å·®æ•ˆæžœ - æé«˜30px,æœ€å¤šå‘ä¸Šç§»å‹•5%
-            gsap.to(img4, {
-                scrollTrigger: {
-                    trigger: section,
+                    trigger: block,
                     start: 'top bottom',
                     end: 'bottom top',
                     scrub: 1.5
                 },
-                y: -30, // æé«˜30px
+                y: -30,
+                ease: 'none'
+            });
+
+            // 淡入效果 - 進入視窗時
+            gsap.fromTo(block, 
+                {
+                    opacity: 0,
+                    y: 30
+                },
+                {
+                    scrollTrigger: {
+                        trigger: block,
+                        start: 'top 85%',
+                        end: 'top 60%',
+                        scrub: 1,
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power2.out'
+                }
+            );
+
+            // 淡出效果 - 離開視窗時
+            gsap.to(block, {
+                scrollTrigger: {
+                    trigger: block,
+                    start: 'bottom 20%',
+                    end: 'bottom 0%',
+                    scrub: 1
+                },
+                opacity: 0,
+                ease: 'power2.in'
+            });
+        });
+    }
+
+    // 下區：圖片3+4 視差效果
+    const sectionBottom = document.querySelector('.parallax-section-bottom');
+    if (sectionBottom) {
+        const img3 = sectionBottom.querySelector('.parallax-img-3');
+        const img4 = sectionBottom.querySelector('.parallax-img-4');
+        
+        if (img3) {
+            gsap.to(img3, {
+                scrollTrigger: {
+                    trigger: sectionBottom,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 2
+                },
+                y: -30,
                 ease: 'none'
             });
         }
 
-        // æ–‡å­—å€å¡Šå‹•ç•« - ææ—©é–‹å§‹,èˆ‡åœ–ç‰‡åŒæ­¥
-        if (textBlock1) {
-            gsap.to(textBlock1, {
+        if (img4) {
+            gsap.to(img4, {
                 scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    end: 'top 40%',
-                    scrub: 1
+                    trigger: sectionBottom,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1.5
                 },
-                y: 0,
-                opacity: 1,
-                ease: 'back.out(1.4)'
+                y: -30,
+                ease: 'none'
             });
         }
-
-        if (textBlock2) {
-            gsap.to(textBlock2, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    end: 'top 40%',
-                    scrub: 1
-                },
-                y: 0,
-                opacity: 1,
-                ease: 'back.out(1.4)'
-            });
-        }
-    });
+    }
 
     gsap.from('.gallery-container', {
         scrollTrigger: {
@@ -427,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // ç…§ç‰‡ç‰†é è¼‰å…¥å„ªåŒ–
+    // 照片牆預載入優化
     // =========================================
     const galleryItems = document.querySelectorAll('.gallery-item img');
     let loadedCount = 0;
@@ -446,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // ç›¸ç‰‡ç‡ˆç®±åŠŸèƒ½
+    // 相片燈箱功能
     // =========================================
     const lightbox = document.getElementById('photo-lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
@@ -487,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImage.src = `${imageBasePath}${imageNum}.webp`;
         const lang = document.documentElement.lang;
         lightboxImage.alt = lang === 'zh-Hant' 
-            ? `ä¼æ¥­é¤é£²ä½œå“ ${imageNum}` 
+            ? `企業餐飲作品 ${imageNum}` 
             : `Corporate catering work ${imageNum}`;
     }
 
@@ -542,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // ç„¡éšœç¤™:ç¢ºä¿ä¸»è¦å…§å®¹å€åŸŸæ­£ç¢ºæ¨™è¨˜
+    // 無障礙:確保主要內容區域正確標記
     // =========================================
     const mainContent = document.getElementById('main-content');
     if (mainContent && !mainContent.hasAttribute('role')) {
