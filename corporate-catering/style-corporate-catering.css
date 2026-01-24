@@ -431,8 +431,8 @@ button:focus-visible {
 .parallax-img-1 {
     width: 246px; /* 280 × 0.9 = 252px,縮小10% */
     height: 383px; /* 432 × 0.9 = 389px,縮小10% */
-    right: 35%; /* 起始位置為-80% */
-    top: 50%;
+    right: 15%; /* 起始位置為-80% */
+    top: 30%;
     transform: translateY(-50%);
     z-index: 1;
 }
@@ -440,8 +440,8 @@ button:focus-visible {
 .parallax-img-2 {
     width: 320px;
     height: 568px;
-    left: 0;
-    top: 50%;
+    right: 20%;
+    top: 30%;
     transform: translateY(-50%);
     z-index: 2;
 }
