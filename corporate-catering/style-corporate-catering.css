@@ -388,14 +388,14 @@ button:focus-visible {
 
 /* ========================================= 全新視差效果區域設計 - 三個獨立區域 ========================================= */
 
-/* 上區：圖1+2 (左側) */
+/* 上區：圖1+2 (置中、靠底部) */
 .parallax-section-top {
     width: 100%;
     min-height: 70vh;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 100px 20px;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 100px 20px 60px 20px;
     position: relative;
     margin: 0 auto;
     max-width: 1400px;
@@ -405,17 +405,16 @@ button:focus-visible {
     width: 600px;
     height: 600px;
     position: relative;
-    margin-left: 10%;
 }
 
-/* 中區：2×2文字網格 (中間) */
+/* 中區：2×2文字網格 (中間、縮減高度) */
 .parallax-section-middle {
     width: 100%;
-    min-height: 70vh;
+    min-height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 20px;
+    padding: 80px 20px;
     position: relative;
     margin: 0 auto;
     max-width: 1400px;
@@ -430,14 +429,14 @@ button:focus-visible {
     padding: 40px;
 }
 
-/* 下區：圖3+4 (右側) */
+/* 下區：圖3+4 (置中、靠頂部、縮減高度) */
 .parallax-section-bottom {
     width: 100%;
-    min-height: 70vh;
+    min-height: auto;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 100px 20px;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px 20px 100px 20px;
     position: relative;
     margin: 0 auto;
     max-width: 1400px;
@@ -447,7 +446,6 @@ button:focus-visible {
     width: 600px;
     height: 500px;
     position: relative;
-    margin-right: 10%;
     transform: translateY(-180px);
 }
 

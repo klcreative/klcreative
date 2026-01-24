@@ -354,24 +354,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 中區：2×2文字網格 - 淡入淡出與視差效果
+    // 中區：2×2文字網格 - 只有淡入淡出效果（取消視差）
     const sectionMiddle = document.querySelector('.parallax-section-middle');
     if (sectionMiddle) {
         const textBlocks = sectionMiddle.querySelectorAll('.text-block');
         
         textBlocks.forEach((block, index) => {
-            // 視差效果 - 上下移動
-            gsap.to(block, {
-                scrollTrigger: {
-                    trigger: block,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1.5
-                },
-                y: -30,
-                ease: 'none'
-            });
-
             // 淡入效果 - 進入視窗時
             gsap.fromTo(block, 
                 {
