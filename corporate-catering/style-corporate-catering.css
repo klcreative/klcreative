@@ -415,7 +415,7 @@ button:focus-visible {
 .parallax-section:nth-of-type(2) .parallax-images-container {
     width: 500px;
     height: 300px;
-    transform: translateY(-90px);
+    transform: translateY(-110px);
 }
 
 /* 圖片基礎樣式 */
@@ -429,8 +429,8 @@ button:focus-visible {
 
 /* 【需求1修改】第一組圖片 (圖1+2) - 2在前面,圖1縮小10%並往右移80% */
 .parallax-img-1 {
-    width: 252px; /* 280 × 0.9 = 252px,縮小10% */
-    height: 389px; /* 432 × 0.9 = 389px,縮小10% */
+    width: 250px; /* 280 × 0.9 = 252px,縮小10% */
+    height: 387px; /* 432 × 0.9 = 389px,縮小10% */
     right: 30%; /* 起始位置為-80% */
     top: 50%;
     transform: translateY(-50%);
@@ -442,14 +442,14 @@ button:focus-visible {
     height: 568px;
     left: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-40%);
     z-index: 2;
 }
 
 /* 【需求2修改】第二組圖片 (圖3+4) - 4在前面,底部對齊,水平置中,寬度改為500px */
 .parallax-img-3 {
-    width: 500px;
-    height: 300px;
+    width: 550px;
+    height: 350px;
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
@@ -461,7 +461,7 @@ button:focus-visible {
     height: 300px;
     left: 50%;
     transform: translateX(-50%) scale(1.15);
-    bottom: -9%;
+    bottom: -8%;
     z-index: 2;
 }
 
