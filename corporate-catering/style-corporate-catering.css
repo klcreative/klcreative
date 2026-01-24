@@ -1,4 +1,4 @@
-/* Version: 2026-0124-REDESIGN-V3 */
+/* Version: 2026-0124-REDESIGN */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
 * {
@@ -21,7 +21,7 @@ body {
     position: relative;
 }
 
-/* ========================================= 無障礙功能 ========================================= */
+/* ========================================= ç„¡éšœç¤™åŠŸèƒ½ ========================================= */
 
 .skip-to-content {
     position: absolute;
@@ -84,7 +84,7 @@ button:focus-visible {
     }
 }
 
-/* ========================================= 漢堡選單樣式 ========================================= */
+/* ========================================= æ¼¢å ¡é¸å–®æ¨£å¼ ========================================= */
 
 #hamburger-nav-toggle {
     display: flex;
@@ -223,7 +223,7 @@ button:focus-visible {
     #hamburger-nav-menu a:nth-child(9) { order: 9; }
 }
 
-/* ========================================= 背景視差層 ========================================= */
+/* ========================================= èƒŒæ™¯è¦–å·®å±¤ ========================================= */
 .parallax-background {
     position: fixed;
     top: 0;
@@ -360,7 +360,7 @@ button:focus-visible {
     margin-top: 0;
 }
 
-/* ========================================= Bars 區域標題 ========================================= */
+/* ========================================= Bars å€åŸŸæ¨™é¡Œ ========================================= */
 .bars-title-container {
     position: relative;
     width: 100%;
@@ -386,72 +386,39 @@ button:focus-visible {
     display: block;
 }
 
-/* ========================================= 全新視差效果區域設計 - 三個獨立區域 ========================================= */
+/* ========================================= å…¨æ–°è¦–å·®æ•ˆæžœå€åŸŸè¨­è¨ˆ ========================================= */
 
-/* 上區：圖1+2 (左側) */
-.parallax-section-top {
+.parallax-section {
     width: 100%;
+    max-width: 1200px;
     min-height: 70vh;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 100px 20px;
+    justify-content: space-between;
+    gap: 80px;
+    margin: 100px 0;
+    padding: 60px 20px;
     position: relative;
-    margin: 0 auto;
-    max-width: 1400px;
 }
 
-.parallax-images-container-top {
-    width: 600px;
+/* åœ–ç‰‡å®¹å™¨ - å›ºå®šå¯¬åº¦ */
+.parallax-images-container {
+    flex: 0 0 45%;
+    position: relative;
     height: 600px;
-    position: relative;
-    margin-left: 10%;
-}
-
-/* 中區：2×2文字網格 (中間) */
-.parallax-section-middle {
-    width: 100%;
-    min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 20px;
-    position: relative;
-    margin: 0 auto;
-    max-width: 1400px;
 }
 
-.parallax-text-grid {
-    width: 100%;
-    max-width: 1000px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 60px 80px;
-    padding: 40px;
-}
-
-/* 下區：圖3+4 (右側) */
-.parallax-section-bottom {
-    width: 100%;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 100px 20px;
-    position: relative;
-    margin: 0 auto;
-    max-width: 1400px;
-}
-
-.parallax-images-container-bottom {
-    width: 600px;
-    height: 500px;
-    position: relative;
-    margin-right: 10%;
+/* ã€éœ€æ±‚2ä¿®æ”¹ã€‘ç¬¬äºŒçµ„åœ–ç‰‡å®¹å™¨ - å¯¬åº¦800px,é«˜åº¦500px,æ•´é«”ä¸Šç§»45px */
+.parallax-section:nth-of-type(2) .parallax-images-container {
+    width: 500px;
+    height: 300px;
     transform: translateY(-110px);
 }
 
-/* 圖片基礎樣式 */
+/* åœ–ç‰‡åŸºç¤Žæ¨£å¼ */
 .parallax-img {
     position: absolute;
     border-radius: 16px;
@@ -460,11 +427,11 @@ button:focus-visible {
     will-change: transform;
 }
 
-/* 第一組圖片 (圖1+2) */
+/* ã€éœ€æ±‚1ä¿®æ”¹ã€‘ç¬¬ä¸€çµ„åœ–ç‰‡ (åœ–1+2) - 2åœ¨å‰é¢,åœ–1ç¸®å°10%ä¸¦å¾€å³ç§»80% */
 .parallax-img-1 {
-    width: 246px;
-    height: 383px;
-    right: 15%;
+    width: 246px; /* 280 Ã— 0.9 = 252px,ç¸®å°10% */
+    height: 383px; /* 432 Ã— 0.9 = 389px,ç¸®å°10% */
+    right: 15%; /* èµ·å§‹ä½ç½®ç‚º-80% */
     top: 30%;
     transform: translateY(-50%);
     z-index: 1;
@@ -479,7 +446,7 @@ button:focus-visible {
     z-index: 2;
 }
 
-/* 第二組圖片 (圖3+4) */
+/* ã€éœ€æ±‚2ä¿®æ”¹ã€‘ç¬¬äºŒçµ„åœ–ç‰‡ (åœ–3+4) - 4åœ¨å‰é¢,åº•éƒ¨å°é½Š,æ°´å¹³ç½®ä¸­,å¯¬åº¦æ”¹ç‚º500px */
 .parallax-img-3 {
     width: 550px;
     height: 350px;
@@ -498,30 +465,40 @@ button:focus-visible {
     z-index: 2;
 }
 
-/* 文字區塊 */
-.text-block {
-    opacity: 0;
-    transform: translateY(30px);
+/* æ–‡å­—å®¹å™¨ */
+.parallax-text-container {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
-/* 標題 */
+/* æ–‡å­—å€å¡Š */
+.text-block {
+    opacity: 1;
+}
+
+/* æ¨™é¡Œ */
 .text-title {
     font-family: 'Lexend', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 700;
     color: #ed1e79;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     line-height: 1.1;
+    transform: translateX(-10px) translateY(20px);
 }
 
-/* 敘述文字 */
+/* æ•˜è¿°æ–‡å­— */
 .text-description {
-    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 16px;
+    transform: translateX(-10px) translateY(20px);
 }
 
-/* ========================================= 相片牆 Gallery ========================================= */
+/* ========================================= ç›¸ç‰‡ç‰† Gallery ========================================= */
 .gallery-container {
     width: 100%;
     max-width: 1200px;
@@ -562,7 +539,7 @@ button:focus-visible {
     display: block;
 }
 
-/* ========================================= 相片燈箱 ========================================= */
+/* ========================================= ç›¸ç‰‡ç‡ˆç®± ========================================= */
 .lightbox {
     display: none;
     position: fixed;
@@ -683,7 +660,7 @@ button:focus-visible {
     pointer-events: none;
 }
 
-/* ========================================= 響應式設計 - 手機直式 ========================================= */
+/* ========================================= éŸ¿æ‡‰å¼è¨­è¨ˆ - æ‰‹æ©Ÿç›´å¼ ========================================= */
 @media (max-width: 834px) and (orientation: portrait) {
     .parallax-background {
         background-position: 40% center;
@@ -712,32 +689,25 @@ button:focus-visible {
         margin-bottom: 40px;
     }
 
-    /* 三個區域都改為垂直置中 */
-    .parallax-section-top,
-    .parallax-section-middle,
-    .parallax-section-bottom {
+    /* è¦–å·®å€åŸŸ - åž‚ç›´æŽ’åˆ— */
+    .parallax-section {
+        flex-direction: column;
+        gap: 40px;
         min-height: auto;
-        justify-content: center;
-        padding: 60px 20px;
-        margin: 40px 0;
+        margin: 80px 0;
+        padding: 40px 20px;
     }
 
-    .parallax-images-container-top,
-    .parallax-images-container-bottom {
+    .parallax-images-container {
         width: 100%;
         height: 480px;
-        margin: 0;
     }
 
-    .parallax-images-container-bottom {
-        transform: translateY(-45px);
-    }
-
-    /* 第一組圖片 - 手機直式 */
+    /* ã€éœ€æ±‚1ä¿®æ”¹ã€‘ç¬¬ä¸€çµ„åœ–ç‰‡ - æ‰‹æ©Ÿç›´å¼,åœ–1ç¸®å°10%ä¸¦å¾€å³ç§»80% */
     .parallax-img-1 {
-        width: 180px;
-        height: 277px;
-        right: 50%;
+        width: 180px; /* 200 Ã— 0.9 = 180px */
+        height: 277px; /* 308 Ã— 0.9 = 277px */
+        right: 50%; /* -30% + 80% = 50% */
         top: 50%;
     }
 
@@ -748,7 +718,7 @@ button:focus-visible {
         top: 50%;
     }
 
-    /* 第二組圖片 - 手機直式 */
+    /* ã€éœ€æ±‚2ä¿®æ”¹ã€‘ç¬¬äºŒçµ„åœ–ç‰‡ - æ‰‹æ©Ÿç›´å¼,åœ–3ã€4æ°´å¹³ç½®ä¸­ */
     .parallax-img-3 {
         width: 220px;
         height: 352px;
@@ -757,17 +727,23 @@ button:focus-visible {
     }
 
     .parallax-img-4 {
-        width: 208px;
-        height: 318px;
+        width: 208px; /* 260 Ã— 0.8 = 208px */
+        height: 318px; /* 398 Ã— 0.8 = 318px */
         left: 50%;
         transform: translateX(-50%);
     }
 
-    /* 文字網格改為單欄 */
-    .parallax-text-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 20px;
+    /* ã€éœ€æ±‚2ä¿®æ”¹ã€‘ç¬¬äºŒçµ„åœ–ç‰‡å®¹å™¨ - æ‰‹æ©Ÿç›´å¼,å¯¬åº¦100%,é«˜åº¦380px,ä¸Šç§»45px */
+    .parallax-section:nth-of-type(2) .parallax-images-container {
+        width: 100%;
+        height: 380px;
+        transform: translateY(-45px);
+    }
+
+    .parallax-text-container {
+        width: 100%;
+        gap: 30px;
+        text-align: center;
     }
 
     .text-title {
@@ -819,28 +795,21 @@ button:focus-visible {
     }
 }
 
-/* 平板直式 */
+/* å¹³æ¿ç›´å¼ */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-    .parallax-section-top,
-    .parallax-section-middle,
-    .parallax-section-bottom {
-        padding: 80px 20px;
+    .parallax-section {
+        gap: 60px;
     }
 
-    .parallax-images-container-top,
-    .parallax-images-container-bottom {
+    .parallax-images-container {
         height: 540px;
     }
 
-    .parallax-images-container-bottom {
-        transform: translateY(-45px);
-    }
-
-    /* 第一組圖片 - 平板直式 */
+    /* ã€éœ€æ±‚1ä¿®æ”¹ã€‘ç¬¬ä¸€çµ„åœ–ç‰‡ - å¹³æ¿ç›´å¼,åœ–1ç¸®å°10%ä¸¦å¾€å³ç§»80% */
     .parallax-img-1 {
-        width: 216px;
-        height: 333px;
-        right: 40%;
+        width: 216px; /* 240 Ã— 0.9 = 216px */
+        height: 333px; /* 370 Ã— 0.9 = 333px */
+        right: 40%; /* -40% + 80% = 40% */
     }
 
     .parallax-img-2 {
@@ -848,7 +817,7 @@ button:focus-visible {
         height: 497px;
     }
 
-    /* 第二組圖片 - 平板直式 */
+    /* ã€éœ€æ±‚2ä¿®æ”¹ã€‘ç¬¬äºŒçµ„åœ–ç‰‡ - å¹³æ¿ç›´å¼,åœ–3ã€4æ°´å¹³ç½®ä¸­ */
     .parallax-img-3 {
         width: 260px;
         height: 416px;
@@ -857,15 +826,17 @@ button:focus-visible {
     }
 
     .parallax-img-4 {
-        width: 240px;
-        height: 367px;
+        width: 240px; /* 300 Ã— 0.8 = 240px */
+        height: 367px; /* 459 Ã— 0.8 = 367px */
         left: 50%;
         transform: translateX(-50%);
     }
 
-    .parallax-text-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
+    /* ã€éœ€æ±‚2ä¿®æ”¹ã€‘ç¬¬äºŒçµ„åœ–ç‰‡å®¹å™¨ - å¹³æ¿ç›´å¼,å¯¬åº¦520px,é«˜åº¦450px,ä¸Šç§»45px */
+    .parallax-section:nth-of-type(2) .parallax-images-container {
+        width: 520px;
+        height: 450px;
+        transform: translateY(-45px);
     }
 
     .gallery-container {
@@ -873,7 +844,7 @@ button:focus-visible {
     }
 }
 
-/* 手機橫式 */
+/* æ‰‹æ©Ÿæ©«å¼ */
 @media (orientation: landscape) and (max-height: 500px) {
     .parallax-background {
         transform: scale(1.4);
@@ -902,27 +873,22 @@ button:focus-visible {
         margin-bottom: 30px;
     }
 
-    .parallax-section-top,
-    .parallax-section-middle,
-    .parallax-section-bottom {
+    .parallax-section {
         min-height: 60vh;
-        padding: 60px 20px;
+        gap: 50px;
+        margin: 60px 0;
+        padding: 40px 20px;
     }
 
-    .parallax-images-container-top,
-    .parallax-images-container-bottom {
+    .parallax-images-container {
         height: 400px;
     }
 
-    .parallax-images-container-bottom {
-        transform: translateY(-45px);
-    }
-
-    /* 第一組圖片 - 手機橫式 */
+    /* ã€éœ€æ±‚1ä¿®æ”¹ã€‘ç¬¬ä¸€çµ„åœ–ç‰‡ - æ‰‹æ©Ÿæ©«å¼,åœ–1ç¸®å°10%ä¸¦å¾€å³ç§»80% */
     .parallax-img-1 {
-        width: 162px;
-        height: 250px;
-        right: 40%;
+        width: 162px; /* 180 Ã— 0.9 = 162px */
+        height: 250px; /* 278 Ã— 0.9 = 250px */
+        right: 40%; /* -40% + 80% = 40% */
     }
 
     .parallax-img-2 {
@@ -930,7 +896,7 @@ button:focus-visible {
         height: 373px;
     }
 
-    /* 第二組圖片 - 手機橫式 */
+    /* ã€éœ€æ±‚2ä¿®æ”¹ã€‘ç¬¬äºŒçµ„åœ–ç‰‡ - æ‰‹æ©Ÿæ©«å¼,åœ–3ã€4æ°´å¹³ç½®ä¸­ */
     .parallax-img-3 {
         width: 200px;
         height: 320px;
@@ -939,16 +905,17 @@ button:focus-visible {
     }
 
     .parallax-img-4 {
-        width: 184px;
-        height: 282px;
+        width: 184px; /* 230 Ã— 0.8 = 184px */
+        height: 282px; /* 352 Ã— 0.8 = 282px */
         left: 50%;
         transform: translateX(-50%);
     }
 
-    .parallax-text-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 20px;
+    /* ã€éœ€æ±‚2ä¿®æ”¹ã€‘ç¬¬äºŒçµ„åœ–ç‰‡å®¹å™¨ - æ‰‹æ©Ÿæ©«å¼,å¯¬åº¦480px,é«˜åº¦340px,ä¸Šç§»45px */
+    .parallax-section:nth-of-type(2) .parallax-images-container {
+        width: 480px;
+        height: 340px;
+        transform: translateY(-45px);
     }
 
     .text-title {
