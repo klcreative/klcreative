@@ -461,7 +461,7 @@ button:focus-visible {
     height: 300px;
     left: 50%;
     transform: translateX(-50%) scale(1.17);
-    bottom: -3%;
+    bottom: -5%;
     z-index: 2;
 }
 
@@ -486,6 +486,7 @@ button:focus-visible {
     color: #ed1e79;
     margin-bottom: 24px;
     line-height: 1.1;
+    transform: translateX(-10px) translateY(20px);
 }
 
 /* 敘述文字 */
@@ -494,6 +495,7 @@ button:focus-visible {
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: 16px;
+    transform: translateX(-10px) translateY(20px);
 }
 
 /* ========================================= 相片牆 Gallery ========================================= */
