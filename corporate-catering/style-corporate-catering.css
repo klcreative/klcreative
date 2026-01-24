@@ -413,9 +413,9 @@ button:focus-visible {
 
 /* 【需求2修改】第二組圖片容器 - 寬度800px,高度500px,整體上移45px */
 .parallax-section:nth-of-type(2) .parallax-images-container {
-    width: 800px;
-    height: 500px;
-    transform: translateY(-45px);
+    width: 500px;
+    height: 300px;
+    transform: translateY(-110px);
 }
 
 /* 圖片基礎樣式 */
@@ -423,16 +423,16 @@ button:focus-visible {
     position: absolute;
     border-radius: 16px;
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
-    object-fit: cover;
+    object-fit: contain;
     will-change: transform;
 }
 
 /* 【需求1修改】第一組圖片 (圖1+2) - 2在前面,圖1縮小10%並往右移80% */
 .parallax-img-1 {
-    width: 252px; /* 280 × 0.9 = 252px,縮小10% */
-    height: 389px; /* 432 × 0.9 = 389px,縮小10% */
-    right: -80%; /* 起始位置為-80% */
-    top: 50%;
+    width: 246px; /* 280 × 0.9 = 252px,縮小10% */
+    height: 383px; /* 432 × 0.9 = 389px,縮小10% */
+    right: 15%; /* 起始位置為-80% */
+    top: 30%;
     transform: translateY(-50%);
     z-index: 1;
 }
@@ -440,16 +440,16 @@ button:focus-visible {
 .parallax-img-2 {
     width: 320px;
     height: 568px;
-    left: 0;
-    top: 50%;
+    right: 20%;
+    top: 30%;
     transform: translateY(-50%);
     z-index: 2;
 }
 
 /* 【需求2修改】第二組圖片 (圖3+4) - 4在前面,底部對齊,水平置中,寬度改為500px */
 .parallax-img-3 {
-    width: 500px;
-    height: 800px;
+    width: 550px;
+    height: 350px;
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
@@ -458,10 +458,10 @@ button:focus-visible {
 
 .parallax-img-4 {
     width: 500px;
-    height: 765px;
+    height: 300px;
     left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
+    transform: translateX(-50%) scale(1.17);
+    bottom: -5%;
     z-index: 2;
 }
 
@@ -478,26 +478,6 @@ button:focus-visible {
     opacity: 1;
 }
 
-/* 【新增】第一段文字區塊 - 往上移動20px */
-.parallax-section:nth-of-type(1) .text-block-1 {
-    transform: translateY(-20px);
-}
-
-/* 【新增】第二段文字區塊 - 往上移動20px */
-.parallax-section:nth-of-type(1) .text-block-2 {
-    transform: translateY(-20px);
-}
-
-/* 【新增】第三段文字區塊 - 往上移動60px */
-.parallax-section:nth-of-type(2) .text-block-1 {
-    transform: translateY(-60px);
-}
-
-/* 【新增】第四段文字區塊 - 往上移動60px */
-.parallax-section:nth-of-type(2) .text-block-2 {
-    transform: translateY(-60px);
-}
-
 /* 標題 */
 .text-title {
     font-family: 'Lexend', sans-serif;
@@ -506,6 +486,7 @@ button:focus-visible {
     color: #ed1e79;
     margin-bottom: 24px;
     line-height: 1.1;
+    transform: translateX(-10px) translateY(20px);
 }
 
 /* 敘述文字 */
@@ -514,6 +495,7 @@ button:focus-visible {
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: 16px;
+    transform: translateX(-10px) translateY(20px);
 }
 
 /* ========================================= 相片牆 Gallery ========================================= */
