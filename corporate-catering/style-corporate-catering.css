@@ -414,8 +414,8 @@ button:focus-visible {
 /* 【需求2修改】第二組圖片容器 - 寬度800px,高度500px,整體上移45px */
 .parallax-section:nth-of-type(2) .parallax-images-container {
     width: 500px;
-    height: 500px;
-    transform: translateY(-60px);
+    height: 300px;
+    transform: translateY(-90px);
 }
 
 /* 圖片基礎樣式 */
@@ -461,7 +461,7 @@ button:focus-visible {
     height: 765px;
     left: 50%;
     transform: translateX(-50%) scale(1.15);
-    bottom: -12%;
+    bottom: -11%;
     z-index: 2;
 }
 
