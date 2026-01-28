@@ -514,7 +514,7 @@ button:focus-visible {
 
 /* 敘述文字 */
 .text-description {
-    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.95);
 }
