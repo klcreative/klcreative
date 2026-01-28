@@ -753,8 +753,8 @@ button:focus-visible {
         width: 403px;
         height: 256px; /* 保持 1.571:1 比例 */
         left: 50%;
-        transform: translateX(-50%) scale(0.9);
-        bottom: 80%;
+        transform: translateX(-50%) scale(0.95);
+        bottom: 75%;
     }
 
     .parallax-img-4 {
