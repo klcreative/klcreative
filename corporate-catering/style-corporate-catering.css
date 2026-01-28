@@ -462,7 +462,7 @@ button:focus-visible {
 .parallax-img-1 {
     width: 246px;
     height: 383px;
-    right: 10%;
+    right: 30%;
     top: 30%;
     transform: translateY(-50%);
     z-index: 1;
