@@ -754,15 +754,15 @@ button:focus-visible {
         height: 256px; /* 保持 1.571:1 比例 */
         left: 50%;
         transform: translateX(-50%);
-        bottom: 0;
+        bottom: 30%;
     }
 
     .parallax-img-4 {
         width: 366px;
         height: 220px; /* 保持 1.667:1 比例 */
         left: 50%;
-        transform: translateX(-48%) scale(1.17); /* 保持電腦版 transform */
-        bottom: -6%;
+        transform: translateX(-48%) scale(1.0); /* 保持電腦版 transform */
+        bottom: 30%;
     }
 
     /* 文字網格改為單欄 */
