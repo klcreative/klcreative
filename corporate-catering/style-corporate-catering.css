@@ -735,7 +735,7 @@ button:focus-visible {
     .parallax-img-1 {
         width: 180px;
         height: 280px; /* 保持 1:1.557 比例 */
-        right: 30%; /* 保持電腦版位置邏輯 */
+        right: 40%; /* 保持電腦版位置邏輯 */
         top: 30%;
         transform: translateY(-50%);
     }
@@ -743,7 +743,7 @@ button:focus-visible {
     .parallax-img-2 {
         width: 234px;
         height: 415px; /* 保持 1:1.775 比例 */
-        right: 20%; /* 保持電腦版位置邏輯 */
+        right: 30%; /* 保持電腦版位置邏輯 */
         top: 30%;
         transform: translateY(-50%);
     }
@@ -842,7 +842,7 @@ button:focus-visible {
     .parallax-img-1 {
         width: 216px;
         height: 336px; /* 保持 1:1.557 比例 */
-        right: 30%; /* 保持電腦版位置邏輯 */
+        right: 40%; /* 保持電腦版位置邏輯 */
         top: 30%;
         transform: translateY(-50%);
     }
@@ -850,7 +850,7 @@ button:focus-visible {
     .parallax-img-2 {
         width: 280px;
         height: 497px; /* 保持 1:1.775 比例 */
-        right: 20%; /* 保持電腦版位置邏輯 */
+        right: 30%; /* 保持電腦版位置邏輯 */
         top: 30%;
         transform: translateY(-50%);
     }
@@ -860,16 +860,16 @@ button:focus-visible {
         width: 482px;
         height: 307px; /* 保持 1.571:1 比例 */
         left: 50%;
-        transform: translateX(-50%);
-        bottom: 0;
+        transform: translateX(-50%) scale(1.0);
+        bottom: 30%;
     }
 
     .parallax-img-4 {
         width: 438px;
         height: 263px; /* 保持 1.667:1 比例 */
         left: 50%;
-        transform: translateX(-48%) scale(1.17); /* 保持電腦版 transform */
-        bottom: -6%;
+        transform: translateX(-48%) scale(1.0); /* 保持電腦版 transform */
+        bottom: 25%;
     }
 
     .parallax-text-grid {
