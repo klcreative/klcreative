@@ -735,17 +735,17 @@ button:focus-visible {
     .parallax-img-1 {
         width: 180px;
         height: 280px; /* 保持 1:1.557 比例 */
-        right: 40%; /* 保持電腦版位置邏輯 */
+        right: 20%; /* 保持電腦版位置邏輯 */
         top: 30%;
-        transform: translateY(-50%);
+        transform: translateY(-30%);
     }
 
     .parallax-img-2 {
         width: 234px;
         height: 415px; /* 保持 1:1.775 比例 */
-        right: 30%; /* 保持電腦版位置邏輯 */
+        right: 10%; /* 保持電腦版位置邏輯 */
         top: 30%;
-        transform: translateY(-50%);
+        transform: translateY(-30%);
     }
 
     /* 第二組圖片 - 手機直式 */
@@ -753,8 +753,8 @@ button:focus-visible {
         width: 403px;
         height: 256px; /* 保持 1.571:1 比例 */
         left: 50%;
-        transform: translateX(-50%);
-        bottom: 30%;
+        transform: translateX(-50%) scale(-0.2);
+        bottom: 50%;
     }
 
     .parallax-img-4 {
@@ -762,7 +762,7 @@ button:focus-visible {
         height: 220px; /* 保持 1.667:1 比例 */
         left: 50%;
         transform: translateX(-48%) scale(1.0); /* 保持電腦版 transform */
-        bottom: 30%;
+        bottom: 50%;
     }
 
     /* 文字網格改為單欄 */
