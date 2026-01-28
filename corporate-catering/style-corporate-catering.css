@@ -762,7 +762,7 @@ button:focus-visible {
         height: 220px; /* 保持 1.667:1 比例 */
         left: 50%;
         transform: translateX(-48%) scale(0.95); /* 保持電腦版 transform */
-        bottom: 75%;
+        bottom: 70%;
     }
 
     /* 文字網格改為單欄 */
