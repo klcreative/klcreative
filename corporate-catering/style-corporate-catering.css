@@ -736,7 +736,7 @@ button:focus-visible {
         width: 180px;
         height: 280px; /* 保持 1:1.557 比例 */
         right: -5%; /* 保持電腦版位置邏輯 */
-        top: 30%;
+        top: 28%;
         transform: translateY(0%);
     }
 
@@ -753,7 +753,7 @@ button:focus-visible {
         width: 403px;
         height: 256px; /* 保持 1.571:1 比例 */
         left: 50%;
-        transform: translateX(-50%) scale(0.95);
+        transform: translateX(-50%) scale(0.9);
         bottom: 75%;
     }
 
@@ -761,8 +761,8 @@ button:focus-visible {
         width: 366px;
         height: 220px; /* 保持 1.667:1 比例 */
         left: 50%;
-        transform: translateX(-48%) scale(0.9); /* 保持電腦版 transform */
-        bottom: 80%;
+        transform: translateX(-48%) scale(0.95); /* 保持電腦版 transform */
+        bottom: 75%;
     }
 
     /* 文字網格改為單欄 */
