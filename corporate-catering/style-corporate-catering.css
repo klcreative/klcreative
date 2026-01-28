@@ -702,7 +702,7 @@ button:focus-visible {
     }
 
     .last-section-content .description-text {
-        font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+        font-size: clamp(1.0375rem, 3.5vw, 1.2375rem);
     }
 
     .bars-title-top {
@@ -762,7 +762,7 @@ button:focus-visible {
         height: 220px; /* 保持 1.667:1 比例 */
         left: 50%;
         transform: translateX(-48%) scale(0.95); /* 保持電腦版 transform */
-        bottom: 70%;
+        bottom: 69.5%;
     }
 
     /* 文字網格改為單欄 */
